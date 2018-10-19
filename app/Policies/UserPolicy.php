@@ -11,19 +11,30 @@ class UserPolicy
 
     public function before(User $user, $ability)
     {
-        return true;
+        if ($user->hasRole('admin')) return true;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
+     * @return mixed
+     */
+    public function view(User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can show the model.
+     *
+     * @param  \App\User  $user
      * @param  \App\User  $model
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function show(User $user, User $model)
     {
-        return false;
+        return $user->id === $model->id;
     }
 
     /**
@@ -46,7 +57,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return false;
+        return $user->id === $model->id;
     }
 
     /**
