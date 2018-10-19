@@ -1,0 +1,19 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.align-middle {
+  vertical-align: middle;
+}

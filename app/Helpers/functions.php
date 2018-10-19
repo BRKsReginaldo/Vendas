@@ -26,6 +26,21 @@ if (!function_exists('oauthLogin')) {
     }
 }
 
+if (!function_exists('refreshToken')) {
+    function refreshToken($refreshToken)
+    {
+        $oauthPasswordClient = resolve('OAUTH_PASSWORD_CLIENT');
+
+        return resolve('api')->post('/oauth/token', [
+            'grant_type' => 'refresh_token',
+            'client_id' => $oauthPasswordClient->id,
+            'client_secret' => $oauthPasswordClient->secret,
+            'refresh_token' => $refreshToken,
+            'scope' => '*'
+        ]);
+    }
+}
+
 if (!function_exists('uploadFile')) {
     function uploadFile(\Illuminate\Http\UploadedFile $file, $path = '', $storage = 'public', $customName = null)
     {

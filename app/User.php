@@ -76,4 +76,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Panel::class);
     }
+
+    function defaultImage()
+    {
+        return 'avatar.png';
+    }
 }

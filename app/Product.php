@@ -35,4 +35,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductBuy::class);
     }
+
+    function defaultImage()
+    {
+        return '';
+    }
 }

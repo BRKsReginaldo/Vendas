@@ -1,0 +1,17 @@
+$theme-colors: (
+        "primary": #0cc2aa,
+        "secondary": #a180da,
+        "success": #5fc27e,
+        "info": #5b7dff,
+        "warning": #fcc100,
+        "danger": #f44455,
+        "light": #f8f9fa,
+        "dark": #2e3e4e
+);
+
+$body-bg: #f0f0f0;
+$body-color: darken(#f0f0f0, 50%);
+
+$font-size-base: .875rem;
+$font-weight-base: 400;
+$line-height-base: 1.5;

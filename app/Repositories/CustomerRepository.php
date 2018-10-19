@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 
-use App\Client;
+use App\Customer;
 
-class ClientRepository extends BaseRepository
+class CustomerRepository extends BaseRepository
 {
-    protected $model = Client::class;
+    protected $model = Customer::class;
 }

@@ -7,6 +7,8 @@ use App\Image;
 
 trait Imageable
 {
+    abstract function defaultImage();
+
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
@@ -14,6 +16,7 @@ trait Imageable
 
     public function getImageAttribute()
     {
-        return $this->image()->first()->path;
+        $image = $this->image()->first();
+        return $image ? $image->path : $this->defaultImage();
     }
 }

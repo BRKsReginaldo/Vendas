@@ -1,0 +1,42 @@
+// Components Variables
+
+// 1 - Sidebar
+$sidebar-min-width: 220px;
+$sidebar-max-width: 220px;
+$sidebar-min-height: 100vh;
+
+$sidebar-brand-font-weight: 500;
+$sidebar-brand-font-size: 1.15rem;
+$sidebar-brand-padding: 1.15rem 1.25rem;
+$sidebar-brand-color: theme-color("light") !important;
+
+$sidebar-nav-padding-bottom: 3.5rem;
+$sidebar-nav-padding-left: 0;
+
+$sidebar-header-background: transparent;
+$sidebar-header-color: #adb5bd;
+$sidebar-header-padding: .375rem 1.25rem;
+$sidebar-header-font-size: .75rem;
+
+$sidebar-link-padding: .75rem 1.25rem;
+$sidebar-link-color: #ced4da;
+$sidebar-link-background: #2e3e4e;
+
+$sidebar-hover-color: #ced4da;
+$sidebar-hover-background: #263441;
+
+$sidebar-dropdown-padding: 2.5rem;
+$sidebar-dropdown-color: #adb5bd;
+$sidebar-dropdown-background: #2a3948;
+
+$sidebar-dropdown-link-hover-color: #e9ecef;
+$sidebar-dropdown-link-hover-background: #263441;
+
+$sidebar-bottom-padding: 1rem;
+$sidebar-bottom-font-size: .8rem;
+$sidebar-bottom-min-width: 220px;
+$sidebar-bottom-max-width: 220px;
+$sidebar-bottom-color: #e9ecef;
+$sidebar-bottom-background: #2a3948;
+
+$feather-margin: .75rem;

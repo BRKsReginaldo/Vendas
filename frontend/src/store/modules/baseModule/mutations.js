@@ -1,0 +1,1 @@
+export const SET_FOO = (state, payload) => state.foo = payload

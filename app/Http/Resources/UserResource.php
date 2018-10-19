@@ -19,7 +19,8 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
-            'image' => url('storage/' . $this->image)
+            'image' => url('storage/' . $this->image),
+            'roles' => RoleResource::collection($this->whenLoaded('roles'))
         ];
     }
 }

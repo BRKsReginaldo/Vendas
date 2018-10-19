@@ -1,0 +1,1 @@
+export const setFoo = ({commit}, payload) => commit('SET_FOO', payload)

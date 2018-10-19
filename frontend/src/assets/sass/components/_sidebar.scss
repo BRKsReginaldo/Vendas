@@ -1,0 +1,122 @@
+.sidebar, .sidebar-content {
+  background: theme-color("dark");
+}
+
+.sidebar {
+  min-width: $sidebar-min-width;
+  max-width: $sidebar-max-width;
+  min-height: $sidebar-min-height;
+  transition: margin .4s ease-in-out;
+  z-index: 2;
+}
+
+.sidebar:not(.sidebar-collapsed).toggled {
+  margin-left: -($sidebar-min-width);
+}
+
+.sidebar-toggle:hover {
+  color: theme-color("primary")!important;
+}
+
+.sidebar-brand {
+  font-weight: $sidebar-brand-font-weight;
+  font-size: $sidebar-brand-font-size;
+  padding: $sidebar-brand-padding;
+  color: $sidebar-brand-color;
+  display: block;
+}
+
+.sidebar-nav {
+  padding-bottom: $sidebar-nav-padding-bottom;
+  padding-left: $sidebar-nav-padding-left;
+  list-style: none;
+}
+
+.sidebar-header {
+  background: $sidebar-header-background;
+  color: $sidebar-header-color;
+  padding: $sidebar-header-padding;
+  font-size: $sidebar-header-font-size;
+}
+
+.sidebar-link, a.sidebar-link {
+  display: block;
+  padding: $sidebar-link-padding;
+  color: $sidebar-link-color;
+  background: $sidebar-link-background;
+  transition: background .1s ease-in-out,color .1s ease-in-out;
+  position: relative;
+  text-decoration: none;
+}
+
+.sidebar-badge {
+  position: absolute;
+  right: 15px;
+  top: 14px;
+}
+
+.feather {
+  margin-right: $feather-margin;
+  color: #fff;
+}
+
+.sidebar-dropdown .sidebar-link {
+  padding-left: $sidebar-dropdown-padding;
+  color: $sidebar-dropdown-color;
+  background: $sidebar-dropdown-background;
+
+  &:hover {
+    color: $sidebar-dropdown-link-hover-color;
+    background: $sidebar-dropdown-link-hover-background;
+  }
+}
+
+.sidebar-item.active .sidebar-link:hover, .sidebar-link:hover {
+  color: $sidebar-hover-color;
+  background: $sidebar-hover-background;
+}
+
+
+.sidebar [data-toggle=collapse] {
+  position: relative
+}
+
+.sidebar [data-toggle=collapse]:before {
+  content: " ";
+  border: solid;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 2px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 1.2rem;
+  right: 1.25rem;
+  transition: all .2s ease-out
+}
+
+.sidebar [aria-expanded=true]:before, .sidebar [data-toggle=collapse]:not(.collapsed):before {
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  top: 1.4rem
+}
+
+.sidebar-brand-icon {
+  height: 24px;
+  width: 24px;
+  margin-left: -.15rem;
+  margin-right: .375rem;
+}
+
+.sidebar-bottom {
+  padding: $sidebar-bottom-padding;
+  width: inherit;
+  font-size: $sidebar-bottom-font-size;
+  bottom: 0;
+  position: fixed;
+  background: $sidebar-bottom-background;
+  max-width: $sidebar-bottom-max-width;
+  min-width: $sidebar-bottom-min-width;
+  color: $sidebar-bottom-color;
+  z-index: 3;
+}

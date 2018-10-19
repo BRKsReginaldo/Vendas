@@ -22,6 +22,13 @@ class UserController extends Controller
         $this->middleware('auth')->except('index');
     }
 
+    public function auth()
+    {
+        $user = auth()->user();
+        $user->load('roles');
+        return new UserResource($user);
+    }
+
     /**
      * Display a listing of the resource.
      *
