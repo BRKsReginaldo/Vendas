@@ -14,6 +14,6 @@ trait Imageable
 
     public function getImageAttribute()
     {
-        return $this->image->path;
+        return $this->image()->first()->path;
     }
 }

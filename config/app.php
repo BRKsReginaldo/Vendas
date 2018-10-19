@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         \App\Providers\ObserversServiceProvider::class,
+        \App\Providers\TestServiceProvider::class,
 
         /*
          * Application Service Providers...

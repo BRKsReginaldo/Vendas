@@ -51,4 +51,29 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', $role)->exists();
     }
+
+    public function productTransactions()
+    {
+        return $this->hasMany(ProductTransaction::class);
+    }
+
+    public function productBuys()
+    {
+        return $this->hasMany(ProductBuy::class);
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function panels()
+    {
+        return $this->hasMany(Panel::class);
+    }
 }
