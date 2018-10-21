@@ -2,6 +2,7 @@
   import Sidebar from '@/components/UI/Sidebar'
   import Navbar from '@/components/UI/Navbar'
   import links from './links'
+  import navbarRightLinks from './navbarRightLinks'
 
   export default {
     name: 'Structure',
@@ -12,6 +13,9 @@
     computed: {
       links() {
         return links()
+      },
+      navbarRightLinks() {
+        return navbarRightLinks()
       }
     }
   }
@@ -21,7 +25,7 @@
     <div class="d-flex">
         <sidebar :links="links"/>
         <div class="main">
-            <navbar/>
+            <navbar :links="navbarRightLinks"/>
             <main class="content">
                 <slot/>
             </main>

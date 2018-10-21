@@ -2,6 +2,27 @@ import Home from '../views/Home'
 import Login from '../views/Login'
 import Auth from '../components/Auth'
 
+const Breadcrumbs = {
+  home: {
+    name: 'Home',
+    link: {
+      name: 'home'
+    }
+  },
+  perfil: {
+    name: 'Perfil',
+    link: {
+      name: 'perfil'
+    }
+  },
+  usuarios: {
+    name: 'Usuarios',
+    link: {
+      name: 'usuarios'
+    }
+  }
+}
+
 export default [
   {
     path: '/login',
@@ -21,15 +42,34 @@ export default [
       {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
+        meta: {
+          breadcrumbs: [
+            Breadcrumbs.home
+          ]
+        }
       },
       {
-        path: 'about',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        path: 'perfil',
+        name: 'perfil',
+        component: () => import(/* webpackChunkName: "profile"*/ '../views/Profile'),
+        meta: {
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.perfil
+          ]
+        }
+      },
+      {
+        path: 'usuarios',
+        name: 'usuarios',
+        component: () => import(/* webpackChunkName: users */ '../views/Users'),
+        meta: {
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.usuarios
+          ]
+        }
       }
     ]
   }

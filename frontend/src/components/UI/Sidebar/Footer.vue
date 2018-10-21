@@ -10,9 +10,9 @@
 <template>
     <div class="sidebar-bottom d-none d-lg-block">
         <div class="media">
-            <img :src="user.image" alt="Avatar" width="40" height="40" class="rounded-circle mr-3">
+            <img :src="user && user.image_small" alt="Avatar" width="40" height="40" class="rounded-circle mr-3">
             <div class="media-body">
-                <h5 class="mb-1 text-white">{{ user.name }}</h5>
+                <h5 class="mb-1 text-white">{{ user && user.name }}</h5>
             </div>
         </div>
     </div>

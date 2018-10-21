@@ -11,6 +11,12 @@ export default () => [
   },
   {
     icon: 'fas fa-user',
+    title: () => $t('pages.users'),
+    link: '/usuarios',
+    can: () => $can('createUser')
+  },
+  {
+    icon: 'fas fa-user',
     title: 'Pages',
     links: [
       {

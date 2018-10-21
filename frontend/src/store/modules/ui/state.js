@@ -1,3 +1,3 @@
 export default {
-  sidebarOpen: true
+  sidebarOpen: window.matchMedia(`(min-width: 992px)`).matches
 }

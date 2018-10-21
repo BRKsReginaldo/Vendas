@@ -38,21 +38,19 @@ class CreateTest extends UserTest
             ->authenticatedAdmin()
             ->create($user);
 
-        dd((string) $response->getContent());
-
         $response
             ->assertStatus(201)
             ->assertSeeText($user['name'])
             ->assertSeeText($user['email']);
 
         $data = json_decode((string)$response->getContent());
-        $imageName = $data->data->image;
+        $imageName = basename($data->data->image);
 
         $this->assertDatabaseHas('users', [
             'id' => $data->data->id
         ]);
 
-        Storage::assertExists($imageName);
+        Storage::disk('public')->assertExists($imageName);
     }
 
     public function create($data = [])
