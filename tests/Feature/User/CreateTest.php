@@ -44,8 +44,7 @@ class CreateTest extends UserTest
             ->assertSeeText($user['name'])
             ->assertSeeText($user['email']);
 
-        $data = json_decode((string) $response->getContent());
-
+        $data = json_decode((string)$response->getContent());
         $imageName = basename($data->data->image);
 
         $this->assertDatabaseHas('users', [

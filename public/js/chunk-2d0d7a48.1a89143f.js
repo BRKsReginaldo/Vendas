@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0d7a48"],{"784e":function(e,n,s){"use strict";s.r(n);var t=function(){var e=this,n=e.$createElement,s=e._self._c||n;return s("page",[e._v("\n    Users\n")])},u=[],a={name:"Users"},l=a,r=s("2877"),c=Object(r["a"])(l,t,u,!1,null,null,null);c.options.__file="index.vue";n["default"]=c.exports}}]);
+//# sourceMappingURL=chunk-2d0d7a48.1a89143f.js.map

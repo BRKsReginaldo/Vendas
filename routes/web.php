@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Auth'], function() {
     Route::post('/refresh', 'RefreshController@refresh')->name('refresh');
     Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+    Route::post('/verify', 'VerifyPasswordController@verify')->name('password.verify')->middleware('auth');
 });
 
 Route::view('/{path?}', 'home')->where('path', '^(?!api).*$');

@@ -1,13 +1,12 @@
 <template>
-  <div class="home">
-    <span>some lorem ipsum text</span>
-  </div>
+    <page>
+        <span>some lorem ipsum text</span>
+    </page>
 </template>
 
 <script>
-export default {
-  name: 'home',
-  components: {
+  export default {
+    name: 'home',
+    components: {}
   }
-}
 </script>
