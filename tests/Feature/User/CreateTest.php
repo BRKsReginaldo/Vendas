@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\User;
 
+use App\Client;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
