@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Repositories\ImageRepository;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -20,6 +21,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'image' => url('storage/' . $this->image),
+            'image_small' => url('storage/' . resolve(ImageRepository::class)->urlForSize($this->image, 40, 40)),
             'roles' => RoleResource::collection($this->whenLoaded('roles'))
         ];
     }

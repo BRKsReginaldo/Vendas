@@ -1,9 +1,8 @@
-import {simpleMutation} from "../../helpers"
+import {composedMutations, simpleMutation} from "../../helpers"
 
 export const SET_USER = simpleMutation('user')
 export const SET_CREDENTIALS = simpleMutation('credentials')
-export const SETUP_AUTH = () => null
-export const LOGOUT = (state) => {
-  state.user = null
-  state.credentials = null
-}
+export const LOGOUT = (state) => composedMutations(
+  simpleMutation('user'),
+  simpleMutation('credentials')
+)(state, null)

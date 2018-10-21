@@ -41,7 +41,9 @@
 
 <template>
     <structure>
-        <router-view v-if="Boolean(user)"/>
+        <template v-if="!!user">
+            <router-view/>
+        </template>
         <div v-else class="text-center m-5">
             <span class="fas fa-spin fa-spinner fa-5x"/>
         </div>

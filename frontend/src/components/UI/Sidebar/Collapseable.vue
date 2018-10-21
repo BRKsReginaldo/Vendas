@@ -2,7 +2,7 @@
   export default {
     name: 'Collapseable',
     components: {
-      LinkBag: () => import('./LinkBag')
+      LinkBag: () => import(/* webpackChunkName: "LinkBag" */ './LinkBag')
     },
     props: {
       links: {

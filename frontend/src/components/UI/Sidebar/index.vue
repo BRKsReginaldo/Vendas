@@ -27,8 +27,8 @@
     <nav :class="{'sidebar': true, 'toggled': !open}">
         <div class="sidebar-content">
             <router-link to="/" class="sidebar-brand">
-                <span class="fas fa-key align-middle sidebar-brand-icon"/>
-                <span class="align-middle">Home</span>
+                <img src="@/assets/logo.png" class=" align-middle sidebar-brand-icon"/>
+                <span class="align-middle">JaPronto</span>
             </router-link>
             <link-bag :links="$props.links"/>
         </div>

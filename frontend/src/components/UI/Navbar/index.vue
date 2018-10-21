@@ -5,6 +5,12 @@
   export default {
     name: 'Navbar',
     mixins: [withUser],
+    props: {
+      links: {
+        type: Array,
+        required: true
+      }
+    },
     methods: {
       ...mapActions({
         toggleSidebar: 'ui/toggleSidebarOpen',
@@ -26,7 +32,7 @@
            @click="toggleSidebar">
             <span class="fas fa-bars"/>
         </a>
-        <form class="form-inline done d-sm-inline-block">
+        <form class="form-inline done d-none d-sm-inline-block">
             <input type="text"
                    class="form-control mr-sm-2"
                    placeholder="Buscar clients"
@@ -41,18 +47,17 @@
                       <span class="fas fa-cog"/>
                   </span>
                         <span class="d-none d-sm-inline-block">
-                        <img :src="user.image"
+                        <img :src="user && user.image_small"
                              class="avatar img-fluid rounded-circle mr-1"
-                             alt="Chris Wood">
-                        <span class="text-dark">{{ user.name }}</span>
+                             :alt="user && user.name">
+                        <span class="text-dark">{{ user && user.name }}</span>
                   </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#"><span class="fas fa-user"/> Profile</a>
-                        <a class="dropdown-item" href="#"><span class="fas fa-chart-pie"/> Analytics</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Settings &amp; Privacy</a>
-                        <a class="dropdown-item" href="#">Help</a>
+                        <template v-for="(link,i) in links">
+                            <div v-if="typeof link === 'string'" :key="i" class="dropdown-divider"/>
+                            <router-link v-else :key="i" :to="link.link" class="dropdown-item"><span :class="link.icon"/> {{ link.title }}</router-link>
+                        </template>
                         <a class="dropdown-item" href="#" @click="logout">Sair</a>
                     </div>
                 </li>

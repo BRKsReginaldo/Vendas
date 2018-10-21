@@ -15,6 +15,10 @@ class ErrorBag {
   any = () => {
     return Object.keys(this.errors).length > 0
   }
+
+  all = () => {
+    return this.errors
+  }
 }
 
 export default ErrorBag
