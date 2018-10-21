@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Client;
+use App\Policies\ClientPolicy;
 use App\Policies\UserPolicy;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
+        Client::class => ClientPolicy::class,
     ];
 
     /**

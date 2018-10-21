@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', 'UserController@auth');
 
 Route::apiResource('users', 'UserController');
+Route::apiResource('clients', 'ClientController');
