@@ -1,6 +1,7 @@
+import swal from "sweetalert"
 
-window._ = require('lodash');
-window.Popper = require('popper.js').default;
+window._ = require('lodash')
+window.Popper = require('popper.js').default
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -9,10 +10,11 @@ window.Popper = require('popper.js').default;
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
+  window.$ = window.jQuery = require('jquery')
 
-    require('bootstrap');
-} catch (e) {}
+  require('bootstrap')
+} catch (e) {
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -30,3 +32,10 @@ try {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+import i18n from './plugins/i18n'
+
+window.$t = (...args) => i18n.t(...args)
+
+window.unknownError = () => swal($t('notifications.title.error'), $t('notifications.message.error'))
+window.unauthorizedError = () => swal($t('notifications.title.error'), $t('notifications.message.unauthorized'), 'error')

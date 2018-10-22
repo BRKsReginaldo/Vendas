@@ -18,6 +18,17 @@ class ClientPolicy
     /**
      * Determine whether the user can view the client.
      *
+     * @param  \App\User $user
+     * @return mixed
+     */
+    public function view(User $user)
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can view the client.
+     *
      * @param  \App\User  $user
      * @param  \App\Client  $client
      * @return mixed
@@ -82,6 +93,16 @@ class ClientPolicy
      * @return mixed
      */
     public function forceDelete(User $user, Client $client)
+    {
+        return false;
+    }
+
+    public function disable(User $user, Client $client)
+    {
+        return false;
+    }
+
+    public function enable(User $user, Client $client)
     {
         return false;
     }

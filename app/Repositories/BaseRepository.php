@@ -14,7 +14,7 @@ abstract class BaseRepository
     /**
      * @return Builder
      */
-    protected function newQuery()
+    public function newQuery()
     {
         return resolve($this->model)->newQuery();
     }
@@ -23,12 +23,17 @@ abstract class BaseRepository
      * @param null $query
      * @param int $take
      * @param bool $paginate
+     * @param bool $withTrashed
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function doQuery($query = null, $take = 20, $paginate = true)
+    public function doQuery($query = null, $take = 20, $paginate = true, $withTrashed = false)
     {
         if (is_null($query)) {
             $query = $this->newQuery();
+        }
+
+        if ($withTrashed) {
+            $query->withTrashed();
         }
 
         if ($paginate) {
@@ -43,13 +48,25 @@ abstract class BaseRepository
     }
 
     /**
-     * @param $take
-     * @param $paginate
+     * @param int $take
+     * @param bool $paginate
+     * @param null $query
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function getAll($take = 20, $paginate = true)
+    public function getAll($take = 20, $paginate = true, $query = null)
     {
-        return $this->doQuery(null, $take, $paginate);
+        return $this->doQuery($query, $take, $paginate);
+    }
+
+    /**
+     * @param int $take
+     * @param bool $paginate
+     * @param null $query
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getAllTrashed($take = 20, $paginate = true, $query = null)
+    {
+        return $this->doQuery($query, $take, $paginate, true);
     }
 
     /**
@@ -129,5 +146,16 @@ abstract class BaseRepository
         $query = $this->newQuery();
 
         return $query->create($data);
+    }
+
+    public function restoreById($id)
+    {
+        $model = $this->newQuery()
+            ->withTrashed()
+            ->find($id);
+
+        $model->restore();
+
+        return $model->fresh();
     }
 }

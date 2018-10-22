@@ -8,6 +8,8 @@ use App\Http\Requests\Client\DeleteClientRequest;
 use App\Http\Requests\Client\ShowClientRequest;
 use App\Http\Requests\Client\UpdateClientRequest;
 use App\Http\Requests\Client\ViewClientRequest;
+use App\Http\Requests\Client\DisableClientRequest;
+use App\Http\Requests\Client\EnableClientRequest;
 use App\Http\Resources\ClientResource;
 use App\Repositories\ClientRepository;
 use Illuminate\Http\Request;
@@ -24,6 +26,38 @@ class ClientController extends Controller
     {
         $this->middleware('auth');
         $this->clientRepository = $clientRepository;
+    }
+
+    /**
+     * @param ViewClientRequest $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index(ViewClientRequest $request)
+    {
+        return ClientResource::collection(
+            $this->clientRepository->getAll(
+                $request->per_page ?? 20,
+                true,
+                sortedQuery($this->clientRepository, $request)
+                    ->where('active', true)
+            )
+        );
+    }
+
+    /**
+     * @param ViewClientRequest $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function disabled(ViewClientRequest $request)
+    {
+        return ClientResource::collection(
+            $this->clientRepository->getAll(
+                $request->per_page ?? 20,
+                true,
+                sortedQuery($this->clientRepository, $request)
+                    ->where('active', false)
+            )
+        );
     }
 
 
@@ -77,6 +111,20 @@ class ClientController extends Controller
     public function destroy(Client $client, DeleteClientRequest $request)
     {
         if (!$this->clientRepository->deleteByModel($client)) abort(500);
+
+        return response('', 200);
+    }
+
+    public function disable(Client $client, DisableClientRequest $request)
+    {
+        if (!$this->clientRepository->disableByModel($client)) abort(500);
+
+        return response('', 200);
+    }
+
+    public function enable($id, EnableClientRequest $request)
+    {
+        if (!$this->clientRepository->enableById($id)) abort(500);
 
         return response('', 200);
     }

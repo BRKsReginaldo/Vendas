@@ -1,5 +1,7 @@
 import './notifications'
 import './policies'
+import './meta'
+import './imageHolder'
 import i18n from './i18n'
 
 export {i18n}

@@ -7,6 +7,9 @@
 
   export default {
     name: 'Profile',
+    meta: {
+      title: $t('pages.profile')
+    },
     components: {
       PasswordField,
       ImageInput
@@ -60,7 +63,8 @@
 
 <template>
     <page>
-        <div class="card shadow">
+        <h1>Perfil</h1>
+        <div class="card shadow mb-5">
             <div class="card-body">
                 <form @submit.prevent="onSubmit">
                     <div class="row">

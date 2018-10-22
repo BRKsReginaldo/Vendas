@@ -56,3 +56,16 @@ if (!function_exists('uploadFile')) {
         }
     }
 }
+
+if (!function_exists('sortedQuery')) {
+    function sortedQuery($class, $request = null, $defaultOrder = 'id')
+    {
+        $request = $request ?? request();
+        $sort = $request->get('sort', $defaultOrder . '|asc') ?? $defaultOrder . '|asc';
+        [$orderBy, $orderDirection] = explode('|', $sort);
+
+        return $class
+            ->newQuery()
+            ->orderBy($orderBy, $orderDirection);
+    }
+}

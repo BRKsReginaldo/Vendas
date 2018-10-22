@@ -4,33 +4,28 @@
   import swal from 'sweetalert'
   import UserService from "../../services/UserService"
   import withUser from '@/mixins/withUser'
+  import ClientService from "../../services/ClientService"
 
   export default {
-    name: 'Users',
+    name: 'Clients',
     components: {
       VueTable
     },
     mixins: [withUser],
     meta: {
-      title: $t('pages.users')
+      title: $t('pages.clients')
     },
     data: () => ({
       css,
       fields: [
         {
-          name: 'name',
-          sortField: 'name',
-          title: $t('labels.name'),
+          name: 'id',
+          sortField: 'id',
+          title: $t('labels.id'),
         },
         {
-          name: 'email',
-          sortField: 'email',
-          title: $t('labels.email')
-        },
-        {
-          name: 'phone',
-          sortField: 'phone',
-          title: $t('labels.phone')
+          name: 'creator.name',
+          title: $t('labels.creator')
         },
         {
           name: 'actions-slot',
@@ -39,11 +34,11 @@
       ]
     }),
     methods: {
-      dropUser(id) {
+      disable(id) {
         swal({
           icon: 'warning',
           title: $t('notifications.title.confirm'),
-          text: $t('notifications.message.user.delete.confirm'),
+          text: $t('notifications.message.client.disable.confirm'),
           buttons: {
             cancel: 'Cancelar',
             confirm: {
@@ -55,11 +50,11 @@
           dangerMode: true
         })
           .then(drop => {
-            if (drop) return UserService.delete(id)
+            if (drop) return ClientService.disable(id)
             return Promise.reject(false)
           })
           .then(response => {
-            return swal($t('notifications.title.success'), $t('notifications.message.user.delete.success'), 'success')
+            return swal($t('notifications.title.success'), $t('notifications.message.client.disable.success'), 'success')
           })
           .then(() => {
             this.$refs.vuetable.reload()
@@ -80,18 +75,17 @@
     <page>
         <div class="row">
             <div class="col-12 col-sm-4 col-md-6">
-                <h1>{{ $t('pages.users') }}</h1>
+                <h1>{{ $t('pages.clients') }}</h1>
             </div>
             <div class="col-12 col-sm-8 col-md-6 text-center text-md-right mb-2 mb-md-0">
-                <router-link :to="{name: 'cadastrarUsuarios'}" class="btn btn-primary mr-2">Cadastrar</router-link>
-                <router-link :to="{name: 'usuariosApagados'}" class="btn btn-info">Usuários Apagados</router-link>
+                <router-link :to="{name: 'clientesDesativados'}" class="btn btn-info">Clientes Desativados</router-link>
             </div>
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
                 <vue-table
                         ref="vuetable"
-                        api-url="/api/users"
+                        api-url="/api/clients"
                         :fields="fields"
                         data-path="data"
                         :http-options="requestAuth"
@@ -100,8 +94,8 @@
                 >
                     <div slot="actions-slot" slot-scope="{rowData: props}">
                         <button class="btn btn-danger"
-                                @click="dropUser(props.id)"
-                        >Apagar
+                                @click="disable(props.id)"
+                        >Desativar
                         </button>
                     </div>
                 </vue-table>

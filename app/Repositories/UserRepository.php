@@ -16,7 +16,7 @@ class UserRepository extends BaseRepository
         $user = parent::create($data);
 
         $user->image()->create([
-            'path' => basename(uploadFile($data['image']))
+            'path' => isset($data['image']) && !is_null($data['image']) ? basename(uploadFile($data['image'])) : 'avatar.png'
         ]);
 
         return $user;

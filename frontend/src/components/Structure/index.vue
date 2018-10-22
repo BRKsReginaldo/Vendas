@@ -1,8 +1,8 @@
 <script>
   import Sidebar from '@/components/UI/Sidebar'
   import Navbar from '@/components/UI/Navbar'
-  import links from './links'
-  import navbarRightLinks from './navbarRightLinks'
+  import links from '../../config/links'
+  import navbarRightLinks from '../../config/navbarRightLinks'
 
   export default {
     name: 'Structure',

@@ -12,7 +12,7 @@
         default: () => 'image'
       },
       imgStyle: {
-        type: Object,
+        type: [Object, String],
         default: () => ({})
       }
     },

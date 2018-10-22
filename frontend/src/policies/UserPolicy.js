@@ -8,6 +8,9 @@ export default {
   update(user, model) {
     return user.id === model.id
   },
+  restore(user, model) {
+    return false
+  },
   delete(user, model) {
     return user.id === model.id
   }

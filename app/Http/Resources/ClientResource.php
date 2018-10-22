@@ -17,7 +17,7 @@ class ClientResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'creator' => new UserResource($this->whenLoaded('creator')),
+            'creator' => new UserResource($this->creator()->withTrashed()->first()),
             'users' => UserResource::collection($this->whenLoaded('users'))
         ];
     }
