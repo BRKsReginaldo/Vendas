@@ -81,4 +81,11 @@ class User extends Authenticatable
     {
         return 'avatar.png';
     }
+
+    public function createClient()
+    {
+        return $this->client()->create([
+            'user_id' => $this->id
+        ]);
+    }
 }
