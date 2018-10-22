@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Http\Requests\Customer\CreateCustomerRequest;
+use App\Http\Resources\CustomerResource;
 use App\Repositories\CustomerRepository;
 use Illuminate\Http\Request;
 
@@ -31,11 +32,16 @@ class CustomerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CreateCustomerRequest $request
-     * @return void
+     * @return CustomerResource
      */
     public function store(CreateCustomerRequest $request)
     {
-        //
+        return new CustomerResource($this->customerRepository->create($request->only([
+            'name',
+            'phone',
+            'client_id',
+            'user_id',
+        ])));
     }
 
     /**
