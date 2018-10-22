@@ -19,6 +19,8 @@ class ClientScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        return $builder->where('client_id', auth()->user()->client_id);
+        if (auth()->check() && auth()->user()->client) {
+            $builder->where('client_id', auth()->user()->client_id);
+        }
     }
 }

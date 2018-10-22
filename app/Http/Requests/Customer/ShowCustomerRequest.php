@@ -5,7 +5,7 @@ namespace App\Http\Requests\Customer;
 use App\Customer;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCustomerRequest extends FormRequest
+class ShowCustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class CreateCustomerRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('create', Customer::class);
+        return $this->user()->can('show', $this->getModel('customer', Customer::class));
     }
 
     /**
@@ -25,10 +25,7 @@ class CreateCustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:50',
-            'client_id' => 'required|exists:clients,id',
-            'user_id' => 'required|exists:users,id'
+            //
         ];
     }
 }

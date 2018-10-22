@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Http\Requests\Customer\CreateCustomerRequest;
+use App\Http\Requests\Customer\ShowCustomerRequest;
+use App\Http\Requests\Customer\UpdateCustomerRequest;
+use App\Http\Requests\Customer\ViewCustomerRequest;
 use App\Http\Resources\CustomerResource;
 use App\Repositories\CustomerRepository;
 use Illuminate\Http\Request;
@@ -21,11 +24,12 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param ViewCustomerRequest $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(ViewCustomerRequest $request)
     {
-        //
+        return CustomerResource::collection($this->customerRepository->getAll($request->per_page ?? 20, true, sortedQuery($this->customerRepository, $request, 'name')));
     }
 
     /**
@@ -47,30 +51,36 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @param  \App\Customer $customer
+     * @param ShowCustomerRequest $request
+     * @return CustomerResource
      */
-    public function show(Customer $customer)
+    public function show(Customer $customer, ShowCustomerRequest $request)
     {
-        //
+        return new CustomerResource($customer);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @param UpdateCustomerRequest $request
+     * @param  \App\Customer $customer
+     * @return CustomerResource
      */
-    public function update(Request $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        return new CustomerResource($this->customerRepository->updateByModel($customer, $request->only([
+            'name',
+            'phone',
+            'client_id',
+            'user_id',
+        ])));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Customer  $customer
+     * @param  \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Customer $customer)

@@ -84,7 +84,7 @@ class User extends Authenticatable
 
     public function createClient()
     {
-        return $this->client()->create([
+        return Client::create([
             'user_id' => $this->id
         ]);
     }

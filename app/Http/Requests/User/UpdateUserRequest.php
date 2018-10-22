@@ -27,9 +27,9 @@ class UpdateUserRequest extends FormRequest
     {
         $user = $this->getModel('user', User::class);
         return [
-            'name' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => [
-                'nullable',
+                'required',
                 'string',
                 'email',
                 'max:255',
