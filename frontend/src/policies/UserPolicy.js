@@ -13,5 +13,11 @@ export default {
   },
   delete(user, model) {
     return user.id === model.id
+  },
+  manage(user) {
+    return user.roles.some(role => role.name === 'admin')
+  },
+  viewProfile(user) {
+    return true
   }
 }

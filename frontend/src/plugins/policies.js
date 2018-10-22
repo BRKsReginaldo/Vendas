@@ -13,6 +13,7 @@ class Authorization {
   }
 
   getUser = () => {
+    if (!store.getters['auth/user'] && !!localStorage.getItem('auth_user')) return JSON.parse(localStorage.getItem('auth_user'))
     return store.getters['auth/user']
   }
 

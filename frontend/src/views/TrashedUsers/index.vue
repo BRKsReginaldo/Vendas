@@ -84,8 +84,8 @@
                 <h1>{{ $t('pages.trashedUsers') }}</h1>
             </div>
             <div class="col-4 col-md-6 text-right">
-                <router-link :to="{name: 'cadastrarUsuarios'}" class="btn btn-primary mr-2">Cadastrar</router-link>
                 <router-link :to="{name: 'usuarios'}" class="btn btn-info">Usuários</router-link>
+                <router-link :to="{name: 'cadastrarUsuarios'}" class="btn btn-primary mr-2">Cadastrar</router-link>
             </div>
         </div>
         <div class="card shadow">
@@ -98,6 +98,7 @@
                         :http-options="requestAuth"
                         pagination-path="meta"
                         :css="css.table"
+                        no-data-template="nenhum registro encontrado..."
                 >
                     <div slot="actions-slot" slot-scope="{rowData: props}">
                         <button class="btn btn-success"

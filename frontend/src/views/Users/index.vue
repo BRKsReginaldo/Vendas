@@ -83,8 +83,8 @@
                 <h1>{{ $t('pages.users') }}</h1>
             </div>
             <div class="col-12 col-sm-8 col-md-6 text-center text-md-right mb-2 mb-md-0">
+                <router-link :to="{name: 'usuariosApagados'}" class="btn btn-info mr-2">Usuários Apagados</router-link>
                 <router-link :to="{name: 'cadastrarUsuarios'}" class="btn btn-primary mr-2">Cadastrar</router-link>
-                <router-link :to="{name: 'usuariosApagados'}" class="btn btn-info">Usuários Apagados</router-link>
             </div>
         </div>
         <div class="card shadow">
@@ -97,6 +97,7 @@
                         :http-options="requestAuth"
                         pagination-path="meta"
                         :css="css.table"
+                        no-data-template="nenhum registro encontrado"
                 >
                     <div slot="actions-slot" slot-scope="{rowData: props}">
                         <button class="btn btn-danger"

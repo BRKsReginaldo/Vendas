@@ -1,22 +1,16 @@
 <script>
-  import VueTable from 'vuetable-2'
-  import css from '@/config/tables'
   import swal from 'sweetalert'
-  import UserService from "../../services/UserService"
   import withUser from '@/mixins/withUser'
   import ClientService from "../../services/ClientService"
+  import dataTable from '@/mixins/dataTable'
 
   export default {
     name: 'Clients',
-    components: {
-      VueTable
-    },
-    mixins: [withUser],
+    mixins: [withUser, dataTable],
     meta: {
       title: $t('pages.clients')
     },
     data: () => ({
-      css,
       fields: [
         {
           name: 'id',
@@ -91,6 +85,7 @@
                         :http-options="requestAuth"
                         pagination-path="meta"
                         :css="css.table"
+                        no-data-template="nenhumm registro encontrado..."
                 >
                     <div slot="actions-slot" slot-scope="{rowData: props}">
                         <button class="btn btn-danger"

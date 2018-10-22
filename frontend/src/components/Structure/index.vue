@@ -10,13 +10,15 @@
       Sidebar,
       Navbar
     },
+    data: () => ({links: []}),
     computed: {
-      links() {
-        return links()
-      },
       navbarRightLinks() {
         return navbarRightLinks()
       }
+    },
+    mounted() {
+      links()
+        .then(res => this.$data.links = res)
     }
   }
 </script>

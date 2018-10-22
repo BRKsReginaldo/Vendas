@@ -21,6 +21,8 @@ export default {
       password_confirmation: 'Confirme sua senha aqui',
       name: 'Digite seu nome aqui',
       phone: 'Digite seu telefone aqui',
+      noData: 'nenhum registro encontrado...',
+
     },
     notifications: {
       title: {
@@ -34,8 +36,9 @@ export default {
       },
       message: {
         error: 'Ocorreu um erro inesperado...',
-        unauthorized: 'Você não tem autorização para realizar esta ação...',
+        unauthorized: 'Você não tem autorização para isso...',
         validation: 'Há algo errado com os dados informados, tente novamente...',
+        missing: 'Você não se esqueceu de nada ? {field}',
         user: {
           update: {
             error: 'Ocorreu um erro ao atualizar suas informações',
@@ -64,7 +67,20 @@ export default {
             success: 'Usuário ativado com sucesso!'
           }
         },
-        missing: 'Você não se esqueceu de nada ? {field}'
+        customer: {
+          create: {
+            success: 'O cliente foi cadastrado com sucesso, vamos redireciona-lo para a pagina de clientes...',
+            wait: 'Vamos começar o processo para cadastrar o cliente, isso pode levar alguns segundos...'
+          },
+          delete: {
+            success: 'O cliente foi apagado com sucesso...',
+            confirm: 'Tem certeza que deseja apagar este cliente ?'
+          },
+          restore: {
+            success: 'O cliente foi restaurado com sucesso...',
+            confirm: 'Tem certeza que deseja restaurar este cliente ?'
+          }
+        }
       }
     },
     validation: {
@@ -78,7 +94,11 @@ export default {
       createUsers: 'Cadastrar Usuários',
       trashedUsers: 'Usuários Apagados',
       clients: 'Clientes',
-      disabledClients: 'Clientes Desativados'
+      disabledClients: 'Clientes Desativados',
+      customers: 'Clientes',
+      createCustomers: 'Cadastrar Cliente',
+      trashedCustomers: 'Clientes Apagados',
+
     }
   }
 }

@@ -27,12 +27,19 @@
           title: $t('notifications.title.wait'),
           text: $t('notifications.message.user.create.wait'),
           icon: 'warning',
-          button: {
-            text: 'OK',
-            closeModal: false
+          buttons: {
+            cancel: 'Cancelar',
+            ok: {
+              text: 'OK',
+              value: true,
+              closeModal: false
+            }
           }
         })
-          .then(() => UserService.create(formData))
+          .then((shouldCreate) => {
+            if (shouldCreate) return UserService.create(formData)
+            return Promise.reject(false)
+          })
           .then(response => {
             return response.data.data
           })
@@ -48,7 +55,10 @@
             })
           })
           .catch(e => {
-            if (e && e.response && e.response.status === 422) {
+            if (e === false) {
+              swal.stopLoading()
+              swal.close()
+            } else if (e && e.response && e.response.status === 422) {
               return swal($t('notifications.title.error'), $t('notifications.message.validation'), 'warning')
                 .then(() => {
                   this.$data.errors = new ErrorBag(e.response.data.errors)
