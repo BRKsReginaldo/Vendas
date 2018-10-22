@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Http\Requests\Customer\CreateCustomerRequest;
+use App\Repositories\CustomerRepository;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function __construct()
+    protected $customerRepository;
+
+    public function __construct(CustomerRepository $customerRepository)
     {
         $this->middleware('auth');
+        $this->customerRepository = $customerRepository;
     }
 
     /**
