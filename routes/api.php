@@ -26,6 +26,9 @@ Route::delete('clients/disable/{client}', 'ClientController@disable')->name('cli
 Route::match(['put', 'patch'], 'clients/enable/{id}', 'ClientController@enable')->name('clients.enable');
 Route::apiResource('clients', 'ClientController');
 
+// Customer routes
+Route::apiResource('customers', 'CustomerController');
+
 Route::group(['namespace' => 'Auth'], function () {
     Route::post('/login', 'LoginController@login')->name('login');
     Route::post('/refresh', 'RefreshController@refresh')->name('refresh');
