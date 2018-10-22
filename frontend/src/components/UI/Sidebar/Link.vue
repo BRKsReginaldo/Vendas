@@ -4,7 +4,7 @@
       props: {
         link: {
           required: true,
-          type: String
+          type: [String, Object]
         },
         icon: {
           required: false,

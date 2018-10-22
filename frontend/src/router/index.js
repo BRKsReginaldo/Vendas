@@ -28,6 +28,15 @@ router.beforeEach((to, from, next) => {
     }
   }
 
+  if (to.matched.some(route => route.meta.can)) {
+    if (!to.matched.filter(route => typeof route.meta.can === 'function').every(route => route.meta.can())) {
+      unauthorizedError()
+      next({
+        path: '/'
+      })
+    }
+  }
+
   next()
 })
 

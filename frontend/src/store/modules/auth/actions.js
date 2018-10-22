@@ -6,6 +6,7 @@ import swal from 'sweetalert'
 import router from '@/router'
 
 const AUTH_KEY = 'auth_credentials'
+const USER_KEY = 'auth_user'
 
 export const setupAuth = ({dispatch}) => {
   const credentials = localStorage.getItem(AUTH_KEY)
@@ -77,6 +78,8 @@ export const setCredentials = ({commit, dispatch}, payload) => {
 export const fetchUser = async ({commit, dispatch}) => {
   try {
     const response = await UserService.fetchUser()
+
+    localStorage.setItem(USER_KEY, JSON.stringify(response.data.data))
 
     commit('SET_USER', response.data.data)
   } catch (e) {

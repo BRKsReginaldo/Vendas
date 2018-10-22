@@ -27,6 +27,8 @@ Route::match(['put', 'patch'], 'clients/enable/{id}', 'ClientController@enable')
 Route::apiResource('clients', 'ClientController');
 
 // Customer routes
+Route::match(['put', 'patch'], 'customers/restore/{id}', 'CustomerController@restore')->name('customers.restore');
+Route::get('customers/trashed', 'CustomerController@trashed')->name('customers.trashed');
 Route::apiResource('customers', 'CustomerController');
 
 Route::group(['namespace' => 'Auth'], function () {

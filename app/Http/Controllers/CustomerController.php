@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Http\Requests\Customer\CreateCustomerRequest;
+use App\Http\Requests\Customer\DeleteCustomerRequest;
+use App\Http\Requests\Customer\RestoreCustomerRequest;
 use App\Http\Requests\Customer\ShowCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
 use App\Http\Requests\Customer\ViewCustomerRequest;
@@ -30,6 +32,17 @@ class CustomerController extends Controller
     public function index(ViewCustomerRequest $request)
     {
         return CustomerResource::collection($this->customerRepository->getAll($request->per_page ?? 20, true, sortedQuery($this->customerRepository, $request, 'name')));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param ViewCustomerRequest $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function trashed(ViewCustomerRequest $request)
+    {
+        return CustomerResource::collection($this->customerRepository->getAll($request->per_page ?? 20, true, sortedQuery($this->customerRepository, $request, 'name')->withTrashed()->whereNotNull('deleted_at')));
     }
 
     /**
@@ -81,10 +94,28 @@ class CustomerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Customer $customer
+     * @param DeleteCustomerRequest $request
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function destroy(Customer $customer, DeleteCustomerRequest $request)
+    {
+        if (!$this->customerRepository->deleteByModel($customer)) abort(500);
+
+        return response('', 200);
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param $id
+     * @param RestoreCustomerRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function restore($id, RestoreCustomerRequest $request)
     {
-        //
+        if (!$this->customerRepository->restoreById($id)) abort(500);
+
+        return response('', 200);
     }
 }
