@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Client;
 use App\User;
 
 class LoginTest extends AuthTest
@@ -30,6 +31,10 @@ class LoginTest extends AuthTest
             'password' => bcrypt($password)
         ]);
 
+        create(Client::class, [
+            'user_id' => $user->id
+        ]);
+
         $response = $this->login([
             'email' => $user->email,
             'password' => $password
@@ -45,8 +50,45 @@ class LoginTest extends AuthTest
             ]);
     }
 
+    public function test_disabled_client_users_are_not_allowed_to_login()
+    {
+        $password = '123456';
+        $user = create(User::class, [
+            'password' => bcrypt($password)
+        ]);
+
+        $client = create(Client::class, [
+            'user_id' => $user->id
+        ]);
+        $client->update([
+            'active' => false
+        ]);
+
+        $this->login([
+            'email' => $user->email,
+            'password' => $password
+        ])
+            ->assertStatus(401);
+
+        $client->update([
+            'active' => true
+        ]);
+
+        $this->login([
+            'email' => $user->email,
+            'password' => $password
+        ])
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'token_type',
+                'expires_in',
+                'access_token',
+                'refresh_token'
+            ]);
+    }
+
     public function login($data = [])
     {
-        return $this->postJson('/login', $data);
+        return $this->postJson('/api/login', $data);
     }
 }

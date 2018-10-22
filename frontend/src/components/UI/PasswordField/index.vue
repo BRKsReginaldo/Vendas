@@ -14,11 +14,11 @@
         },
         placeholder: {
           type: String,
-          default: () => 'Digite sua senha'
+          default: () => $t('placeholders.password')
         },
         label: {
           type: String,
-          default: () => 'Senha'
+          default: () => $t('labels.password')
         },
         name: {
           type: String,

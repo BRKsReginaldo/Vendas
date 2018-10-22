@@ -4,6 +4,7 @@ namespace App\Http\Requests\User;
 
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateUserRequest extends FormRequest
 {
@@ -26,9 +27,16 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users'),
+            ],
             'password' => 'required|string|min:6|confirmed',
-            'image' => 'required|image'
+            'image' => 'nullable|image',
+            'phone' => 'nullable|string'
         ];
     }
 }

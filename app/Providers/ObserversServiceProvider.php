@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Client;
 use App\Image;
+use App\Observers\ClientObserver;
 use App\Observers\ImageObserver;
 use App\Observers\UserObserver;
 use App\User;
@@ -16,7 +18,8 @@ class ObserversServiceProvider extends ServiceProvider
         ],
         User::class => [
             UserObserver::class,
-        ]
+        ],
+        Client::class => ClientObserver::class,
     ];
 
     /**

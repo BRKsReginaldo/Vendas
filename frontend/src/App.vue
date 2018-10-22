@@ -1,6 +1,10 @@
 <script>
   export default {
     name: 'App',
+    meta: {
+      title: 'JaPronto',
+      titleTemplate: '%s | JaPronto'
+    }
   }
 </script>
 

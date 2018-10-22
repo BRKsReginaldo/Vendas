@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\DeleteUserRequest;
+use App\Http\Requests\User\RestoreUserRequest;
 use App\Http\Requests\User\ShowUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Requests\User\ViewUserRequest;
@@ -19,12 +20,17 @@ class UserController extends Controller
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth');
     }
 
     public function auth()
     {
         $user = auth()->user();
+
+        if (!$user->hasRole('admin') && !$user->client->active) {
+            return response('', 401);
+        }
+
         $user->load('roles');
         return new UserResource($user);
     }
@@ -37,7 +43,18 @@ class UserController extends Controller
      */
     public function index(ViewUserRequest $request)
     {
-        return UserResource::collection($this->userRepository->getAll());
+        return UserResource::collection($this->userRepository->getAll($request->per_page ?? 20, true, sortedQuery($this->userRepository, $request, 'name')));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param ViewUserRequest $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function trashed(ViewUserRequest $request)
+    {
+        return UserResource::collection($this->userRepository->getAll($request->per_page ?? 20, true, sortedQuery($this->userRepository, $request, 'name')->withTrashed()->whereNotNull('deleted_at')));
     }
 
     /**
@@ -85,6 +102,18 @@ class UserController extends Controller
             'image',
             'phone'
         ])));
+    }
+
+    /**
+     * Restore the deleted user.
+     *
+     * @param RestoreUserRequest $request
+     * @param  \App\User $user
+     * @return UserResource
+     */
+    public function restore(RestoreUserRequest $request, $user)
+    {
+        return new UserResource($this->userRepository->restoreById($user, $user));
     }
 
     /**

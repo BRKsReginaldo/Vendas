@@ -6,6 +6,9 @@
 
   export default {
     name: 'Login',
+    meta: {
+      title: $t('pages.login')
+    },
     components: {
       ErrorList,
       PasswordField

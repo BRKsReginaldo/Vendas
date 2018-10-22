@@ -12,7 +12,7 @@
     },
     mixins: [withUser],
     meta: {
-      title: $t('pages.users')
+      title: $t('pages.trashedUsers')
     },
     data: () => ({
       css,
@@ -39,11 +39,11 @@
       ]
     }),
     methods: {
-      dropUser(id) {
+      restore(id) {
         swal({
           icon: 'warning',
           title: $t('notifications.title.confirm'),
-          text: $t('notifications.message.user.delete.confirm'),
+          text: $t('notifications.message.user.restore.confirm'),
           buttons: {
             cancel: 'Cancelar',
             confirm: {
@@ -55,11 +55,11 @@
           dangerMode: true
         })
           .then(drop => {
-            if (drop) return UserService.delete(id)
+            if (drop) return UserService.restore(id)
             return Promise.reject(false)
           })
           .then(response => {
-            return swal($t('notifications.title.success'), $t('notifications.message.user.delete.success'), 'success')
+            return swal($t('notifications.title.success'), $t('notifications.message.user.restore.success'), 'success')
           })
           .then(() => {
             this.$refs.vuetable.reload()
@@ -68,6 +68,7 @@
             swal.close()
             swal.stopLoading()
             if (e) {
+              console.log(e)
               unknownError()
             }
           })
@@ -79,19 +80,19 @@
 <template>
     <page>
         <div class="row">
-            <div class="col-12 col-sm-4 col-md-6">
-                <h1>{{ $t('pages.users') }}</h1>
+            <div class="col-8 col-md-6">
+                <h1>{{ $t('pages.trashedUsers') }}</h1>
             </div>
-            <div class="col-12 col-sm-8 col-md-6 text-center text-md-right mb-2 mb-md-0">
+            <div class="col-4 col-md-6 text-right">
                 <router-link :to="{name: 'cadastrarUsuarios'}" class="btn btn-primary mr-2">Cadastrar</router-link>
-                <router-link :to="{name: 'usuariosApagados'}" class="btn btn-info">Usuários Apagados</router-link>
+                <router-link :to="{name: 'usuarios'}" class="btn btn-info">Usuários</router-link>
             </div>
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
                 <vue-table
                         ref="vuetable"
-                        api-url="/api/users"
+                        api-url="/api/users/trashed"
                         :fields="fields"
                         data-path="data"
                         :http-options="requestAuth"
@@ -99,9 +100,9 @@
                         :css="css.table"
                 >
                     <div slot="actions-slot" slot-scope="{rowData: props}">
-                        <button class="btn btn-danger"
-                                @click="dropUser(props.id)"
-                        >Apagar
+                        <button class="btn btn-success"
+                                @click="restore(props.id)"
+                        >Restaurar
                         </button>
                     </div>
                 </vue-table>

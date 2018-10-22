@@ -102,7 +102,7 @@ export const verifyPassword = async () => {
       attributes: {
         type: 'password',
         placeholder: $t('placeholders.password')
-      }
+      },
     }
   })
     .then(async password => {

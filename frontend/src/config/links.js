@@ -17,6 +17,12 @@ export default () => [
   },
   {
     icon: 'fas fa-user',
+    title: () => $t('pages.clients'),
+    link: '/clientes',
+    can: () => $can('viewClient')
+  },
+  {
+    icon: 'fas fa-user',
     title: 'Pages',
     links: [
       {
