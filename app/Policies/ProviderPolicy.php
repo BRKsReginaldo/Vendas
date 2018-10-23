@@ -19,6 +19,18 @@ class ProviderPolicy
      */
     public function view(User $user, Provider $provider)
     {
+        return $user->hasRole('seller') && !is_null($user->client);
+    }
+
+    /**
+     * Determine whether the user can view the provider.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Provider  $provider
+     * @return mixed
+     */
+    public function show(User $user, Provider $provider)
+    {
         return $user->client_id === $provider->client_id;
     }
 
