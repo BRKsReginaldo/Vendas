@@ -67,13 +67,16 @@ class ProviderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdateProviderRequest $request
      * @param  \App\Provider $provider
-     * @return \Illuminate\Http\Response
+     * @return ProviderResource
      */
     public function update(UpdateProviderRequest $request, Provider $provider)
     {
-        //
+        return new ProviderResource($this->providerRepository->updateByModel($provider, $request->only([
+            'client_id',
+            'name'
+        ])));
     }
 
     /**
