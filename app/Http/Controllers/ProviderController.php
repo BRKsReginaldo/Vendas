@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Provider\ViewProviderRequest;
+use App\Http\Resources\ProviderResource;
 use App\Provider;
 use App\Repositories\ProviderRepository;
 use Illuminate\Http\Request;
@@ -19,11 +21,13 @@ class ProviderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param ViewProviderRequest $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(ViewProviderRequest $request)
     {
-
+        return ProviderResource::collection($this->providerRepository->getAll($request->per_page ?? 20, true,
+            sortedQuery($this->providerRepository, $request, 'name')));
     }
 
     /**
