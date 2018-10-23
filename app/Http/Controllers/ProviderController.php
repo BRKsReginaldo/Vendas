@@ -26,8 +26,13 @@ class ProviderController extends Controller
      */
     public function index(ViewProviderRequest $request)
     {
-        return ProviderResource::collection($this->providerRepository->getAll($request->per_page ?? 20, true,
-            sortedQuery($this->providerRepository, $request, 'name')));
+        return ProviderResource::collection(
+            $this->providerRepository->getAll(
+                $request->per_page ?? 20,
+                true,
+                sortedQuery($this->providerRepository, $request, 'name')
+            )
+        );
     }
 
     /**
