@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Provider\CreateProviderRequest;
 use App\Http\Requests\Provider\ViewProviderRequest;
 use App\Http\Resources\ProviderResource;
 use App\Provider;
@@ -41,9 +42,12 @@ class ProviderController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProviderRequest $request)
     {
-        //
+        return new ProviderResource($this->providerRepository->create($request->only([
+            'name',
+            'client_id'
+        ])));
     }
 
     /**
