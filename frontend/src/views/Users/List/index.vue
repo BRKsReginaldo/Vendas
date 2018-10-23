@@ -2,30 +2,35 @@
   import VueTable from 'vuetable-2'
   import css from '@/config/tables'
   import swal from 'sweetalert'
-  import UserService from "../../services/UserService"
+  import UserService from "../../../services/UserService"
   import withUser from '@/mixins/withUser'
-  import ClientService from "../../services/ClientService"
 
   export default {
-    name: 'DisabledClientes',
+    name: 'Users',
     components: {
       VueTable
     },
     mixins: [withUser],
     meta: {
-      title: $t('pages.disabledClients')
+      title: $t('pages.users')
     },
     data: () => ({
       css,
       fields: [
         {
-          name: 'id',
-          sortField: 'id',
-          title: $t('labels.id'),
+          name: 'name',
+          sortField: 'name',
+          title: $t('labels.name'),
         },
         {
-          name: 'creator.name',
-          title: $t('labels.creator')
+          name: 'email',
+          sortField: 'email',
+          title: $t('labels.email')
+        },
+        {
+          name: 'phone',
+          sortField: 'phone',
+          title: $t('labels.phone')
         },
         {
           name: 'actions-slot',
@@ -34,11 +39,11 @@
       ]
     }),
     methods: {
-      enable(id) {
+      dropUser(id) {
         swal({
           icon: 'warning',
           title: $t('notifications.title.confirm'),
-          text: $t('notifications.message.client.enable.confirm'),
+          text: $t('notifications.message.user.delete.confirm'),
           buttons: {
             cancel: 'Cancelar',
             confirm: {
@@ -50,11 +55,11 @@
           dangerMode: true
         })
           .then(drop => {
-            if (drop) return ClientService.enable(id)
+            if (drop) return UserService.delete(id)
             return Promise.reject(false)
           })
           .then(response => {
-            return swal($t('notifications.title.success'), $t('notifications.message.client.enable.success'), 'success')
+            return swal($t('notifications.title.success'), $t('notifications.message.user.delete.success'), 'success')
           })
           .then(() => {
             this.$refs.vuetable.reload()
@@ -74,28 +79,30 @@
 <template>
     <page>
         <div class="row">
-            <div class="col-12 col-sm-8 col-md-6">
-                <h1>{{ $t('pages.disabledClients') }}</h1>
+            <div class="col-12 col-sm-4 col-md-6">
+                <h1>{{ $t('pages.users') }}</h1>
             </div>
-            <div class="col-12 col-sm-4 col-md-6 text-center text-md-right mb-2 mb-md-0">
-                <router-link :to="{name: 'clientes'}" class="btn btn-info">Clientes</router-link>
+            <div class="col-12 col-sm-8 col-md-6 text-center text-md-right mb-2 mb-md-0">
+                <router-link :to="{name: 'usuariosApagados'}" class="btn btn-info mr-2">Usuários Apagados</router-link>
+                <router-link :to="{name: 'cadastrarUsuarios'}" class="btn btn-primary mr-2">Cadastrar</router-link>
             </div>
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
                 <vue-table
                         ref="vuetable"
-                        api-url="/api/clients/disabled"
+                        api-url="/api/users"
                         :fields="fields"
                         data-path="data"
                         :http-options="requestAuth"
                         pagination-path="meta"
                         :css="css.table"
+                        no-data-template="nenhum registro encontrado"
                 >
                     <div slot="actions-slot" slot-scope="{rowData: props}">
-                        <button class="btn btn-primary"
-                                @click="enable(props.id)"
-                        >Ativar
+                        <button class="btn btn-danger"
+                                @click="dropUser(props.id)"
+                        >Apagar
                         </button>
                     </div>
                 </vue-table>

@@ -1,7 +1,7 @@
 <script>
   import withUser from '@/mixins/withUser'
   import PasswordField from '@/components/UI/PasswordField'
-  import ErrorBag from "../../helpers/ErrorBag"
+  import ErrorBag from "../../../helpers/ErrorBag"
   import {mapActions} from 'vuex'
   import ImageInput from '@/components/ImageInput'
 

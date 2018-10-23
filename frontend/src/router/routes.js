@@ -62,6 +62,12 @@ const Breadcrumbs = {
     link: {
       name: 'uclientesApagados'
     }
+  },
+  editarUClientes: {
+    name: 'Editar Cliente',
+    link: {
+      name: 'editarUClientes'
+    }
   }
 }
 
@@ -94,7 +100,7 @@ export default [
       {
         path: 'perfil',
         name: 'perfil',
-        component: () => import(/* webpackChunkName: "profile"*/ '../views/Profile'),
+        component: () => import(/* webpackChunkName: "profile"*/ '../views/User/Profile'),
         meta: {
           can: () => $can('viewProfileUser'),
           breadcrumbs: [
@@ -106,7 +112,7 @@ export default [
       {
         path: 'usuarios',
         name: 'usuarios',
-        component: () => import(/* webpackChunkName: "users" */ '../views/Users'),
+        component: () => import(/* webpackChunkName: "users" */ '../views/Users/List'),
         meta: {
           can: () => $can('manageUser'),
           breadcrumbs: [
@@ -118,7 +124,7 @@ export default [
       {
         path: 'usuarios/cadastrar',
         name: 'cadastrarUsuarios',
-        component: () => import(/* webpackChunkName: "createUsers" */ '../views/CreateUsers'),
+        component: () => import(/* webpackChunkName: "createUsers" */ '../views/Users/Create'),
         meta: {
           can: () => $can('createUser'),
           breadcrumbs: [
@@ -131,7 +137,7 @@ export default [
       {
         path: 'usuarios/apagados',
         name: 'usuariosApagados',
-        component: () => import(/* webpackChunkName: "trashedUsers" */ '../views/TrashedUsers'),
+        component: () => import(/* webpackChunkName: "trashedUsers" */ '../views/Users/ListTrashed'),
         meta: {
           can: () => $can('restoreUser'),
           breadcrumbs: [
@@ -144,7 +150,7 @@ export default [
       {
         path: 'clientes',
         name: 'clientes',
-        component: () => import(/* webpackChunkName: "clients" */ '../views/Clients'),
+        component: () => import(/* webpackChunkName: "clients" */ '../views/Clients/List'),
         meta: {
           can: () => $can('viewClient'),
           breadcrumbs: [
@@ -156,7 +162,7 @@ export default [
       {
         path: 'clientes/desativados',
         name: 'clientesDesativados',
-        component: () => import(/* webpackChunkName: "disabledClients" */ '../views/DisabledClients'),
+        component: () => import(/* webpackChunkName: "disabledClients" */ '../views/Clients/ListDisabled'),
         meta: {
           can: () => $can('enableClient'),
           breadcrumbs: [
@@ -169,7 +175,7 @@ export default [
       {
         path: 'configuracoes/clientes',
         name: 'uclientes',
-        component: () => import(/* webpackChunkName: "customers" */ '../views/Customers'),
+        component: () => import(/* webpackChunkName: "customers" */ '../views/Customers/List'),
         meta: {
           can: () => $can('viewCustomer'),
           breadcrumbs: [
@@ -181,7 +187,7 @@ export default [
       {
         path: 'configuracoes/clientes/apagados',
         name: 'uclientesApagados',
-        component: () => import(/* webpackChunkName: "trashedCustomers" */ '../views/TrashedCustomers'),
+        component: () => import(/* webpackChunkName: "trashedCustomers" */ '../views/Customers/ListTrashed'),
         meta: {
           can: () => $can('viewCustomer'),
           breadcrumbs: [
@@ -194,7 +200,7 @@ export default [
       {
         path: 'configuracoes/clientes/cadastrar',
         name: 'cadastrarUClientes',
-        component: () => import(/* webpackChunkName: "createCustomers" */ '../views/CreateCustomers'),
+        component: () => import(/* webpackChunkName: "createCustomers" */ '../views/Customers/Create'),
         meta: {
           can: () => $can('createCustomer'),
           breadcrumbs: [
@@ -203,7 +209,20 @@ export default [
             Breadcrumbs.cadastrarUClientes
           ]
         }
-      }
+      },
+      {
+        path: 'configuracoes/clientes/editar/:id',
+        name: 'editarUClientes',
+        component: () => import(/* webpackChunkName: "editCustomers" */ '../views/Customers/Edit'),
+        meta: {
+          can: () => $can('createCustomer'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.uclientes,
+            Breadcrumbs.editarUClientes
+          ]
+        }
+      },
     ]
   }
 ]

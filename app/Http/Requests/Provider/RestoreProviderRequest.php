@@ -5,7 +5,7 @@ namespace App\Http\Requests\Provider;
 use App\Provider;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteProviderRequest extends FormRequest
+class RestoreProviderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,8 @@ class DeleteProviderRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('delete', $this->getModel('provider', Provider::class));
+        $provider = Provider::withTrashed()->findOrFail($this->route('id'));
+        return $this->user()->can('restore', $provider);
     }
 
     /**

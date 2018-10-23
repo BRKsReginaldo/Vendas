@@ -2,35 +2,30 @@
   import VueTable from 'vuetable-2'
   import css from '@/config/tables'
   import swal from 'sweetalert'
-  import UserService from "../../services/UserService"
+  import UserService from "../../../services/UserService"
   import withUser from '@/mixins/withUser'
+  import ClientService from "../../../services/ClientService"
 
   export default {
-    name: 'Users',
+    name: 'DisabledClientes',
     components: {
       VueTable
     },
     mixins: [withUser],
     meta: {
-      title: $t('pages.trashedUsers')
+      title: $t('pages.disabledClients')
     },
     data: () => ({
       css,
       fields: [
         {
-          name: 'name',
-          sortField: 'name',
-          title: $t('labels.name'),
+          name: 'id',
+          sortField: 'id',
+          title: $t('labels.id'),
         },
         {
-          name: 'email',
-          sortField: 'email',
-          title: $t('labels.email')
-        },
-        {
-          name: 'phone',
-          sortField: 'phone',
-          title: $t('labels.phone')
+          name: 'creator.name',
+          title: $t('labels.creator')
         },
         {
           name: 'actions-slot',
@@ -39,11 +34,11 @@
       ]
     }),
     methods: {
-      restore(id) {
+      enable(id) {
         swal({
           icon: 'warning',
           title: $t('notifications.title.confirm'),
-          text: $t('notifications.message.user.restore.confirm'),
+          text: $t('notifications.message.client.enable.confirm'),
           buttons: {
             cancel: 'Cancelar',
             confirm: {
@@ -55,11 +50,11 @@
           dangerMode: true
         })
           .then(drop => {
-            if (drop) return UserService.restore(id)
+            if (drop) return ClientService.enable(id)
             return Promise.reject(false)
           })
           .then(response => {
-            return swal($t('notifications.title.success'), $t('notifications.message.user.restore.success'), 'success')
+            return swal($t('notifications.title.success'), $t('notifications.message.client.enable.success'), 'success')
           })
           .then(() => {
             this.$refs.vuetable.reload()
@@ -68,7 +63,6 @@
             swal.close()
             swal.stopLoading()
             if (e) {
-              console.log(e)
               unknownError()
             }
           })
@@ -80,30 +74,28 @@
 <template>
     <page>
         <div class="row">
-            <div class="col-8 col-md-6">
-                <h1>{{ $t('pages.trashedUsers') }}</h1>
+            <div class="col-12 col-sm-8 col-md-6">
+                <h1>{{ $t('pages.disabledClients') }}</h1>
             </div>
-            <div class="col-4 col-md-6 text-right">
-                <router-link :to="{name: 'usuarios'}" class="btn btn-info">Usuários</router-link>
-                <router-link :to="{name: 'cadastrarUsuarios'}" class="btn btn-primary mr-2">Cadastrar</router-link>
+            <div class="col-12 col-sm-4 col-md-6 text-center text-md-right mb-2 mb-md-0">
+                <router-link :to="{name: 'clientes'}" class="btn btn-info">Clientes</router-link>
             </div>
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
                 <vue-table
                         ref="vuetable"
-                        api-url="/api/users/trashed"
+                        api-url="/api/clients/disabled"
                         :fields="fields"
                         data-path="data"
                         :http-options="requestAuth"
                         pagination-path="meta"
                         :css="css.table"
-                        no-data-template="nenhum registro encontrado..."
                 >
                     <div slot="actions-slot" slot-scope="{rowData: props}">
-                        <button class="btn btn-success"
-                                @click="restore(props.id)"
-                        >Restaurar
+                        <button class="btn btn-primary"
+                                @click="enable(props.id)"
+                        >Ativar
                         </button>
                     </div>
                 </vue-table>

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Provider\CreateProviderRequest;
+use App\Http\Requests\Provider\DeleteProviderRequest;
+use App\Http\Requests\Provider\RestoreProviderRequest;
 use App\Http\Requests\Provider\ShowProviderRequest;
 use App\Http\Requests\Provider\UpdateProviderRequest;
 use App\Http\Requests\Provider\ViewProviderRequest;
 use App\Http\Resources\ProviderResource;
 use App\Provider;
 use App\Repositories\ProviderRepository;
-use Illuminate\Http\Request;
 
 class ProviderController extends Controller
 {
@@ -83,13 +84,26 @@ class ProviderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Provider $provider
+     * @param DeleteProviderRequest $request
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function destroy(Provider $provider)
+    public function destroy(Provider $provider, DeleteProviderRequest $request)
     {
         if (!$this->providerRepository->deleteByModel($provider)) abort(500);
 
         return response('', 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Provider $id
+     * @param RestoreProviderRequest $request
+     * @return ProviderResource
+     */
+    public function restore($id, RestoreProviderRequest $request)
+    {
+        return new ProviderResource($this->providerRepository->restoreById($id));
     }
 }

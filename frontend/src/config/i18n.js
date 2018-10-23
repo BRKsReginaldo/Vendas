@@ -72,6 +72,10 @@ export default {
             success: 'O cliente foi cadastrado com sucesso, vamos redireciona-lo para a pagina de clientes...',
             wait: 'Vamos começar o processo para cadastrar o cliente, isso pode levar alguns segundos...'
           },
+          edit: {
+            success: 'O cliente foi editado com sucesso, vamos redireciona-lo para a pagina de clientes...',
+            wait: 'Vamos começar o processo para editar o cliente, isso pode levar alguns segundos...'
+          },
           delete: {
             success: 'O cliente foi apagado com sucesso...',
             confirm: 'Tem certeza que deseja apagar este cliente ?'
@@ -98,7 +102,8 @@ export default {
       customers: 'Clientes',
       createCustomers: 'Cadastrar Cliente',
       trashedCustomers: 'Clientes Apagados',
-
+      editCustomers: 'Editar Cliente',
+      providers: 'Fornecedores'
     }
   }
 }

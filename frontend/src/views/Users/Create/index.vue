@@ -1,11 +1,11 @@
 <script>
   import ErrorList from '@/components/UI/ErrorList'
   import PasswordField from '@/components/UI/PasswordField'
-  import ErrorBag from "../../helpers/ErrorBag"
+  import ErrorBag from "../../../helpers/ErrorBag"
   import ImageInput from "@/components/ImageInput/index"
   import swal from 'sweetalert'
-  import UserService from "../../services/UserService"
-  import ClientService from "../../services/ClientService"
+  import UserService from "../../../services/UserService"
+  import ClientService from "../../../services/ClientService"
 
   export default {
     name: 'CreateUsers',

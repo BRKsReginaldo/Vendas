@@ -11,4 +11,7 @@ export default {
   restore(user, customer) {
     return user.client_id && user.client_id === customer.client_id
   },
+  update(user, customer) {
+    return user.client_id && user.client_id === customer.client_id
+  }
 }

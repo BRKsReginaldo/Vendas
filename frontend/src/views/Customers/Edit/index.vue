@@ -1,13 +1,22 @@
 <script>
-  import ErrorBag from "../../helpers/ErrorBag"
+  import ErrorBag from "../../../helpers/ErrorBag"
   import withUser from '@/mixins/withUser'
   import hasForm from '@/mixins/hasForm'
   import swal from 'sweetalert'
-  import CustomerService from "../../services/CustomerService"
+  import CustomerService from "../../../services/CustomerService"
 
   export default {
-    name: 'CreateClients',
+    name: 'EditCustomers',
     mixins: [withUser, hasForm],
+    data: () => ({name: '', phone: '', customer: null}),
+    mounted() {
+        CustomerService.show(this.$route.params.id)
+          .then(({data: {data}}) => {
+            this.$data.customer = data
+            this.$data.name = data.name
+            this.$data.phone = data.phone
+          })
+    },
     methods: {
       onSubmit(ev) {
         ev.preventDefault()
@@ -18,7 +27,7 @@
 
         swal({
           title: $t('notifications.title.wait'),
-          text: $t('notifications.message.customer.create.wait'),
+          text: $t('notifications.message.customer.edit.wait'),
           icon: 'warning',
           buttons: {
             cancel: 'Cancelar',
@@ -30,12 +39,12 @@
           }
         })
           .then(shouldCreate => {
-            if (shouldCreate) return CustomerService.create(fd)
+            if (shouldCreate) return CustomerService.update(this.$data.customer, fd)
             return Promise.reject(false)
           })
           .then(res => res.data.data)
           .then(data => {
-            return swal($t('notifications.title.success'), $t('notifications.message.customer.create.success'), 'success')
+            return swal($t('notifications.title.success'), $t('notifications.message.customer.edit.success'), 'success')
           })
           .then(() => {
             this.$router.push({
@@ -69,7 +78,7 @@
     <page>
         <div class="row">
             <div class="col-12">
-                <h1>{{ $t('pages.createCustomers') }}</h1>
+                <h1>{{ $t('pages.editCustomers') }}</h1>
             </div>
         </div>
         <div class="card shadow">
@@ -82,6 +91,7 @@
                                 <input type="text"
                                        class="form-control"
                                        name="name"
+                                       :value="name"
                                        :placeholder="$t('placeholders.name')">
                                 <error-list :errors="$data.errors.get('name')"/>
                             </div>
@@ -92,6 +102,7 @@
                                 <input type="text"
                                        class="form-control"
                                        name="phone"
+                                       :value="phone"
                                        :placeholder="$t('placeholders.phone')">
                                 <error-list :errors="$data.errors.get('phone')"/>
                             </div>
@@ -99,7 +110,7 @@
                     </div>
                     <div class="text-right">
                         <router-link :to="{name: 'uclientes'}" class="btn btn-danger mr-2">Cancelar</router-link>
-                        <button class="btn btn-primary">Cadastrar</button>
+                        <button class="btn btn-primary">Salvar</button>
                     </div>
                 </form>
             </div>

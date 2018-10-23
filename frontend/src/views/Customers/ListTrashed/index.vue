@@ -1,25 +1,25 @@
 <script>
-  import swal from 'sweetalert'
-  import withUser from '@/mixins/withUser'
-  import ClientService from "../../services/ClientService"
   import dataTable from '@/mixins/dataTable'
+  import withUser from '@/mixins/withUser'
+  import CustomerService from "../../../services/CustomerService"
 
   export default {
-    name: 'Clients',
-    mixins: [withUser, dataTable],
+    name: 'Customers',
     meta: {
-      title: $t('pages.clients')
+      title: $t('pages.trashedCustomers')
     },
+    mixins: [dataTable, withUser],
     data: () => ({
       fields: [
         {
-          name: 'id',
-          sortField: 'id',
-          title: $t('labels.id'),
+          name: 'name',
+          sortField: 'name',
+          title: $t('labels.name'),
         },
         {
-          name: 'creator.name',
-          title: $t('labels.creator')
+          name: 'phone',
+          sortField: 'phone',
+          title: $t('labels.phone')
         },
         {
           name: 'actions-slot',
@@ -28,11 +28,11 @@
       ]
     }),
     methods: {
-      disable(id) {
+      restore(customer) {
         swal({
           icon: 'warning',
           title: $t('notifications.title.confirm'),
-          text: $t('notifications.message.client.disable.confirm'),
+          text: $t('notifications.message.customer.restore.confirm'),
           buttons: {
             cancel: 'Cancelar',
             confirm: {
@@ -44,11 +44,11 @@
           dangerMode: true
         })
           .then(drop => {
-            if (drop) return ClientService.disable(id)
+            if (drop) return CustomerService.restore(customer)
             return Promise.reject(false)
           })
           .then(response => {
-            return swal($t('notifications.title.success'), $t('notifications.message.client.disable.success'), 'success')
+            return swal($t('notifications.title.success'), $t('notifications.message.customer.restore.success'), 'success')
           })
           .then(() => {
             this.$refs.vuetable.reload()
@@ -68,29 +68,30 @@
 <template>
     <page>
         <div class="row">
-            <div class="col-12 col-sm-4 col-md-6">
-                <h1>{{ $t('pages.clients') }}</h1>
+            <div class="col-12 col-md-6">
+                <h1>{{ $t('pages.trashedCustomers') }}</h1>
             </div>
-            <div class="col-12 col-sm-8 col-md-6 text-center text-md-right mb-2 mb-md-0">
-                <router-link :to="{name: 'clientesDesativados'}" class="btn btn-info">Clientes Desativados</router-link>
+            <div class="col-12 col-md-6 text-center text-md-right mb-2 mb-md-0">
+                <router-link :to="{name: 'uclientes'}" class="btn btn-info mr-2">Clientes</router-link>
+                <router-link :to="{name: 'cadastrarUClientes'}" class="btn btn-primary">Cadastrar</router-link>
             </div>
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
                 <vue-table
                         ref="vuetable"
-                        api-url="/api/clients"
+                        api-url="/api/customers/trashed"
                         :fields="fields"
                         data-path="data"
                         :http-options="requestAuth"
                         pagination-path="meta"
                         :css="css.table"
-                        no-data-template="nenhumm registro encontrado..."
+                        :no-data-template="$t('placeholders.noData')"
                 >
                     <div slot="actions-slot" slot-scope="{rowData: props}">
-                        <button class="btn btn-danger"
-                                @click="disable(props.id)"
-                        >Desativar
+                        <button class="btn btn-success"
+                                @click="restore(props)"
+                        >Restaurar
                         </button>
                     </div>
                 </vue-table>
