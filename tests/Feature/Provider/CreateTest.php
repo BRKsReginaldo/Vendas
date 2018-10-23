@@ -15,6 +15,14 @@ class CreateTest extends ProviderTest
             ->assertSeeText('Unauthenticated');
     }
 
+    public function test_authenticated_users_without_client_are_not_allowed_to_create_providers()
+    {
+        $this->authenticated()
+            ->create()
+            ->assertStatus(403)
+            ->assertSeeText('unauthorized');
+    }
+
     public function create($data = [])
     {
         return $this->makePostRequest('store', $data);
