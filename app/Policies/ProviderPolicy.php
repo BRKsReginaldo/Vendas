@@ -10,14 +10,18 @@ class ProviderPolicy
 {
     use HandlesAuthorization;
 
+    public function before($user, $ability)
+    {
+        if (is_null($user->client)) return false;
+    }
+
     /**
      * Determine whether the user can view the provider.
      *
      * @param  \App\User  $user
-     * @param  \App\Provider  $provider
      * @return mixed
      */
-    public function view(User $user, Provider $provider)
+    public function view(User $user)
     {
         return $user->hasRole('seller') && !is_null($user->client);
     }
