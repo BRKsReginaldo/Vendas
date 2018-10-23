@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Provider\CreateProviderRequest;
 use App\Http\Requests\Provider\ShowProviderRequest;
+use App\Http\Requests\Provider\UpdateProviderRequest;
 use App\Http\Requests\Provider\ViewProviderRequest;
 use App\Http\Resources\ProviderResource;
 use App\Provider;
@@ -70,7 +71,7 @@ class ProviderController extends Controller
      * @param  \App\Provider $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provider $provider)
+    public function update(UpdateProviderRequest $request, Provider $provider)
     {
         //
     }
