@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Provider\CreateProviderRequest;
+use App\Http\Requests\Provider\ShowProviderRequest;
 use App\Http\Requests\Provider\ViewProviderRequest;
 use App\Http\Resources\ProviderResource;
 use App\Provider;
@@ -54,11 +55,12 @@ class ProviderController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Provider $provider
-     * @return \Illuminate\Http\Response
+     * @param ShowProviderRequest $request
+     * @return void
      */
-    public function show(Provider $provider)
+    public function show(Provider $provider, ShowProviderRequest $request)
     {
-        //
+
     }
 
     /**
