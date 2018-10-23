@@ -84,9 +84,12 @@ class ProviderController extends Controller
      *
      * @param  \App\Provider $provider
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Provider $provider)
     {
-        //
+        if (!$this->providerRepository->deleteByModel($provider)) abort(500);
+
+        return response('', 200);
     }
 }
