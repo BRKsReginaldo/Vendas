@@ -72,8 +72,8 @@
                 <h1>{{ $t('pages.trashedCustomers') }}</h1>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right mb-2 mb-md-0">
-                <router-link :to="{name: 'uclientes'}" class="btn btn-info mr-2">Clientes</router-link>
-                <router-link :to="{name: 'cadastrarUClientes'}" class="btn btn-primary">Cadastrar</router-link>
+                <router-link :to="{name: 'customers'}" class="btn btn-info mr-2">Clientes</router-link>
+                <router-link :to="{name: 'createCustomers'}" class="btn btn-primary">Cadastrar</router-link>
             </div>
         </div>
         <div class="card shadow">

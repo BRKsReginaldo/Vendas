@@ -40,6 +40,25 @@ class ProviderController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param ViewProviderRequest $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function trashed(ViewProviderRequest $request)
+    {
+        return ProviderResource::collection(
+            $this->providerRepository->getAll(
+                $request->per_page ?? 20,
+                true,
+                sortedQuery($this->providerRepository, $request, 'name')
+                ->withTrashed()
+                ->whereNotNull('deleted_at')
+            )
+        );
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param CreateProviderRequest $request

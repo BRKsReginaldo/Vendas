@@ -4,71 +4,91 @@ import Auth from '../components/Auth'
 
 const Breadcrumbs = {
   home: {
-    name: 'Home',
+    name: $t('pages.home'),
     link: {
       name: 'home'
     }
   },
-  perfil: {
-    name: 'Perfil',
+  profile: {
+    name: $t('pages.profile'),
     link: {
-      name: 'perfil'
+      name: 'profile'
     }
   },
-  usuarios: {
-    name: 'Usuarios',
+  users: {
+    name: $t('pages.users'),
     link: {
-      name: 'usuarios'
+      name: 'users'
     }
   },
-  cadastrarUsuarios: {
-    name: 'Cadastrar Usuarios',
+  createUsers: {
+    name: $t('pages.createUsers'),
     link: {
-      name: 'cadastrarUsuarios'
+      name: 'createUsers'
     }
   },
-  usuariosApagados: {
-    name: 'Usuários Apagados',
+  trashedUsers: {
+    name: $t('pages.trashedUsers'),
     link: {
-      name: 'usuariosApagados'
+      name: 'trashedUsers'
     }
   },
-  clientes: {
-    name: 'Clientes',
+  clients: {
+    name: $t('pages.clients'),
     link: {
-      name: 'clientes'
+      name: 'clients'
     }
   },
-  clientesDesativados: {
-    name: 'Clientes Desativados',
+  disabledClients: {
+    name: $t('pages.disabledClients'),
     link: {
-      name: 'clientesDesativados'
+      name: 'disabledClients'
     }
   },
-  uclientes: {
-    name: 'Clientes',
+  customers: {
+    name: $t('pages.customers'),
     link: {
-      name: 'uclientes'
+      name: 'customers'
     }
   },
-  cadastrarUClientes: {
-    name: 'Cadastrar Clientes',
+  createCustomers: {
+    name: $t('pages.createCustomers'),
     link: {
-      name: 'cadastrarUClientes'
+      name: 'createCustomers'
     }
   },
-  uclientesApagados: {
-    name: 'Clientes Apagados',
+  trashedCustomers: {
+    name: $t('pages.trashedCustomers'),
     link: {
-      name: 'uclientesApagados'
+      name: 'trashedCustomers'
     }
   },
-  editarUClientes: {
-    name: 'Editar Cliente',
+  editCustomers: {
+    name: $t('pages.editCustomers'),
+    link: null
+  },
+  providers: {
+    name: $t('pages.providers'),
     link: {
-      name: 'editarUClientes'
+      name: 'providers'
     }
-  }
+  },
+  createProviders: {
+    name: $t('pages.createProviders'),
+    link: {
+      name: 'createProviders'
+    }
+  },
+  trashedProviders: {
+    name: $t('pages.trashedProviders'),
+    link: {
+      name: 'trashedProviders'
+    }
+  },
+  editProviders: {
+    name: $t('pages.editProviders'),
+    link: null
+  },
 }
 
 export default [
@@ -99,130 +119,182 @@ export default [
       },
       {
         path: 'perfil',
-        name: 'perfil',
+        name: 'profile',
         component: () => import(/* webpackChunkName: "profile"*/ '../views/User/Profile'),
         meta: {
           can: () => $can('viewProfileUser'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.perfil
+            Breadcrumbs.profile
           ]
         }
       },
       {
         path: 'usuarios',
-        name: 'usuarios',
+        name: 'users',
         component: () => import(/* webpackChunkName: "users" */ '../views/Users/List'),
         meta: {
           can: () => $can('manageUser'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.usuarios
+            Breadcrumbs.users
           ]
         }
       },
       {
         path: 'usuarios/cadastrar',
-        name: 'cadastrarUsuarios',
+        name: 'createUsers',
         component: () => import(/* webpackChunkName: "createUsers" */ '../views/Users/Create'),
         meta: {
           can: () => $can('createUser'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.usuarios,
-            Breadcrumbs.cadastrarUsuarios
+            Breadcrumbs.users,
+            Breadcrumbs.createUsers
           ]
         }
       },
       {
         path: 'usuarios/apagados',
-        name: 'usuariosApagados',
+        name: 'trashedUsers',
         component: () => import(/* webpackChunkName: "trashedUsers" */ '../views/Users/ListTrashed'),
         meta: {
           can: () => $can('restoreUser'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.usuarios,
-            Breadcrumbs.usuariosApagados
+            Breadcrumbs.users,
+            Breadcrumbs.trashedUsers
           ]
         }
       },
       {
         path: 'clientes',
-        name: 'clientes',
+        name: 'clients',
         component: () => import(/* webpackChunkName: "clients" */ '../views/Clients/List'),
         meta: {
           can: () => $can('viewClient'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.clientes
+            Breadcrumbs.clients
           ]
         }
       },
       {
         path: 'clientes/desativados',
-        name: 'clientesDesativados',
+        name: 'disabledClients',
         component: () => import(/* webpackChunkName: "disabledClients" */ '../views/Clients/ListDisabled'),
         meta: {
           can: () => $can('enableClient'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.clientes,
-            Breadcrumbs.clientesDesativados
+            Breadcrumbs.clients,
+            Breadcrumbs.disabledClients
           ]
         }
       },
       {
         path: 'configuracoes/clientes',
-        name: 'uclientes',
+        name: 'customers',
         component: () => import(/* webpackChunkName: "customers" */ '../views/Customers/List'),
         meta: {
           can: () => $can('viewCustomer'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.uclientes
+            Breadcrumbs.customers
           ]
         }
       },
       {
         path: 'configuracoes/clientes/apagados',
-        name: 'uclientesApagados',
+        name: 'trashedCustomers',
         component: () => import(/* webpackChunkName: "trashedCustomers" */ '../views/Customers/ListTrashed'),
         meta: {
           can: () => $can('viewCustomer'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.uclientes,
-            Breadcrumbs.uclientesApagados,
+            Breadcrumbs.customers,
+            Breadcrumbs.trashedCustomers,
           ]
         }
       },
       {
         path: 'configuracoes/clientes/cadastrar',
-        name: 'cadastrarUClientes',
+        name: 'createCustomers',
         component: () => import(/* webpackChunkName: "createCustomers" */ '../views/Customers/Create'),
         meta: {
           can: () => $can('createCustomer'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.uclientes,
-            Breadcrumbs.cadastrarUClientes
+            Breadcrumbs.customers,
+            Breadcrumbs.createCustomers
           ]
         }
       },
       {
         path: 'configuracoes/clientes/editar/:id',
-        name: 'editarUClientes',
+        name: 'editCustomers',
         component: () => import(/* webpackChunkName: "editCustomers" */ '../views/Customers/Edit'),
         meta: {
           can: () => $can('createCustomer'),
           breadcrumbs: [
             Breadcrumbs.home,
-            Breadcrumbs.uclientes,
-            Breadcrumbs.editarUClientes
+            Breadcrumbs.customers,
+            Breadcrumbs.editCustomers
           ]
         }
       },
+      {
+        path: 'configuracoes/fornecedores',
+        name: 'providers',
+        component: () => import(/* webpackChunkName: "providers" */ '../views/Providers/List'),
+        meta: {
+          can: () => $can('viewProvider'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.providers
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/fornecedores/cadastrar',
+        name: 'createProviders',
+        component: () => import(/* webpackChunkName: "createProviders" */ '../views/Providers/Create'),
+        meta: {
+          can: () => $can('createProvider'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.providers,
+            Breadcrumbs.createProviders,
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/fornecedores/apagados',
+        name: 'trashedProviders',
+        component: () => import(/* webpackChunkName: "createProviders" */ '../views/Providers/ListTrashed'),
+        meta: {
+          can: () => $can('createProvider'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.providers,
+            Breadcrumbs.trashedProviders,
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/fornecedores/editar/:id',
+        name: 'editProviders',
+        component: () => import(/* webpackChunkName: "editProviders" */ '../views/Providers/Edit'),
+        meta: {
+          can: () => $can('createProvider'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.providers,
+            Breadcrumbs.editProviders,
+          ]
+        }
+      },
+
     ]
   }
 ]

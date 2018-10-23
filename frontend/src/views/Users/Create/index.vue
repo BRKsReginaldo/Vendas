@@ -51,7 +51,7 @@
           })
           .then(() => {
             this.$router.push({
-              name: 'usuarios'
+              name: 'users'
             })
           })
           .catch(e => {
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <router-link :to="{name: 'usuarios'}" class="btn btn-danger mr-2">Cancelar</router-link>
+                        <router-link :to="{name: 'users'}" class="btn btn-danger mr-2">Cancelar</router-link>
                         <button class="btn btn-primary">Cadastrar</button>
                     </div>
                 </form>

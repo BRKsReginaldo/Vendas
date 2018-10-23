@@ -80,12 +80,12 @@
 <template>
     <page>
         <div class="row">
-            <div class="col-8 col-md-6">
+            <div class="col-12 col-sm-8 col-md-6">
                 <h1>{{ $t('pages.trashedUsers') }}</h1>
             </div>
-            <div class="col-4 col-md-6 text-right">
-                <router-link :to="{name: 'usuarios'}" class="btn btn-info">Usuários</router-link>
-                <router-link :to="{name: 'cadastrarUsuarios'}" class="btn btn-primary mr-2">Cadastrar</router-link>
+            <div class="col-12 col-sm-4 col-md-6 text-center text-md-right mb-2 mb-md-0">
+                <router-link :to="{name: 'users'}" class="btn btn-info mr-2">Usuários</router-link>
+                <router-link :to="{name: 'createUsers'}" class="btn btn-primary ">Cadastrar</router-link>
             </div>
         </div>
         <div class="card shadow">

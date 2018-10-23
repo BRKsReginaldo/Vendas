@@ -3,10 +3,10 @@
   import withUser from '@/mixins/withUser'
   import hasForm from '@/mixins/hasForm'
   import swal from 'sweetalert'
-  import CustomerService from "../../../services/CustomerService"
+  import ProviderService from "../../../services/ProviderService"
 
   export default {
-    name: 'CreateClients',
+    name: 'CreateProviders',
     mixins: [withUser, hasForm],
     methods: {
       onSubmit(ev) {
@@ -18,7 +18,7 @@
 
         swal({
           title: $t('notifications.title.wait'),
-          text: $t('notifications.message.customer.create.wait'),
+          text: $t('notifications.message.provider.create.wait'),
           icon: 'warning',
           buttons: {
             cancel: 'Cancelar',
@@ -30,16 +30,16 @@
           }
         })
           .then(shouldCreate => {
-            if (shouldCreate) return CustomerService.create(fd)
+            if (shouldCreate) return ProviderService.create(fd)
             return Promise.reject(false)
           })
           .then(res => res.data.data)
           .then(data => {
-            return swal($t('notifications.title.success'), $t('notifications.message.customer.create.success'), 'success')
+            return swal($t('notifications.title.success'), $t('notifications.message.provider.create.success'), 'success')
           })
           .then(() => {
             this.$router.push({
-              name: 'customers'
+              name: 'providers'
             })
           })
           .catch(e => {
@@ -69,7 +69,7 @@
     <page>
         <div class="row">
             <div class="col-12">
-                <h1>{{ $t('pages.createCustomers') }}</h1>
+                <h1>{{ $t('pages.createProviders') }}</h1>
             </div>
         </div>
         <div class="card shadow">
@@ -86,19 +86,9 @@
                                 <error-list :errors="$data.errors.get('name')"/>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label>{{ $t('labels.phone')}}</label>
-                                <input type="text"
-                                       class="form-control"
-                                       name="phone"
-                                       :placeholder="$t('placeholders.phone')">
-                                <error-list :errors="$data.errors.get('phone')"/>
-                            </div>
-                        </div>
                     </div>
                     <div class="text-right">
-                        <router-link :to="{name: 'customers'}" class="btn btn-danger mr-2">Cancelar</router-link>
+                        <router-link :to="{name: 'providers'}" class="btn btn-danger mr-2">Cancelar</router-link>
                         <button class="btn btn-primary">Cadastrar</button>
                     </div>
                 </form>

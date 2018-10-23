@@ -72,7 +72,7 @@
                 <h1>{{ $t('pages.clients') }}</h1>
             </div>
             <div class="col-12 col-sm-8 col-md-6 text-center text-md-right mb-2 mb-md-0">
-                <router-link :to="{name: 'clientesDesativados'}" class="btn btn-info">Clientes Desativados</router-link>
+                <router-link :to="{name: 'disabledClients'}" class="btn btn-info">Clientes Desativados</router-link>
             </div>
         </div>
         <div class="card shadow">
