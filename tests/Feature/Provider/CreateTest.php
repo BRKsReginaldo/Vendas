@@ -23,6 +23,14 @@ class CreateTest extends ProviderTest
             ->assertSeeText('unauthorized');
     }
 
+    public function test_authenticated_admins_without_client_are_not_allowed_to_create_providers()
+    {
+        $this->authenticatedAdmin()
+            ->create()
+            ->assertStatus(403)
+            ->assertSeeText('unauthorized');
+    }
+
     public function create($data = [])
     {
         return $this->makePostRequest('store', $data);
