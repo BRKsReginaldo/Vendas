@@ -40,8 +40,8 @@ class ProviderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param CreateProviderRequest $request
+     * @return ProviderResource
      */
     public function store(CreateProviderRequest $request)
     {
@@ -56,11 +56,11 @@ class ProviderController extends Controller
      *
      * @param  \App\Provider $provider
      * @param ShowProviderRequest $request
-     * @return void
+     * @return ProviderResource
      */
     public function show(Provider $provider, ShowProviderRequest $request)
     {
-
+        return new ProviderResource($provider);
     }
 
     /**
