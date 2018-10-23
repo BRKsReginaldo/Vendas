@@ -31,6 +31,11 @@ Route::match(['put', 'patch'], 'customers/restore/{id}', 'CustomerController@res
 Route::get('customers/trashed', 'CustomerController@trashed')->name('customers.trashed');
 Route::apiResource('customers', 'CustomerController');
 
+// Provider routes
+Route::match(['put', 'patch'], 'providers/restore/{id}', 'ProviderController@restore')->name('providers.restore');
+Route::get('providers/trashed', 'ProviderController@trashed')->name('providers.trashed');
+Route::apiResource('providers', 'ProviderController');
+
 Route::group(['namespace' => 'Auth'], function () {
     Route::post('/login', 'LoginController@login')->name('login');
     Route::post('/refresh', 'RefreshController@refresh')->name('refresh');

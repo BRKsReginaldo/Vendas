@@ -72,6 +72,10 @@ export default {
             success: 'O cliente foi cadastrado com sucesso, vamos redireciona-lo para a pagina de clientes...',
             wait: 'Vamos começar o processo para cadastrar o cliente, isso pode levar alguns segundos...'
           },
+          edit: {
+            success: 'O cliente foi editado com sucesso, vamos redireciona-lo para a pagina de clientes...',
+            wait: 'Vamos começar o processo para editar o cliente, isso pode levar alguns segundos...'
+          },
           delete: {
             success: 'O cliente foi apagado com sucesso...',
             confirm: 'Tem certeza que deseja apagar este cliente ?'
@@ -80,7 +84,25 @@ export default {
             success: 'O cliente foi restaurado com sucesso...',
             confirm: 'Tem certeza que deseja restaurar este cliente ?'
           }
-        }
+        },
+        provider: {
+          create: {
+            success: 'O fornecedor foi cadastrado com sucesso, vamos redireciona-lo para a pagina de fornecedores...',
+            wait: 'Vamos começar o processo para cadastrar o fornecedor, isso pode levar alguns segundos...'
+          },
+          edit: {
+            success: 'O fornecedor foi editado com sucesso, vamos redireciona-lo para a pagina de fornecedores...',
+            wait: 'Vamos começar o processo para editar o fornecedor, isso pode levar alguns segundos...'
+          },
+          delete: {
+            success: 'O fornecedor foi apagado com sucesso...',
+            confirm: 'Tem certeza que deseja apagar este fornecedor ?'
+          },
+          restore: {
+            success: 'O fornecedor foi restaurado com sucesso...',
+            confirm: 'Tem certeza que deseja restaurar este fornecedor ?'
+          }
+        },
       }
     },
     validation: {
@@ -88,6 +110,7 @@ export default {
       unsuported_file_reader: 'Não é possivel selecionar uma imagem neste navegador'
     },
     pages: {
+      home: 'Home',
       login: 'Entrar',
       profile: 'Perfil',
       users: 'Usuários',
@@ -98,7 +121,11 @@ export default {
       customers: 'Clientes',
       createCustomers: 'Cadastrar Cliente',
       trashedCustomers: 'Clientes Apagados',
-
+      editCustomers: 'Editar Cliente',
+      providers: 'Fornecedores',
+      createProviders: 'Cadastrar Fornecedor',
+      trashedProviders: 'Fornecedores Apagados',
+      editProviders: 'Editar Fornecedor',
     }
   }
 }

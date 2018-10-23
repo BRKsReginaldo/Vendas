@@ -6,7 +6,9 @@ use App\Client;
 use App\Customer;
 use App\Policies\ClientPolicy;
 use App\Policies\CustomerPolicy;
+use App\Policies\ProviderPolicy;
 use App\Policies\UserPolicy;
+use App\Provider;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -23,7 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         User::class => UserPolicy::class,
         Client::class => ClientPolicy::class,
-        Customer::class => CustomerPolicy::class
+        Customer::class => CustomerPolicy::class,
+        Provider::class => ProviderPolicy::class,
     ];
 
     /**

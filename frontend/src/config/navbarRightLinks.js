@@ -2,7 +2,9 @@ export default () => [
   {
     title: 'Perfil',
     icon: 'fas fa-user',
-    link: '/perfil'
+    link: {
+      name: 'profile'
+    }
   },
   '' // Divider
 ]

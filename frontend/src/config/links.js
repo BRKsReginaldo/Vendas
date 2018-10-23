@@ -21,7 +21,7 @@ export default async () => {
           icon: 'fas fa-user',
           title: () => $t('pages.users'),
           link: {
-            name: 'usuarios'
+            name: 'users'
           },
           can: () => $can('manageUser')
         },
@@ -29,16 +29,27 @@ export default async () => {
           icon: 'fas fa-user',
           title: () => $t('pages.clients'),
           link: {
-            name: 'clientes'
+            name: 'clients'
           },
           can: () => $can('viewClient')
         },
         {
           title: () => $t('pages.customers'),
           link: {
-            name: 'uclientes'
+            name: 'customers'
           },
           can: () => $can('viewCustomer'),
+          badge: () => ({
+            type: 'warning',
+            value: 'novo'
+          })
+        },
+        {
+          title: () => $t('pages.providers'),
+          link: {
+            name: 'providers'
+          },
+          can: () => $can('viewProvider'),
           badge: () => ({
             type: 'warning',
             value: 'novo'
