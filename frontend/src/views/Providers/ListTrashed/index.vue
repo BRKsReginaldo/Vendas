@@ -1,6 +1,7 @@
 <script>
   import ProviderService from "../../../services/ProviderService"
   import List from '@/components/UI/List'
+  import {maxLength} from "../../../helpers/strings"
 
   export default {
     name: 'TrashedProviders',
@@ -16,6 +17,11 @@
           name: 'name',
           sortField: 'name',
           title: $t('labels.name'),
+        },
+        {
+          name: 'observations',
+          title: $t('labels.observations'),
+          formatter: value => maxLength(75, '...')(value).replace(/\n/g, '<br/>')
         }
       ]
     }),
@@ -37,7 +43,7 @@
                 <h1>{{ $t('pages.trashedProviders') }}</h1>
             </div>
             <div class="col-sm-12 col-md-4 text-center text-md-right mb-2 mb-md-0">
-                <router-link :to="{name: 'providers'}" class="btn btn-info mr-2">Clientes</router-link>
+                <router-link :to="{name: 'providers'}" class="btn btn-info mr-2">Fornecedores</router-link>
                 <router-link :to="{name: 'createPaymentTypes'}" class="btn btn-primary">Cadastrar</router-link>
             </div>
         </div>

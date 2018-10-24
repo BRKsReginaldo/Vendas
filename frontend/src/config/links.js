@@ -56,7 +56,7 @@ export default async () => {
           })
         },
         {
-          title: () => $t('pages.paymentTypes'),
+          title: () => $t('pages.payments'),
           link: {
             name: 'paymentTypes'
           },

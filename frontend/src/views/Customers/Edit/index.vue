@@ -8,12 +8,13 @@
   export default {
     name: 'EditCustomers',
     mixins: [withUser, hasForm],
-    data: () => ({name: '', phone: '', customer: null}),
+    data: () => ({name: '', phone: '', observations: '', customer: null}),
     mounted() {
         CustomerService.show(this.$route.params.id)
           .then(({data: {data}}) => {
             this.$data.customer = data
             this.$data.name = data.name
+            this.$data.observations = data.observations
             this.$data.phone = data.phone
           })
     },
@@ -71,6 +72,20 @@
                                        :value="phone"
                                        :placeholder="$t('placeholders.phone')">
                                 <error-list :errors="$data.errors.get('phone')"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{ $t('labels.observations') }}</label>
+                                <textarea-autosize
+                                        type="text"
+                                        class="form-control"
+                                        :min-height="75"
+                                        :value="observations"
+                                        :placeholder="$t('placeholders.observations')"
+                                        name="observations"/>
                             </div>
                         </div>
                     </div>

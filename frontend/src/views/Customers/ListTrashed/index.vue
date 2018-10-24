@@ -1,6 +1,7 @@
 <script>
   import CustomerService from "../../../services/CustomerService"
   import List from '@/components/UI/List'
+  import {maxLength} from "../../../helpers/strings"
 
   export default {
     name: 'Customers',
@@ -21,6 +22,11 @@
           name: 'phone',
           sortField: 'phone',
           title: $t('labels.phone')
+        },
+        {
+          name: 'observations',
+          title: $t('labels.observations'),
+          formatter: value => maxLength(75)('...')(value).replace(/\n/g, '<br/>')
         }
       ]
     }),

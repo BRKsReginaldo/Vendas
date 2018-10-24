@@ -8,12 +8,13 @@
   export default {
     name: 'EditPaymentTypes',
     mixins: [withUser, hasForm],
-    data: () => ({name: '', paymentType: null}),
+    data: () => ({name: '', observations: '', paymentType: null}),
     mounted() {
         PaymentTypeService.show(this.$route.params.id)
           .then(({data: {data}}) => {
             this.$data.paymentType = data
             this.$data.name = data.name
+            this.$data.observations = data.observations
           })
     },
     methods: {
@@ -59,6 +60,20 @@
                                        :value="name"
                                        :placeholder="$t('placeholders.name')">
                                 <error-list :errors="$data.errors.get('name')"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{ $t('labels.observations') }}</label>
+                                <textarea-autosize
+                                        type="text"
+                                        class="form-control"
+                                        :min-height="75"
+                                        :value="observations"
+                                        :placeholder="$t('placeholders.observations')"
+                                        name="observations"/>
                             </div>
                         </div>
                     </div>

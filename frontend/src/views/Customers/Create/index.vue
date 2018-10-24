@@ -62,6 +62,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{ $t('labels.observations') }}</label>
+                                <textarea-autosize
+                                        type="text"
+                                        class="form-control"
+                                        :min-height="75"
+                                        :placeholder="$t('placeholders.observations')"
+                                        name="observations"/>
+                            </div>
+                        </div>
+                    </div>
                     <div class="text-right">
                         <router-link :to="{name: 'customers'}" class="btn btn-danger mr-2">Cancelar</router-link>
                         <button class="btn btn-primary">Cadastrar</button>

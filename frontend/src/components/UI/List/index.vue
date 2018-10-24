@@ -48,7 +48,9 @@
             :css="$data.css.table"
             :no-data-template="$t('placeholders.noData')"
     >
-        <div slot="actions-slot" slot-scope="{rowData}">
+        <div style="min-width: 150px"
+             slot="actions-slot"
+             slot-scope="{rowData}">
             <slot v-if="hasActions" name="actions" :row-data="rowData"/>
         </div>
     </vue-table>

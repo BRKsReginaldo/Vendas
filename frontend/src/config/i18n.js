@@ -13,7 +13,8 @@ export default {
       image: 'Imagem',
       actions: 'Ações',
       id: 'Id',
-      creator: 'Criador (a)'
+      creator: 'Criador (a)',
+      observations: 'Observações'
     },
     placeholders: {
       email: 'Digite seu e-mail aqui',
@@ -22,7 +23,7 @@ export default {
       name: 'Digite seu nome aqui',
       phone: 'Digite seu telefone aqui',
       noData: 'nenhum registro encontrado...',
-
+      observations: 'Digite aqui algumas observações...'
     },
     notifications: {
       title: {
@@ -148,6 +149,7 @@ export default {
       createPaymentTypes: 'Cadastrar Método de Pagamento',
       trashedPaymentTypes: 'Métodos de Pagamento Apagados',
       editPaymentTypes: 'Editar Método de Pagamento',
+      payments: 'Mét. Pagamentos'
     }
   }
 }

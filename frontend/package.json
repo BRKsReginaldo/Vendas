@@ -13,6 +13,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "popper.js": "^1.14.4",
+    "rambda": "^1.2.6",
     "raven-js": "^3.27.0",
     "sweetalert": "^2.1.0",
     "vue": "^2.5.17",
@@ -21,6 +22,7 @@
     "vue-meta": "^1.5.5",
     "vue-notifications": "^0.9.0",
     "vue-router": "^3.0.1",
+    "vue-textarea-autosize": "^1.0.4",
     "vuetable-2": "^2.0.0-beta.3",
     "vuex": "^3.0.1"
   },
