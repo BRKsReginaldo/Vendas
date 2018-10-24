@@ -22,7 +22,19 @@ class ProductPolicy
      * @param  \App\Product  $product
      * @return mixed
      */
-    public function view(User $user, Product $product)
+    public function view(User $user)
+    {
+        return !!$user->client_id;
+    }
+
+    /**
+     * Determine whether the user can show the product.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Product  $product
+     * @return mixed
+     */
+    public function show(User $user, Product $product)
     {
         return $user->client_id === $product->client_id;
     }
