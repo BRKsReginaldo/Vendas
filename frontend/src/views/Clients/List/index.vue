@@ -1,14 +1,15 @@
 <script>
   import swal from 'sweetalert'
-  import withUser from '@/mixins/withUser'
   import ClientService from "../../../services/ClientService"
-  import dataTable from '@/mixins/dataTable'
+  import List from '@/components/UI/List'
 
   export default {
     name: 'Clients',
-    mixins: [withUser, dataTable],
     meta: {
       title: $t('pages.clients')
+    },
+    components: {
+      List
     },
     data: () => ({
       fields: [
@@ -20,10 +21,6 @@
         {
           name: 'creator.name',
           title: $t('labels.creator')
-        },
-        {
-          name: 'actions-slot',
-          title: $t('labels.actions')
         }
       ]
     }),
@@ -77,23 +74,19 @@
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
-                <vue-table
+                <list
                         ref="vuetable"
-                        api-url="/api/clients"
+                        url="/api/clients"
                         :fields="fields"
-                        data-path="data"
-                        :http-options="requestAuth"
-                        pagination-path="meta"
-                        :css="css.table"
-                        no-data-template="nenhumm registro encontrado..."
+                        has-actions
                 >
-                    <div slot="actions-slot" slot-scope="{rowData: props}">
+                    <div slot="actions" slot-scope="{rowData: props}">
                         <button class="btn btn-danger"
                                 @click="disable(props.id)"
                         >Desativar
                         </button>
                     </div>
-                </vue-table>
+                </list>
             </div>
         </div>
     </page>

@@ -1,26 +1,24 @@
 <script>
-    import dataTable from '@/mixins/dataTable'
-    import withUser from '@/mixins/withUser'
     import swal from 'sweetalert'
     import ProviderService from "../../../services/ProviderService"
+    import List from '@/components/UI/List'
 
     export default {
       name: 'ListProviders',
       meta: {
         title: $t('pages.providers')
       },
-      mixins: [dataTable, withUser],
+      components: {
+        List,
+      },
       data: () => ({
+        count: 0,
         fields: [
           {
             name: 'name',
             sortField: 'name',
             title: $t('labels.name'),
           },
-          {
-            name: 'actions-slot',
-            title: $t('labels.actions')
-          }
         ]
       }),
       methods: {
@@ -75,17 +73,12 @@
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
-                <vue-table
-                        ref="vuetable"
-                        api-url="/api/providers"
-                        :fields="fields"
-                        data-path="data"
-                        :http-options="requestAuth"
-                        pagination-path="meta"
-                        :css="css.table"
-                        :no-data-template="$t('placeholders.noData')"
-                >
-                    <div slot="actions-slot" slot-scope="{rowData: props}">
+                <list
+                    has-actions
+                    :fields="fields"
+                    ref="vuetable"
+                    url="/api/providers">
+                    <div slot="actions" slot-scope="{rowData: props}">
                         <button class="btn btn-danger mr-2"
                                 @click="dropProvider(props)"
                         >Apagar
@@ -95,7 +88,7 @@
                             Editar
                         </router-link>
                     </div>
-                </vue-table>
+                </list>
             </div>
         </div>
     </page>

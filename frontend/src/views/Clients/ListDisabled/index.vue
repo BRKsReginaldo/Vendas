@@ -1,22 +1,17 @@
 <script>
-  import VueTable from 'vuetable-2'
-  import css from '@/config/tables'
   import swal from 'sweetalert'
-  import UserService from "../../../services/UserService"
-  import withUser from '@/mixins/withUser'
   import ClientService from "../../../services/ClientService"
+  import List from '@/components/UI/List'
 
   export default {
     name: 'DisabledClientes',
     components: {
-      VueTable
+      List
     },
-    mixins: [withUser],
     meta: {
       title: $t('pages.disabledClients')
     },
     data: () => ({
-      css,
       fields: [
         {
           name: 'id',
@@ -26,10 +21,6 @@
         {
           name: 'creator.name',
           title: $t('labels.creator')
-        },
-        {
-          name: 'actions-slot',
-          title: $t('labels.actions')
         }
       ]
     }),
@@ -83,22 +74,19 @@
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
-                <vue-table
+                <list
                         ref="vuetable"
-                        api-url="/api/clients/disabled"
+                        url="/api/clients/disabled"
                         :fields="fields"
-                        data-path="data"
-                        :http-options="requestAuth"
-                        pagination-path="meta"
-                        :css="css.table"
+                        has-actions
                 >
-                    <div slot="actions-slot" slot-scope="{rowData: props}">
+                    <div slot="actions" slot-scope="{rowData: props}">
                         <button class="btn btn-primary"
                                 @click="enable(props.id)"
                         >Ativar
                         </button>
                     </div>
-                </vue-table>
+                </list>
             </div>
         </div>
     </page>

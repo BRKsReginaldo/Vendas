@@ -1,14 +1,15 @@
 <script>
-  import dataTable from '@/mixins/dataTable'
-  import withUser from '@/mixins/withUser'
   import CustomerService from "../../../services/CustomerService"
+  import List from '@/components/UI/List'
 
   export default {
     name: 'Customers',
     meta: {
       title: $t('pages.trashedCustomers')
     },
-    mixins: [dataTable, withUser],
+    components: {
+      List
+    },
     data: () => ({
       fields: [
         {
@@ -20,10 +21,6 @@
           name: 'phone',
           sortField: 'phone',
           title: $t('labels.phone')
-        },
-        {
-          name: 'actions-slot',
-          title: $t('labels.actions')
         }
       ]
     }),
@@ -78,23 +75,19 @@
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
-                <vue-table
+                <list
                         ref="vuetable"
-                        api-url="/api/customers/trashed"
+                        url="/api/customers/trashed"
                         :fields="fields"
-                        data-path="data"
-                        :http-options="requestAuth"
-                        pagination-path="meta"
-                        :css="css.table"
-                        :no-data-template="$t('placeholders.noData')"
+                        has-actions
                 >
-                    <div slot="actions-slot" slot-scope="{rowData: props}">
+                    <div slot="actions" slot-scope="{rowData: props}">
                         <button class="btn btn-success"
                                 @click="restore(props)"
                         >Restaurar
                         </button>
                     </div>
-                </vue-table>
+                </list>
             </div>
         </div>
     </page>

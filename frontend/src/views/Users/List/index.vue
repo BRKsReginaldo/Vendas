@@ -1,21 +1,17 @@
 <script>
-  import VueTable from 'vuetable-2'
-  import css from '@/config/tables'
   import swal from 'sweetalert'
   import UserService from "../../../services/UserService"
-  import withUser from '@/mixins/withUser'
+  import List from '@/components/UI/List'
 
   export default {
     name: 'Users',
     components: {
-      VueTable
+      List
     },
-    mixins: [withUser],
     meta: {
       title: $t('pages.users')
     },
     data: () => ({
-      css,
       fields: [
         {
           name: 'name',
@@ -32,10 +28,6 @@
           sortField: 'phone',
           title: $t('labels.phone')
         },
-        {
-          name: 'actions-slot',
-          title: $t('labels.actions')
-        }
       ]
     }),
     methods: {
@@ -89,23 +81,18 @@
         </div>
         <div class="card shadow">
             <div class="card-body p-0">
-                <vue-table
+                <list
                         ref="vuetable"
-                        api-url="/api/users"
-                        :fields="fields"
-                        data-path="data"
-                        :http-options="requestAuth"
-                        pagination-path="meta"
-                        :css="css.table"
-                        no-data-template="nenhum registro encontrado"
-                >
-                    <div slot="actions-slot" slot-scope="{rowData: props}">
+                        has-actions
+                        url="/api/users"
+                        :fields="fields">
+                    <div slot="actions" slot-scope="{rowData: props}">
                         <button class="btn btn-danger"
                                 @click="dropUser(props.id)"
                         >Apagar
                         </button>
                     </div>
-                </vue-table>
+                </list>
             </div>
         </div>
     </page>
