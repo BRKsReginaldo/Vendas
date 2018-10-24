@@ -3,10 +3,10 @@
   import withUser from '@/mixins/withUser'
   import hasForm from '@/mixins/hasForm'
   import swal from 'sweetalert'
-  import ProviderService from "../../../services/ProviderService"
+  import PaymentTypeService from "../../../services/PaymentTypeService"
 
   export default {
-    name: 'CreateProviders',
+    name: 'CreatePaymentTypes',
     mixins: [withUser, hasForm],
     methods: {
       onSubmit(ev) {
@@ -14,13 +14,13 @@
 
         const data = new FormData(ev.target)
 
-        this.mutate('createProvider', {
+        this.mutate('createPaymentType', {
           data,
           client_id: this.user.client_id,
           user_id: this.user.id,
           setErrors: errors => this.$data.errors = errors,
           onSuccess: () => this.$router.push({
-            name: 'providers'
+            name: 'paymentTypes'
           })
         })
 
@@ -34,7 +34,7 @@
     <page>
         <div class="row">
             <div class="col-12">
-                <h1>{{ $t('pages.createProviders') }}</h1>
+                <h1>{{ $t('pages.createPaymentTypes') }}</h1>
             </div>
         </div>
         <div class="card shadow">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <router-link :to="{name: 'providers'}" class="btn btn-danger mr-2">Cancelar</router-link>
+                        <router-link :to="{name: 'paymentTypes'}" class="btn btn-danger mr-2">Cancelar</router-link>
                         <button class="btn btn-primary">Cadastrar</button>
                     </div>
                 </form>

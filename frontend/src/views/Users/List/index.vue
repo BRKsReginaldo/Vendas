@@ -31,38 +31,11 @@
       ]
     }),
     methods: {
-      dropUser(id) {
-        swal({
-          icon: 'warning',
-          title: $t('notifications.title.confirm'),
-          text: $t('notifications.message.user.delete.confirm'),
-          buttons: {
-            cancel: 'Cancelar',
-            confirm: {
-              text: 'Confirmar',
-              value: true,
-              closeModal: false
-            }
-          },
-          dangerMode: true
+      dropUser(user) {
+        this.mutate('deleteUser', {
+          user,
+          onSuccess: () => this.$refs.vuetable.reload()
         })
-          .then(drop => {
-            if (drop) return UserService.delete(id)
-            return Promise.reject(false)
-          })
-          .then(response => {
-            return swal($t('notifications.title.success'), $t('notifications.message.user.delete.success'), 'success')
-          })
-          .then(() => {
-            this.$refs.vuetable.reload()
-          })
-          .catch(e => {
-            swal.close()
-            swal.stopLoading()
-            if (e) {
-              unknownError()
-            }
-          })
       }
     }
   }
@@ -88,7 +61,7 @@
                         :fields="fields">
                     <div slot="actions" slot-scope="{rowData: props}">
                         <button class="btn btn-danger"
-                                @click="dropUser(props.id)"
+                                @click="dropUser(props)"
                         >Apagar
                         </button>
                     </div>

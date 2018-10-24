@@ -1,12 +1,12 @@
 <script>
     import swal from 'sweetalert'
-    import ProviderService from "../../../services/ProviderService"
+    import PaymentTypeService from "../../../services/PaymentTypeService"
     import List from '@/components/UI/List'
 
     export default {
-      name: 'ListProviders',
+      name: 'ListPaymentTypes',
       meta: {
-        title: $t('pages.providers')
+        title: $t('pages.paymentTypes')
       },
       components: {
         List,
@@ -22,9 +22,9 @@
         ]
       }),
       methods: {
-        dropProvider(provider) {
-          this.mutate('deleteProvider', {
-            provider,
+        dropPaymentType(paymentType) {
+          this.mutate('deletePaymentType', {
+            paymentType,
             onSuccess: () => this.$refs.vuetable.reload()
           })
         }
@@ -35,12 +35,12 @@
 <template>
     <page>
         <div class="row">
-            <div class="col-12 col-sm-4 col-md-6">
-                <h1>{{ $t('pages.providers') }}</h1>
+            <div class="col-12 col-xl-5">
+                <h1>{{ $t('pages.paymentTypes') }}</h1>
             </div>
-            <div class="col-12 col-sm-8 col-md-6 text-center text-sm-right mb-2 mb-md-0">
-                <router-link :to="{name: 'trashedProviders'}" class="btn btn-info mr-2">Fornecedores Apagados</router-link>
-                <router-link :to="{name: 'createProviders'}" class="btn btn-primary ">Cadastrar</router-link>
+            <div class="col-12  col-xl-7 text-center text-sm-right mb-2 mb-xl-0">
+                <router-link :to="{name: 'trashedPaymentTypes'}" class="btn btn-info mr-2">Métodos de Pagamentos Apagados</router-link>
+                <router-link :to="{name: 'createPaymentTypes'}" class="btn btn-primary ">Cadastrar</router-link>
             </div>
         </div>
         <div class="card shadow">
@@ -49,14 +49,14 @@
                     has-actions
                     :fields="fields"
                     ref="vuetable"
-                    url="/api/providers">
+                    url="/api/payment-types">
                     <div slot="actions" slot-scope="{rowData: props}">
                         <button class="btn btn-danger mr-2"
-                                @click="dropProvider(props)"
+                                @click="dropPaymentType(props)"
                         >Apagar
                         </button>
                         <router-link class="btn btn-primary"
-                                     :to="{'name':'editProviders', params: {id: props.id}}">
+                                     :to="{'name':'editPaymentTypes', params: {id: props.id}}">
                             Editar
                         </router-link>
                     </div>

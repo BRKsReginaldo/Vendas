@@ -32,11 +32,12 @@ export const commonMutation = (
       if (shouldProceed) return mutate()
       return Promise.reject(false)
     })
-    .then(() => {
+    .then((response) => {
       return swal(successTitle, successText, successType)
+        .then(() => response)
     })
-    .then(() => {
-      onSuccess()
+    .then((response) => {
+      onSuccess(response)
     })
     .catch(e => {
       if (e === false) {
@@ -51,6 +52,9 @@ export const commonMutation = (
             swal.close()
           })
       } else {
+        if (e && process.env.NODE_ENV !== 'production') {
+          console.log(e)
+        }
         unknownError()
       }
     })

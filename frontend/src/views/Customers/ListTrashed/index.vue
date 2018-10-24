@@ -26,37 +26,10 @@
     }),
     methods: {
       restore(customer) {
-        swal({
-          icon: 'warning',
-          title: $t('notifications.title.confirm'),
-          text: $t('notifications.message.customer.restore.confirm'),
-          buttons: {
-            cancel: 'Cancelar',
-            confirm: {
-              text: 'Confirmar',
-              value: true,
-              closeModal: false
-            }
-          },
-          dangerMode: true
+        this.mutate('restoreCustomer', {
+          customer,
+          onSuccess: () => this.$refs.vuetable.reload()
         })
-          .then(drop => {
-            if (drop) return CustomerService.restore(customer)
-            return Promise.reject(false)
-          })
-          .then(response => {
-            return swal($t('notifications.title.success'), $t('notifications.message.customer.restore.success'), 'success')
-          })
-          .then(() => {
-            this.$refs.vuetable.reload()
-          })
-          .catch(e => {
-            swal.close()
-            swal.stopLoading()
-            if (e) {
-              unknownError()
-            }
-          })
       }
     }
   }
