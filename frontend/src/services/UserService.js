@@ -27,14 +27,14 @@ export default {
     return client.post('/api/users', data)
   },
 
-  delete(userId) {
-    if (!$can('deleteUser', {id: userId})) return unauthorizedError().then(() => false)
-    return client.laravelDelete(`/api/users/${userId}`)
+  delete(user) {
+    if (!$can('deleteUser', user)) return unauthorizedError().then(() => false)
+    return client.laravelDelete(`/api/users/${user.id}`)
   },
 
-  restore(userId) {
-    if (!$can('restoreUser', {id: userId})) return unauthorizedError().then(() => false)
-    return client.laravelPatch(`/api/users/restore/${userId}`)
+  restore(user) {
+    if (!$can('restoreUser', user)) return unauthorizedError().then(() => false)
+    return client.laravelPatch(`/api/users/restore/${user.id}`)
   },
 
   fetchAll() {

@@ -20,52 +20,18 @@
       onSubmit(ev) {
         ev.preventDefault()
 
-        const fd = new FormData(ev.target)
-        fd.append('user_id', this.user.id)
-        fd.append('client_id', this.user.client_id)
+        const data = new FormData(ev.target)
 
-        swal({
-          title: $t('notifications.title.wait'),
-          text: $t('notifications.message.provider.edit.wait'),
-          icon: 'warning',
-          buttons: {
-            cancel: 'Cancelar',
-            confirm: {
-              text: 'OK',
-              value: true,
-              closeModal: false
-            }
-          }
+        this.mutate('editProvider', {
+          data,
+          provider: this.$data.provider,
+          client_id: this.user.client_id,
+          user_id: this.user.id,
+          setErrors: errors => this.$data.errors = errors,
+          onSuccess: () => this.$router.push({
+            name: 'providers'
+          })
         })
-          .then(shouldCreate => {
-            if (shouldCreate) return ProviderService.update(this.$data.provider, fd)
-            return Promise.reject(false)
-          })
-          .then(res => res.data.data)
-          .then(data => {
-            return swal($t('notifications.title.success'), $t('notifications.message.provider.edit.success'), 'success')
-          })
-          .then(() => {
-            this.$router.push({
-              name: 'providers'
-            })
-          })
-          .catch(e => {
-            if (e === false) {
-              swal.close()
-              swal.stopLoading()
-            } else if (e && e.response && e.response.status === 422) {
-              return swal($t('notifications.title.error'), $t('notifications.message.validation'), 'warning')
-                .then(() => {
-                  this.$data.errors = new ErrorBag(e.response.data.errors)
-
-                  swal.stopLoading()
-                  swal.close()
-                })
-            } else {
-              unknownError()
-            }
-          })
 
         return false
       }

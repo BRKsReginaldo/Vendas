@@ -89,6 +89,28 @@ const Breadcrumbs = {
     name: $t('pages.editProviders'),
     link: null
   },
+  paymentTypes: {
+    name: $t('pages.paymentTypes'),
+    link: {
+      name: 'paymentTypes'
+    }
+  },
+  createPaymentTypes: {
+    name: $t('pages.createPaymentTypes'),
+    link: {
+      name: 'createPaymentTypes'
+    }
+  },
+  trashedPaymentTypes: {
+    name: $t('pages.trashedPaymentTypes'),
+    link: {
+      name: 'trashedPaymentTypes'
+    }
+  },
+  editPaymentTypes: {
+    name: $t('pages.editPaymentTypes'),
+    link: null
+  },
 }
 
 export default [
@@ -294,7 +316,57 @@ export default [
           ]
         }
       },
-
+      {
+        path: 'configuracoes/metodos-de-pagamento',
+        name: 'paymentTypes',
+        component: () => import(/* webpackChunkName: "paymentTypes" */ '../views/PaymentTypes/List'),
+        meta: {
+          can: () => $can('viewPaymentType'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.paymentTypes
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/metodos-de-pagamento/cadastrar',
+        name: 'createPaymentTypes',
+        component: () => import(/* webpackChunkName: "createPaymentTypes" */ '../views/PaymentTypes/Create'),
+        meta: {
+          can: () => $can('createPaymentType'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.paymentTypes,
+            Breadcrumbs.createPaymentTypes,
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/metodos-de-pagamento/apagados',
+        name: 'trashedPaymentTypes',
+        component: () => import(/* webpackChunkName: "createPaymentTypes" */ '../views/PaymentTypes/ListTrashed'),
+        meta: {
+          can: () => $can('createPaymentType'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.paymentTypes,
+            Breadcrumbs.trashedPaymentTypes,
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/metodos-de-pagamento/editar/:id',
+        name: 'editPaymentTypes',
+        component: () => import(/* webpackChunkName: "editPaymentTypes" */ '../views/PaymentTypes/Edit'),
+        meta: {
+          can: () => $can('createPaymentType'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.paymentTypes,
+            Breadcrumbs.editPaymentTypes,
+          ]
+        }
+      },
     ]
   }
 ]

@@ -55,6 +55,17 @@ export default async () => {
             value: 'novo'
           })
         },
+        {
+          title: () => $t('pages.paymentTypes'),
+          link: {
+            name: 'paymentTypes'
+          },
+          can: () => $can('viewPaymentType'),
+          badge: () => ({
+            type: 'warning',
+            value: 'novo'
+          })
+        },
       ]
     }
   ]

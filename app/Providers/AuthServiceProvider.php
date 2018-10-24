@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Client;
 use App\Customer;
+use App\PaymentType;
 use App\Policies\ClientPolicy;
 use App\Policies\CustomerPolicy;
+use App\Policies\PaymentTypePolicy;
 use App\Policies\ProviderPolicy;
 use App\Policies\UserPolicy;
 use App\Provider;
@@ -27,6 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         Client::class => ClientPolicy::class,
         Customer::class => CustomerPolicy::class,
         Provider::class => ProviderPolicy::class,
+        PaymentType::class => PaymentTypePolicy::class,
     ];
 
     /**

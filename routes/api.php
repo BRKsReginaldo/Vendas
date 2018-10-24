@@ -36,6 +36,11 @@ Route::match(['put', 'patch'], 'providers/restore/{id}', 'ProviderController@res
 Route::get('providers/trashed', 'ProviderController@trashed')->name('providers.trashed');
 Route::apiResource('providers', 'ProviderController');
 
+// Payment Type routes
+Route::match(['put', 'patch'], 'payment-types/restore/{id}', 'PaymentTypeController@restore')->name('payment-types.restore');
+Route::get('payment-types/trashed', 'PaymentTypeController@trashed')->name('payment-types.trashed');
+Route::apiResource('payment-types', 'PaymentTypeController');
+
 Route::group(['namespace' => 'Auth'], function () {
     Route::post('/login', 'LoginController@login')->name('login');
     Route::post('/refresh', 'RefreshController@refresh')->name('refresh');

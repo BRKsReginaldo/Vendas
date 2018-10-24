@@ -103,6 +103,24 @@ export default {
             confirm: 'Tem certeza que deseja restaurar este fornecedor ?'
           }
         },
+        paymentType: {
+          create: {
+            success: 'O método de pagamento foi cadastrado com sucesso, vamos redireciona-lo para a pagina de método de pagamentoes...',
+            wait: 'Vamos começar o processo para cadastrar o método de pagamento, isso pode levar alguns segundos...'
+          },
+          edit: {
+            success: 'O método de pagamento foi editado com sucesso, vamos redireciona-lo para a pagina de método de pagamentoes...',
+            wait: 'Vamos começar o processo para editar o método de pagamento, isso pode levar alguns segundos...'
+          },
+          delete: {
+            success: 'O método de pagamento foi apagado com sucesso...',
+            confirm: 'Tem certeza que deseja apagar este método de pagamento ?'
+          },
+          restore: {
+            success: 'O método de pagamento foi restaurado com sucesso...',
+            confirm: 'Tem certeza que deseja restaurar este método de pagamento ?'
+          }
+        },
       }
     },
     validation: {
@@ -126,6 +144,10 @@ export default {
       createProviders: 'Cadastrar Fornecedor',
       trashedProviders: 'Fornecedores Apagados',
       editProviders: 'Editar Fornecedor',
+      paymentTypes: 'Métodos de Pagamento',
+      createPaymentTypes: 'Cadastrar Método de Pagamento',
+      trashedPaymentTypes: 'Métodos de Pagamento Apagados',
+      editPaymentTypes: 'Editar Método de Pagamento',
     }
   }
 }
