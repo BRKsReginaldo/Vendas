@@ -58,6 +58,7 @@ class CustomerController extends Controller
             'phone',
             'client_id',
             'user_id',
+            'observations'
         ])));
     }
 
@@ -87,6 +88,7 @@ class CustomerController extends Controller
             'phone',
             'client_id',
             'user_id',
+            'observations'
         ])));
     }
 

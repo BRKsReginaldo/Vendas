@@ -12,6 +12,7 @@ class Provider extends Model
 
     protected $fillable = [
         'client_id',
-        'name'
+        'name',
+        'observations'
     ];
 }

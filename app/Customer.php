@@ -15,7 +15,8 @@ class Customer extends Model
         'name',
         'phone',
         'client_id',
-        'user_id'
+        'user_id',
+        'observations'
     ];
 
     public function orders()

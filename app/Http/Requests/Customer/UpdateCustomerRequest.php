@@ -28,7 +28,8 @@ class UpdateCustomerRequest extends FormRequest
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:50',
             'client_id' => 'required|exists:clients,id',
-            'user_id' => 'required|exists:users,id'
+            'user_id' => 'required|exists:users,id',
+            'observations' => 'nullable|string'
         ];
     }
 }

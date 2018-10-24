@@ -13,7 +13,8 @@ class PaymentType extends Model
 
     protected $fillable = [
         'name',
-        'client_id'
+        'client_id',
+        'observations'
     ];
 
     public function payments()
