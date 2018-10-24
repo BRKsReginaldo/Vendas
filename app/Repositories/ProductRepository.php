@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 
 use App\Product;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductRepository extends BaseRepository
 {
@@ -13,11 +14,29 @@ class ProductRepository extends BaseRepository
     {
         $product = parent::create($data);
 
-        $product->images()
+        $product->image()
             ->create([
                'path' => basename(uploadFile($data['image']))
             ]);
 
         return $product;
+    }
+
+    public function updateByModel(Model $model, array $data)
+    {
+        if (isset($data['image']) && !is_null($data['image'])) {
+            $basename = basename(uploadFile($data['image']));
+            if (!$model->image()->first()) {
+                $model->image()->create([
+                    'path' => $basename
+                ]);
+            } else {
+                $model->image()->update([
+                    'path' => $basename
+                ]);
+            }
+        }
+
+        return parent::updateByModel($model, $data);
     }
 }
