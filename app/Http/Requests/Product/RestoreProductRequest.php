@@ -14,7 +14,7 @@ class RestoreProductRequest extends FormRequest
      */
     public function authorize()
     {
-        $product = Product::withTrashed()->find($this->route('product'));
+        $product = Product::withTrashed()->find($this->route('id'));
         return $this->user()->can('restore', $product);
     }
 

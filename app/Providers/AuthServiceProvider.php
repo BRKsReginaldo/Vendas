@@ -8,6 +8,7 @@ use App\PaymentType;
 use App\Policies\ClientPolicy;
 use App\Policies\CustomerPolicy;
 use App\Policies\PaymentTypePolicy;
+use App\Policies\ProductPolicy;
 use App\Policies\ProviderPolicy;
 use App\Policies\UserPolicy;
 use App\Product;
@@ -31,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         Customer::class => CustomerPolicy::class,
         Provider::class => ProviderPolicy::class,
         PaymentType::class => PaymentTypePolicy::class,
-        Product::class => ProviderPolicy::class,
+        Product::class => ProductPolicy::class,
     ];
 
     /**

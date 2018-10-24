@@ -14,10 +14,12 @@ class ProductRepository extends BaseRepository
     {
         $product = parent::create($data);
 
-        $product->image()
-            ->create([
-               'path' => basename(uploadFile($data['image']))
-            ]);
+        if (isset($data['image']) && !is_null($data['image'])) {
+            $product->image()
+                ->create([
+                    'path' => basename(uploadFile($data['image']))
+                ]);
+        }
 
         return $product;
     }

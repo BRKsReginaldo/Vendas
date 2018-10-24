@@ -19,6 +19,7 @@ class ProductController extends Controller
     public function __construct(ProductRepository $productRepository)
     {
         $this->productRepository = $productRepository;
+        $this->middleware('auth');
     }
 
     /**
@@ -72,6 +73,7 @@ class ProductController extends Controller
             'description',
             'buy_price',
             'sell_price',
+            'image'
         ])));
     }
 
@@ -103,6 +105,7 @@ class ProductController extends Controller
             'description',
             'buy_price',
             'sell_price',
+            'image'
         ])));
     }
 

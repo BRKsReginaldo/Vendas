@@ -30,7 +30,8 @@ class CreateProductRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'nullable|string',
             'buy_price' => 'required',
-            'sell_price' => 'required'
+            'sell_price' => 'required',
+            'image' => 'nullable|image'
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Product;
 
+use App\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DeleteProductRequest extends FormRequest
@@ -13,7 +14,7 @@ class DeleteProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->can('delete', $this->getModel('product', Product::class));
     }
 
     /**
