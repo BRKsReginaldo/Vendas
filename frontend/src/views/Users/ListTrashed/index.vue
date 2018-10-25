@@ -32,7 +32,7 @@
     }),
     methods: {
       restore(user) {
-        this.mutate('restoreUser', {
+        this.$mutate('restoreUser', {
           user,
           onSuccess: () => this.$refs.vuetable.reload()
         })

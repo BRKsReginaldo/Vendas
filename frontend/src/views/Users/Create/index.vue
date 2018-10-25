@@ -3,9 +3,7 @@
   import PasswordField from '@/components/UI/PasswordField'
   import ErrorBag from "../../../helpers/ErrorBag"
   import ImageInput from "@/components/ImageInput/index"
-  import swal from 'sweetalert'
-  import UserService from "../../../services/UserService"
-  import ClientService from "../../../services/ClientService"
+  import hasForm from '@/mixins/hasForm'
 
   export default {
     name: 'CreateUsers',
@@ -17,59 +15,20 @@
       ErrorList,
       PasswordField
     },
-    data: () => ({errors: new ErrorBag()}),
+    mixins: [hasForm],
     methods: {
       onSubmit(ev) {
         ev.preventDefault()
 
-        const formData = new FormData(ev.target)
-        swal({
-          title: $t('notifications.title.wait'),
-          text: $t('notifications.message.user.create.wait'),
-          icon: 'warning',
-          buttons: {
-            cancel: 'Cancelar',
-            ok: {
-              text: 'OK',
-              value: true,
-              closeModal: false
-            }
-          }
-        })
-          .then((shouldCreate) => {
-            if (shouldCreate) return UserService.create(formData)
-            return Promise.reject(false)
-          })
-          .then(response => {
-            return response.data.data
-          })
-          .then(({id}) => {
-            return ClientService.create(id)
-          })
-          .then(() => {
-            return swal($t('notifications.title.success'), $t('notifications.message.user.create.success'), 'success')
-          })
-          .then(() => {
-            this.$router.push({
-              name: 'users'
-            })
-          })
-          .catch(e => {
-            if (e === false) {
-              swal.stopLoading()
-              swal.close()
-            } else if (e && e.response && e.response.status === 422) {
-              return swal($t('notifications.title.error'), $t('notifications.message.validation'), 'warning')
-                .then(() => {
-                  this.$data.errors = new ErrorBag(e.response.data.errors)
+        const data = new FormData(ev.target)
 
-                  swal.stopLoading()
-                  swal.close()
-                })
-            } else {
-              unknownError()
-            }
+        this.$mutate('createUser', {
+          data,
+          setErrors: this.setErrors,
+          onSuccess: () => this.$router.push({
+            name: 'users'
           })
+        })
 
         return false
       }

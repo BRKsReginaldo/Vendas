@@ -7,6 +7,7 @@ export const commonMutation = (
     successType = 'success',
     successText,
     onSuccess = () => null,
+    beforeSuccess,
     validationErrorTitle = $t('notifications.title.error'),
     validationErrorText = $t('notifications.message.error'),
     validationErrorType = 'error',
@@ -31,6 +32,10 @@ export const commonMutation = (
     .then(shouldProceed => {
       if (shouldProceed) return mutate()
       return Promise.reject(false)
+    })
+    .then(response => {
+      if (beforeSuccess) return beforeSuccess(response).then(() => response)
+      return response
     })
     .then((response) => {
       return swal(successTitle, successText, successType)

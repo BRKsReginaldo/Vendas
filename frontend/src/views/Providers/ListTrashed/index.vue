@@ -27,7 +27,7 @@
     }),
     methods: {
       restore(provider) {
-        this.mutate('restoreProvider', {
+        this.$mutate('restoreProvider', {
           provider,
           onSuccess: () => this.$refs.vuetable.reload()
         })

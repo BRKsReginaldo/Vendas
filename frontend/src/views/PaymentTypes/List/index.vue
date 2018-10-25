@@ -29,7 +29,7 @@
       }),
       methods: {
         dropPaymentType(paymentType) {
-          this.mutate('deletePaymentType', {
+          this.$mutate('deletePaymentType', {
             paymentType,
             onSuccess: () => this.$refs.vuetable.reload()
           })

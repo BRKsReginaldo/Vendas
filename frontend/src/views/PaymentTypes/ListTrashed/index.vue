@@ -27,7 +27,7 @@
     }),
     methods: {
       restore(paymentType) {
-        this.mutate('restorePaymentType', {
+        this.$mutate('restorePaymentType', {
           paymentType,
           onSuccess: () => this.$refs.vuetable.reload()
         })

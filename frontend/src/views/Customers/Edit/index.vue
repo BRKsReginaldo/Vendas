@@ -1,8 +1,6 @@
 <script>
-  import ErrorBag from "../../../helpers/ErrorBag"
   import withUser from '@/mixins/withUser'
   import hasForm from '@/mixins/hasForm'
-  import swal from 'sweetalert'
   import CustomerService from "../../../services/CustomerService"
 
   export default {
@@ -24,12 +22,12 @@
 
         const data = new FormData(ev.target)
 
-        this.mutate('editCustomer', {
+        this.$mutate('editCustomer', {
           user_id: this.user.id,
           client_id: this.user.client_id,
           data,
           customer: this.$data.customer,
-          setErrors: errors => this.$data.errors = errors,
+          setErrors: this.setErrors,
           onSuccess: () => this.$router.push({
             name: 'customers',
           })

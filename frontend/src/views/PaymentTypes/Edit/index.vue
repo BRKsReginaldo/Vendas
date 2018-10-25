@@ -23,12 +23,12 @@
 
         const data = new FormData(ev.target)
 
-        this.mutate('editPaymentType', {
+        this.$mutate('editPaymentType', {
           data,
           paymentType: this.$data.paymentType,
           client_id: this.user.client_id,
           user_id: this.user.id,
-          setErrors: errors => this.$data.errors = errors,
+          setErrors: this.setErrors,
           onSuccess: () => this.$router.push({
             name: 'paymentTypes'
           })

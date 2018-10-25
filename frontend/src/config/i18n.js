@@ -104,6 +104,24 @@ export default {
             confirm: 'Tem certeza que deseja restaurar este fornecedor ?'
           }
         },
+        product: {
+          create: {
+            success: 'O produto foi cadastrado com sucesso, vamos redireciona-lo para a pagina de produtos...',
+            wait: 'Vamos começar o processo para cadastrar o produto, isso pode levar alguns segundos...'
+          },
+          edit: {
+            success: 'O produto foi editado com sucesso, vamos redireciona-lo para a pagina de produtos...',
+            wait: 'Vamos começar o processo para editar o produto, isso pode levar alguns segundos...'
+          },
+          delete: {
+            success: 'O produto foi apagado com sucesso...',
+            confirm: 'Tem certeza que deseja apagar este produto ?'
+          },
+          restore: {
+            success: 'O produto foi restaurado com sucesso...',
+            confirm: 'Tem certeza que deseja restaurar este produto ?'
+          }
+        },
         paymentType: {
           create: {
             success: 'O método de pagamento foi cadastrado com sucesso, vamos redireciona-lo para a pagina de método de pagamentoes...',
@@ -149,7 +167,11 @@ export default {
       createPaymentTypes: 'Cadastrar Método de Pagamento',
       trashedPaymentTypes: 'Métodos de Pagamento Apagados',
       editPaymentTypes: 'Editar Método de Pagamento',
-      payments: 'Mét. Pagamentos'
+      payments: 'Mét. Pagamentos',
+      products: 'Produtos',
+      createProducts: 'Cadastrar Produto',
+      trashedProducts: 'Produtos Apagados',
+      editProducts: 'Editar Produto',
     }
   }
 }

@@ -29,7 +29,7 @@
     }),
     methods: {
       dropProvider(provider) {
-        this.mutate('deleteProvider', {
+        this.$mutate('deleteProvider', {
           provider,
           onSuccess: () => this.$refs.vuetable.reload()
         })
