@@ -22,7 +22,7 @@ export default {
       stock: 'Estoque',
       provider: 'Fornecedor',
       selected: 'Selecionado',
-      select: 'Pressione enter para selecionar'
+      select: 'Pressione enter para selecionar',
     },
     placeholders: {
       email: 'Digite seu e-mail aqui',
@@ -35,6 +35,7 @@ export default {
       description: 'Digite uma descrição aqui...',
       provider: 'Escolha um fornecedor...',
       unable_to_remove: 'Não é possivel remover esta opção',
+      search: 'digite para pesquisar...',
       no_result: 'Nenhum resultado encontrado, verifique se as palavras estão escritas corretamente'
     },
     notifications: {

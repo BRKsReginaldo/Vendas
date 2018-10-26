@@ -47,6 +47,11 @@
         return this.$route.query.search || ''
       }
     },
+    watch: {
+      search(search) {
+        this.makeSearch(search)
+      }
+    },
     methods: {
       reload() {
         return this.$refs.vuetable.reload()
@@ -88,16 +93,20 @@
           this.onChangePage(this.$route.query.page)
         }
       },
-      async onChangeSearch(ev) {
-        console.log(ev.target.value, encodeURIComponent(ev.target.value), decodeURIComponent(ev.target.value))
+      async makeSearch(search) {
         this.$router.push({
           query: {
             ...this.$route.query,
-            search: ev.target.value.trim()
+            search: search.trim()
           }
         })
 
         await this.$refs.vuetable.reload()
+      },
+      async onChangeSearch(ev) {
+        const search = ev.target.value
+
+        await this.makeSearch(search)
 
         if (this.$route.query.page && this.$route.query.page.toString() !== '1') this.onChangePage(1)
       }

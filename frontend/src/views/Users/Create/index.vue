@@ -16,6 +16,9 @@
       PasswordField
     },
     mixins: [hasForm],
+    data: () => ({
+      phone: ''
+    }),
     methods: {
       onSubmit(ev) {
         ev.preventDefault()
@@ -24,6 +27,7 @@
 
         this.$mutate('createUser', {
           data,
+          phone: this.$data.phone,
           setErrors: this.setErrors,
           onSuccess: () => this.$router.push({
             name: 'users'
@@ -84,11 +88,13 @@
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label>{{ $t('labels.phone') }}</label>
-                                <input type="text"
-                                       name="phone"
-                                       class="form-control"
-                                       :placeholder="$t('placeholders.phone')">
+                                <label>{{ $t('labels.phone')}}</label>
+                                <the-mask
+                                        :mask="['(##) ####-####', '(##) #####-####']"
+                                        type="tel"
+                                        class="form-control"
+                                        v-model="phone"
+                                        :placeholder="$t('placeholders.phone')"/>
                                 <error-list :errors="$data.errors.get('phone')"/>
                             </div>
                         </div>

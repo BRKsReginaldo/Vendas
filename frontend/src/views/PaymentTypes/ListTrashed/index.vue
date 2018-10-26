@@ -43,8 +43,8 @@
                 <h1>{{ $t('pages.trashedPaymentTypes') }}</h1>
             </div>
             <div class="col-12 col-xl-4 text-center text-md-right mb-2 mb-xl-0">
-                <router-link :to="{name: 'paymentTypes'}" class="btn btn-info mr-2">Métodos de Pagamentos</router-link>
-                <router-link :to="{name: 'createPaymentTypes'}" class="btn btn-primary">Cadastrar</router-link>
+                <router-link :to="{name: 'paymentTypes'}" class="btn btn-info mr-2 mb-2">Métodos de Pagamentos</router-link>
+                <router-link :to="{name: 'createPaymentTypes'}" class="btn btn-primary mb-2">Cadastrar</router-link>
             </div>
         </div>
         <div class="card shadow">

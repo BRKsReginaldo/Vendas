@@ -45,7 +45,7 @@
     <page>
         <div class="row">
             <div class="col-sm-12 col-md-8">
-                <h1>{{ $t('pages.trashedProviders') }}</h1>
+                <h1>{{ $t('pages.trashedProducts') }}</h1>
             </div>
             <div class="col-sm-12 col-md-4 text-center text-md-right mb-2 mb-md-0">
                 <router-link :to="{name: 'products'}" class="btn btn-info mr-2">{{ $t('pages.products') }}</router-link>

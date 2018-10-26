@@ -26,6 +26,11 @@ class Product extends Model
         return $this->belongsTo(Provider::class);
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(ProductTransaction::class);
+    }
+
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
@@ -39,5 +44,16 @@ class Product extends Model
     function defaultImage()
     {
         return 'product.png';
+    }
+
+    public function makeTransaction($newStock)
+    {
+        return $this->transactions()
+            ->create([
+               'old_stock' => $this->attributes['stock'],
+               'client_id' => $this->attributes['client_id'],
+               'user_id' => auth()->check() ? auth()->id() : $this->client->creator()->first(['user_id'])->user_id,
+               'new_stock' => $newStock
+            ]);
     }
 }

@@ -59,9 +59,9 @@
                 <h1>{{ $t('pages.products') }}</h1>
             </div>
             <div class="col-12 col-sm-8 col-md-6 text-center text-sm-right mb-2 mb-md-0">
-                <router-link :to="{name: 'trashedProducts'}" class="btn btn-info mr-2">{{ $t('pages.trashedProducts') }}
+                <router-link :to="{name: 'trashedProducts'}" class="btn btn-info mr-2 mb-2">{{ $t('pages.trashedProducts') }}
                 </router-link>
-                <router-link :to="{name: 'createProducts'}" class="btn btn-primary ">Cadastrar</router-link>
+                <router-link :to="{name: 'createProducts'}" class="btn btn-primary mb-2">Cadastrar</router-link>
             </div>
         </div>
         <div class="card shadow">

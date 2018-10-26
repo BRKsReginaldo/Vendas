@@ -2,6 +2,7 @@
   import swal from 'sweetalert'
   import UserService from "../../../services/UserService"
   import List from '@/components/UI/List'
+  import {toPhone} from "../../../helpers/strings"
 
   export default {
     name: 'Users',
@@ -26,7 +27,8 @@
         {
           name: 'phone',
           sortField: 'phone',
-          title: $t('labels.phone')
+          title: $t('labels.phone'),
+          formatter: toPhone
         },
       ]
     }),

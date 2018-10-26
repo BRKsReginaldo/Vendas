@@ -5,6 +5,9 @@
   export default {
     name: 'CreateClients',
     mixins: [withUser, hasForm],
+    data: () => ({
+      phone: ''
+    }),
     methods: {
       onSubmit(ev) {
         ev.preventDefault()
@@ -14,6 +17,7 @@
         this.$mutate('createCustomer', {
           data,
           user_id: this.user.id,
+          phone: this.$data.phone,
           client_id: this.user.client_id,
           setErrors: this.setErrors,
           onSuccess: () => this.$router.push({
@@ -51,10 +55,12 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>{{ $t('labels.phone')}}</label>
-                                <input type="text"
-                                       class="form-control"
-                                       name="phone"
-                                       :placeholder="$t('placeholders.phone')">
+                                <the-mask
+                                        :mask="['(##) ####-####', '(##) #####-####']"
+                                        type="tel"
+                                        class="form-control"
+                                        v-model="phone"
+                                        :placeholder="$t('placeholders.phone')"/>
                                 <error-list :errors="$data.errors.get('phone')"/>
                             </div>
                         </div>
