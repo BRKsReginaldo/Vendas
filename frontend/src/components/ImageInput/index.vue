@@ -51,6 +51,7 @@
             <input
                     @change="generatePreview"
                     type="file"
+                    accept="image/*"
                     :name="name"
                     :id="name"
                     class="form-control">

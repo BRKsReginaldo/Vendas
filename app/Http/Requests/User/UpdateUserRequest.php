@@ -36,7 +36,7 @@ class UpdateUserRequest extends FormRequest
                 Rule::unique('users')->ignore($user->id)
             ],
             'password' => 'nullable|string|min:6',
-            'image' => 'nullable|image'
+            'image' => 'nullable|mimes:jpeg,jpg,bmp,png,webp'
         ];
     }
 }

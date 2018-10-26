@@ -14,16 +14,28 @@ export default {
       actions: 'Ações',
       id: 'Id',
       creator: 'Criador (a)',
-      observations: 'Observações'
+      observations: 'Observações',
+      description: 'Descrição',
+      price: 'Preço',
+      buy_price: 'Preço de Compra',
+      sell_price: 'Preço de Venda',
+      stock: 'Estoque',
+      provider: 'Fornecedor',
+      selected: 'Selecionado',
+      select: 'Pressione enter para selecionar'
     },
     placeholders: {
       email: 'Digite seu e-mail aqui',
-      password: 'Digite sua senha aqui',
-      password_confirmation: 'Confirme sua senha aqui',
-      name: 'Digite seu nome aqui',
-      phone: 'Digite seu telefone aqui',
+      password: 'Digite a senha aqui',
+      password_confirmation: 'Confirme a senha aqui',
+      name: 'Digite o nome aqui',
+      phone: 'Digite o telefone aqui',
       noData: 'nenhum registro encontrado...',
-      observations: 'Digite aqui algumas observações...'
+      observations: 'Digite aqui algumas observações...',
+      description: 'Digite uma descrição aqui...',
+      provider: 'Escolha um fornecedor...',
+      unable_to_remove: 'Não é possivel remover esta opção',
+      no_result: 'Nenhum resultado encontrado, verifique se as palavras estão escritas corretamente'
     },
     notifications: {
       title: {
@@ -150,6 +162,7 @@ export default {
       home: 'Home',
       login: 'Entrar',
       profile: 'Perfil',
+      configurations: 'Configurações',
       users: 'Usuários',
       createUsers: 'Cadastrar Usuários',
       trashedUsers: 'Usuários Apagados',

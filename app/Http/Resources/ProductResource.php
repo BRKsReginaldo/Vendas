@@ -10,7 +10,7 @@ class ProductResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -24,8 +24,8 @@ class ProductResource extends JsonResource
             'buy_price' => $this->buy_price,
             'sell_price' => $this->sell_price,
             'stock' => $this->stock,
-            'image' => url($this->image),
-            'image_small' => url('storage/' . resolve(ImageRepository::class)->urlForSize($this->image, 100, 100)),
+            'image' => url('storage/' . $this->image),
+            'image_small' => url('storage/' . resolve(ImageRepository::class)->urlForSize($this->image, 50, 50)),
         ];
     }
 }

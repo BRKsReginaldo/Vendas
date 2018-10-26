@@ -10,6 +10,11 @@ class ProductRepository extends BaseRepository
 {
     protected $model = Product::class;
 
+    public function getSortFields()
+    {
+        return ['name'];
+    }
+
     public function create(array $data)
     {
         $product = parent::create($data);

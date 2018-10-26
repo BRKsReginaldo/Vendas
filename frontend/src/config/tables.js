@@ -13,11 +13,11 @@ export default {
     detailRowClass: 'vuetable-detail-row',
     handleIcon: 'fa fa-bars text-secondary',
     renderIcon(classes, options) {
-      return `<i class="${classes.join(' ')}"></span>`
+      return `<i class="${classes.join(' ')}" ${options}/>`
     }
   },
   pagination: {
-    wrapperClass: 'pagination float-right',
+    wrapperClass: 'pagination float-right mt-2 p-2',
     activeClass: 'active',
     disabledClass: 'disabled',
     pageClass: 'page-item',
@@ -26,10 +26,10 @@ export default {
     paginationInfoClass: 'float-left',
     dropdownClass: 'form-control',
     icons: {
-      first: 'fa fa-chevron-left',
+      first: 'fa fa-fast-backward',
       prev: 'fa fa-chevron-left',
       next: 'fa fa-chevron-right',
-      last: 'fa fa-chevron-right',
-    }
+      last: 'fa fa-fast-forward',
+    },
   }
 }

@@ -15,6 +15,10 @@ import editPaymentType from './editPaymentType'
 import deletePaymentType from './deletePaymentType'
 import restorePaymentType from './restorePaymentType'
 import createUser from './createUser'
+import createProduct from './createProduct'
+import editProduct from './editProduct'
+import deleteProduct from './deleteProduct'
+import restoreProduct from './restoreProduct'
 
 export default {
   createCustomer,
@@ -33,5 +37,9 @@ export default {
   editPaymentType,
   deletePaymentType,
   restorePaymentType,
-  createUser
+  createUser,
+  createProduct,
+  editProduct,
+  deleteProduct,
+  restoreProduct,
 }

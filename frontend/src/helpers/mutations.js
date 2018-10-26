@@ -9,7 +9,7 @@ export const commonMutation = (
     onSuccess = () => null,
     beforeSuccess,
     validationErrorTitle = $t('notifications.title.error'),
-    validationErrorText = $t('notifications.message.error'),
+    validationErrorText = $t('notifications.message.validation'),
     validationErrorType = 'error',
     setValidationErrors = () => null,
     mutate,

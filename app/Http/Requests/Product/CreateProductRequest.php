@@ -29,9 +29,9 @@ class CreateProductRequest extends FormRequest
             'client_id' => 'required|exists:clients,id',
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'buy_price' => 'required',
-            'sell_price' => 'required',
-            'image' => 'nullable|image'
+            'buy_price' => 'required|numeric|min:1',
+            'sell_price' => 'required|numeric|min:1',
+            'image' => 'nullable|mimes:jpeg,jpg,bmp,png,webp'
         ];
     }
 }

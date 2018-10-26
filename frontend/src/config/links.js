@@ -66,6 +66,17 @@ export default async () => {
             value: 'novo'
           })
         },
+        {
+          title: () => $t('pages.products'),
+          link: {
+            name: 'products'
+          },
+          can: () => $can('viewProduct'),
+          badge: () => ({
+            type: 'warning',
+            value: 'novo'
+          })
+        },
       ]
     }
   ]
