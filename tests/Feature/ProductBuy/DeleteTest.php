@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class DeleteTest extends TestCase
+class DeleteTest extends ProductBuyTest
 {
     /**
      * A basic test example.
