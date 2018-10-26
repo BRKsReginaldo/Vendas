@@ -1,19 +1,18 @@
 <script>
-  import ErrorBag from "../../../helpers/ErrorBag"
   import withUser from '@/mixins/withUser'
   import hasForm from '@/mixins/hasForm'
-  import swal from 'sweetalert'
   import CustomerService from "../../../services/CustomerService"
 
   export default {
     name: 'EditCustomers',
     mixins: [withUser, hasForm],
-    data: () => ({name: '', phone: '', customer: null}),
+    data: () => ({name: '', phone: '', observations: '', customer: null}),
     mounted() {
         CustomerService.show(this.$route.params.id)
           .then(({data: {data}}) => {
             this.$data.customer = data
             this.$data.name = data.name
+            this.$data.observations = data.observations
             this.$data.phone = data.phone
           })
     },
@@ -23,12 +22,12 @@
 
         const data = new FormData(ev.target)
 
-        this.mutate('editCustomer', {
+        this.$mutate('editCustomer', {
           user_id: this.user.id,
           client_id: this.user.client_id,
           data,
           customer: this.$data.customer,
-          setErrors: errors => this.$data.errors = errors,
+          setErrors: this.setErrors,
           onSuccess: () => this.$router.push({
             name: 'customers',
           })
@@ -71,6 +70,20 @@
                                        :value="phone"
                                        :placeholder="$t('placeholders.phone')">
                                 <error-list :errors="$data.errors.get('phone')"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{ $t('labels.observations') }}</label>
+                                <textarea-autosize
+                                        type="text"
+                                        class="form-control"
+                                        :min-height="75"
+                                        :value="observations"
+                                        :placeholder="$t('placeholders.observations')"
+                                        name="observations"/>
                             </div>
                         </div>
                     </div>

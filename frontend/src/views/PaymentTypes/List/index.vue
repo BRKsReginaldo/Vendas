@@ -2,6 +2,7 @@
     import swal from 'sweetalert'
     import PaymentTypeService from "../../../services/PaymentTypeService"
     import List from '@/components/UI/List'
+    import {maxLength} from "../../../helpers/strings"
 
     export default {
       name: 'ListPaymentTypes',
@@ -19,11 +20,16 @@
             sortField: 'name',
             title: $t('labels.name'),
           },
+          {
+            name: 'observations',
+            title: $t('labels.observations'),
+            formatter: value => maxLength(75)('...')(value).replace(/\n/g, '<br/>')
+          }
         ]
       }),
       methods: {
         dropPaymentType(paymentType) {
-          this.mutate('deletePaymentType', {
+          this.$mutate('deletePaymentType', {
             paymentType,
             onSuccess: () => this.$refs.vuetable.reload()
           })

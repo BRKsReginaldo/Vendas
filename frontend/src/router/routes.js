@@ -15,6 +15,10 @@ const Breadcrumbs = {
       name: 'profile'
     }
   },
+  configurations: {
+    name: $t('pages.configurations'),
+    link: null
+  },
   users: {
     name: $t('pages.users'),
     link: {
@@ -111,6 +115,30 @@ const Breadcrumbs = {
     name: $t('pages.editPaymentTypes'),
     link: null
   },
+  products: {
+    name: $t('pages.products'),
+    link: {
+      name: 'products'
+    }
+  },
+  createProducts: {
+    name: $t('pages.createProducts'),
+    link: {
+      name: 'createProducts'
+    }
+  },
+  editProducts: {
+    name: $t('pages.editProducts'),
+    link: {
+      name: 'editProducts'
+    }
+  },
+  trashedProducts: {
+    name: $t('pages.trashedProducts'),
+    link: {
+      name: 'trashedProducts'
+    }
+  }
 }
 
 export default [
@@ -222,6 +250,7 @@ export default [
           can: () => $can('viewCustomer'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.customers
           ]
         }
@@ -234,6 +263,7 @@ export default [
           can: () => $can('viewCustomer'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.customers,
             Breadcrumbs.trashedCustomers,
           ]
@@ -247,6 +277,7 @@ export default [
           can: () => $can('createCustomer'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.customers,
             Breadcrumbs.createCustomers
           ]
@@ -260,6 +291,7 @@ export default [
           can: () => $can('createCustomer'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.customers,
             Breadcrumbs.editCustomers
           ]
@@ -273,6 +305,7 @@ export default [
           can: () => $can('viewProvider'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.providers
           ]
         }
@@ -285,6 +318,7 @@ export default [
           can: () => $can('createProvider'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.providers,
             Breadcrumbs.createProviders,
           ]
@@ -298,6 +332,7 @@ export default [
           can: () => $can('createProvider'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.providers,
             Breadcrumbs.trashedProviders,
           ]
@@ -311,6 +346,7 @@ export default [
           can: () => $can('createProvider'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.providers,
             Breadcrumbs.editProviders,
           ]
@@ -324,6 +360,7 @@ export default [
           can: () => $can('viewPaymentType'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.paymentTypes
           ]
         }
@@ -336,6 +373,7 @@ export default [
           can: () => $can('createPaymentType'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.paymentTypes,
             Breadcrumbs.createPaymentTypes,
           ]
@@ -349,6 +387,7 @@ export default [
           can: () => $can('createPaymentType'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.paymentTypes,
             Breadcrumbs.trashedPaymentTypes,
           ]
@@ -362,8 +401,64 @@ export default [
           can: () => $can('createPaymentType'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.configurations,
             Breadcrumbs.paymentTypes,
             Breadcrumbs.editPaymentTypes,
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/produtos',
+        name: 'products',
+        component: () => import(/* webpackChunkName: "products" */ '../views/Products/List'),
+        meta: {
+          can: () => $can('viewProduct'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.configurations,
+            Breadcrumbs.products,
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/produtos/apagados',
+        name: 'trashedProducts',
+        component: () => import(/* webpackChunkName: "trashedProducts" */ '../views/Products/ListTrashed'),
+        meta: {
+          can: () => $can('viewProduct'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.configurations,
+            Breadcrumbs.products,
+            Breadcrumbs.trashedProducts,
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/produtos/cadastrar',
+        name: 'createProducts',
+        component: () => import(/* webpackChunkName: "createProducts" */ '../views/Products/Create'),
+        meta: {
+          can: () => $can('createProduct'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.configurations,
+            Breadcrumbs.products,
+            Breadcrumbs.createProducts,
+          ]
+        }
+      },
+      {
+        path: 'configuracoes/produtos/editar/:id',
+        name: 'editProducts',
+        component: () => import(/* webpackChunkName: "editProducts" */ '../views/Products/Edit'),
+        meta: {
+          can: () => $can('createProduct'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.configurations,
+            Breadcrumbs.products,
+            Breadcrumbs.editProducts,
           ]
         }
       },

@@ -26,7 +26,8 @@ class CreatePaymentTypeRequest extends FormRequest
     {
         return [
             'client_id' => 'required|exists:clients,id',
-            'name' => 'required|string'
+            'name' => 'required|string',
+            'observations' => 'nullable|string'
         ];
     }
 }

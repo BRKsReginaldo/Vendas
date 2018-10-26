@@ -56,11 +56,22 @@ export default async () => {
           })
         },
         {
-          title: () => $t('pages.paymentTypes'),
+          title: () => $t('pages.payments'),
           link: {
             name: 'paymentTypes'
           },
           can: () => $can('viewPaymentType'),
+          badge: () => ({
+            type: 'warning',
+            value: 'novo'
+          })
+        },
+        {
+          title: () => $t('pages.products'),
+          link: {
+            name: 'products'
+          },
+          can: () => $can('viewProduct'),
           badge: () => ({
             type: 'warning',
             value: 'novo'

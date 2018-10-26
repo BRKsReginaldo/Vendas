@@ -35,7 +35,7 @@ class CreateUserRequest extends FormRequest
                 Rule::unique('users'),
             ],
             'password' => 'required|string|min:6|confirmed',
-            'image' => 'nullable|image',
+            'image' => 'nullable|mimes:jpeg,jpg,bmp,png,webp',
             'phone' => 'nullable|string'
         ];
     }

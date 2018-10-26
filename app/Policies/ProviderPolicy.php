@@ -12,7 +12,7 @@ class ProviderPolicy
 
     public function before($user, $ability)
     {
-        if (is_null($user->client)) return false;
+        if (is_null($user->client_id)) return false;
     }
 
     /**

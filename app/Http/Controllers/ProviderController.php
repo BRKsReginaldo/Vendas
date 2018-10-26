@@ -68,7 +68,8 @@ class ProviderController extends Controller
     {
         return new ProviderResource($this->providerRepository->create($request->only([
             'name',
-            'client_id'
+            'client_id',
+            'observations'
         ])));
     }
 
@@ -95,7 +96,8 @@ class ProviderController extends Controller
     {
         return new ProviderResource($this->providerRepository->updateByModel($provider, $request->only([
             'client_id',
-            'name'
+            'name',
+            'observations'
         ])));
     }
 

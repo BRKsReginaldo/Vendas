@@ -68,7 +68,8 @@ class PaymentTypeController extends Controller
     {
         return new PaymentTypeResource($this->paymentTypeRepository->create($request->only([
             'name',
-            'client_id'
+            'client_id',
+            'observations'
         ])));
     }
 
@@ -95,7 +96,8 @@ class PaymentTypeController extends Controller
     {
         return new PaymentTypeResource($this->paymentTypeRepository->updateByModel($payment_type, $request->only([
             'client_id',
-            'name'
+            'name',
+            'observations'
         ])));
     }
 

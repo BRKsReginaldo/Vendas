@@ -8,8 +8,10 @@ use App\PaymentType;
 use App\Policies\ClientPolicy;
 use App\Policies\CustomerPolicy;
 use App\Policies\PaymentTypePolicy;
+use App\Policies\ProductPolicy;
 use App\Policies\ProviderPolicy;
 use App\Policies\UserPolicy;
+use App\Product;
 use App\Provider;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
@@ -30,6 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         Customer::class => CustomerPolicy::class,
         Provider::class => ProviderPolicy::class,
         PaymentType::class => PaymentTypePolicy::class,
+        Product::class => ProductPolicy::class,
     ];
 
     /**

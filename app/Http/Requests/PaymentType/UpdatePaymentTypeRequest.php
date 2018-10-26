@@ -26,7 +26,8 @@ class UpdatePaymentTypeRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'client_id' => 'required|exists:clients,id'
+            'client_id' => 'required|exists:clients,id',
+            'observations' => 'nullable|string'
         ];
     }
 }

@@ -63,9 +63,28 @@ if (!function_exists('sortedQuery')) {
         $request = $request ?? request();
         $sort = $request->get('sort', $defaultOrder . '|asc') ?? $defaultOrder . '|asc';
         [$orderBy, $orderDirection] = explode('|', $sort);
+        $search = $request->get('search', null);
+        $sortFields = method_exists($class, 'getSortFields') ? $class->getSortFields() : [];
 
-        return $class
+        $query = $class
             ->newQuery()
             ->orderBy($orderBy, $orderDirection);
+
+        if ($search) {
+            $search = decodeUri($search);
+            $query->where(function($q) use ($sortFields, $search) {
+                foreach($sortFields as $field) {
+                    $q->orWhere($field, 'like', "%$search%");
+                }
+            });
+        }
+
+        return $query;
+    }
+}
+
+if (!function_exists('decodeUri')) {
+    function decodeUri($string) {
+        return rawurldecode(rawurldecode(rawurldecode($string)));
     }
 }

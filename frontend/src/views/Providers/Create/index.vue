@@ -14,11 +14,11 @@
 
         const data = new FormData(ev.target)
 
-        this.mutate('createProvider', {
+        this.$mutate('createProvider', {
           data,
           client_id: this.user.client_id,
           user_id: this.user.id,
-          setErrors: errors => this.$data.errors = errors,
+          setErrors: this.setErrors,
           onSuccess: () => this.$router.push({
             name: 'providers'
           })
@@ -49,6 +49,19 @@
                                        name="name"
                                        :placeholder="$t('placeholders.name')">
                                 <error-list :errors="$data.errors.get('name')"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{ $t('labels.observations') }}</label>
+                                <textarea-autosize
+                                        type="text"
+                                        class="form-control"
+                                        :min-height="75"
+                                        :placeholder="$t('placeholders.observations')"
+                                        name="observations"/>
                             </div>
                         </div>
                     </div>

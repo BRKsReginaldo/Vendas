@@ -38,6 +38,6 @@ class Product extends Model
 
     function defaultImage()
     {
-        return '';
+        return 'product.png';
     }
 }

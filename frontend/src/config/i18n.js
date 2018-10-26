@@ -13,16 +13,29 @@ export default {
       image: 'Imagem',
       actions: 'Ações',
       id: 'Id',
-      creator: 'Criador (a)'
+      creator: 'Criador (a)',
+      observations: 'Observações',
+      description: 'Descrição',
+      price: 'Preço',
+      buy_price: 'Preço de Compra',
+      sell_price: 'Preço de Venda',
+      stock: 'Estoque',
+      provider: 'Fornecedor',
+      selected: 'Selecionado',
+      select: 'Pressione enter para selecionar'
     },
     placeholders: {
       email: 'Digite seu e-mail aqui',
-      password: 'Digite sua senha aqui',
-      password_confirmation: 'Confirme sua senha aqui',
-      name: 'Digite seu nome aqui',
-      phone: 'Digite seu telefone aqui',
+      password: 'Digite a senha aqui',
+      password_confirmation: 'Confirme a senha aqui',
+      name: 'Digite o nome aqui',
+      phone: 'Digite o telefone aqui',
       noData: 'nenhum registro encontrado...',
-
+      observations: 'Digite aqui algumas observações...',
+      description: 'Digite uma descrição aqui...',
+      provider: 'Escolha um fornecedor...',
+      unable_to_remove: 'Não é possivel remover esta opção',
+      no_result: 'Nenhum resultado encontrado, verifique se as palavras estão escritas corretamente'
     },
     notifications: {
       title: {
@@ -103,6 +116,24 @@ export default {
             confirm: 'Tem certeza que deseja restaurar este fornecedor ?'
           }
         },
+        product: {
+          create: {
+            success: 'O produto foi cadastrado com sucesso, vamos redireciona-lo para a pagina de produtos...',
+            wait: 'Vamos começar o processo para cadastrar o produto, isso pode levar alguns segundos...'
+          },
+          edit: {
+            success: 'O produto foi editado com sucesso, vamos redireciona-lo para a pagina de produtos...',
+            wait: 'Vamos começar o processo para editar o produto, isso pode levar alguns segundos...'
+          },
+          delete: {
+            success: 'O produto foi apagado com sucesso...',
+            confirm: 'Tem certeza que deseja apagar este produto ?'
+          },
+          restore: {
+            success: 'O produto foi restaurado com sucesso...',
+            confirm: 'Tem certeza que deseja restaurar este produto ?'
+          }
+        },
         paymentType: {
           create: {
             success: 'O método de pagamento foi cadastrado com sucesso, vamos redireciona-lo para a pagina de método de pagamentoes...',
@@ -131,6 +162,7 @@ export default {
       home: 'Home',
       login: 'Entrar',
       profile: 'Perfil',
+      configurations: 'Configurações',
       users: 'Usuários',
       createUsers: 'Cadastrar Usuários',
       trashedUsers: 'Usuários Apagados',
@@ -148,6 +180,11 @@ export default {
       createPaymentTypes: 'Cadastrar Método de Pagamento',
       trashedPaymentTypes: 'Métodos de Pagamento Apagados',
       editPaymentTypes: 'Editar Método de Pagamento',
+      payments: 'Mét. Pagamentos',
+      products: 'Produtos',
+      createProducts: 'Cadastrar Produto',
+      trashedProducts: 'Produtos Apagados',
+      editProducts: 'Editar Produto',
     }
   }
 }

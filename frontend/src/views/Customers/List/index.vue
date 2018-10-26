@@ -1,6 +1,6 @@
 <script>
-  import CustomerService from "../../../services/CustomerService"
   import List from '@/components/UI/List'
+  import {maxLength} from "../../../helpers/strings"
 
   export default {
     name: 'Customers',
@@ -21,12 +21,19 @@
           name: 'phone',
           sortField: 'phone',
           title: $t('labels.phone')
+        },
+        {
+          name: 'observations',
+          title: $t('labels.observations'),
+          formatter(value) {
+            return maxLength(75, '...')(value).replace(/\n/g, '<br/>')
+          }
         }
       ]
     }),
     methods: {
       dropCustomer(customer) {
-        this.mutate('deleteCustomer', {
+        this.$mutate('deleteCustomer', {
           customer,
           onSuccess: () => this.$refs.vuetable.reload()
         })
@@ -53,7 +60,9 @@
                         url="/api/customers"
                         :fields="fields"
                         has-actions>
-                    <div slot="actions" slot-scope="{rowData: props}">
+                    <div
+                            slot="actions"
+                            slot-scope="{rowData: props}">
                         <button class="btn btn-danger mr-2"
                                 @click="dropCustomer(props)"
                         >Apagar

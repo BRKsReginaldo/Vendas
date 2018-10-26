@@ -32,7 +32,7 @@
     }),
     methods: {
       dropUser(user) {
-        this.mutate('deleteUser', {
+        this.$mutate('deleteUser', {
           user,
           onSuccess: () => this.$refs.vuetable.reload()
         })

@@ -1,6 +1,7 @@
 <script>
   import PaymentTypeService from "../../../services/PaymentTypeService"
   import List from '@/components/UI/List'
+  import {maxLength} from "../../../helpers/strings"
 
   export default {
     name: 'TrashedPaymentTypes',
@@ -16,12 +17,17 @@
           name: 'name',
           sortField: 'name',
           title: $t('labels.name'),
+        },
+        {
+          name: 'observations',
+          title: $t('labels.observations'),
+          formatter: value => maxLength(75)('...')(value).replace(/\n/g, '<br/>')
         }
       ]
     }),
     methods: {
       restore(paymentType) {
-        this.mutate('restorePaymentType', {
+        this.$mutate('restorePaymentType', {
           paymentType,
           onSuccess: () => this.$refs.vuetable.reload()
         })

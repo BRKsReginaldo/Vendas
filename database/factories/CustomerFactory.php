@@ -12,6 +12,7 @@ $factory->define(App\Customer::class, function (Faker $faker) {
         },
         'client_id' => function (array $customer) {
             return \App\User::find($customer['user_id'])->createClient()->id;
-        }
+        },
+        'observations' => $faker->text(10000)
     ];
 });

@@ -26,7 +26,7 @@
     }),
     methods: {
       disable(clientId) {
-        this.mutate('disableClient', {
+        this.$mutate('disableClient', {
           clientId,
           onSuccess: () => this.$refs.vuetable.reload()
         })

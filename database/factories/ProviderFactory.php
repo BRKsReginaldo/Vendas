@@ -7,6 +7,7 @@ $factory->define(App\Provider::class, function (Faker $faker) {
         'name' => $faker->name,
         'client_id' => function() {
             return create(\App\Client::class)->id;
-        }
+        },
+        'observations' => $faker->text(10000)
     ];
 });

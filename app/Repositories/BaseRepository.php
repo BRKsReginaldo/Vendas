@@ -19,6 +19,11 @@ abstract class BaseRepository
         return resolve($this->model)->newQuery();
     }
 
+    public function getSortFields()
+    {
+        return [];
+    }
+
     /**
      * @param null $query
      * @param int $take

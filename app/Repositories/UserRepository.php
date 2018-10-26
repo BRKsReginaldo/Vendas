@@ -10,6 +10,11 @@ class UserRepository extends BaseRepository
 {
     protected $model = User::class;
 
+    public function getSortFields()
+    {
+        return ['name', 'email', 'phone'];
+    }
+
     public function create(array $data)
     {
         $data['password'] = bcrypt($data['password']);
