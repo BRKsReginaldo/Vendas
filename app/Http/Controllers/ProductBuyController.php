@@ -17,6 +17,11 @@ class ProductBuyController extends Controller
         //
     }
 
+    public function trashed()
+    {
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -60,5 +65,10 @@ class ProductBuyController extends Controller
     public function destroy(ProductBuy $productBuy)
     {
         //
+    }
+
+    public function restore($id)
+    {
+
     }
 }

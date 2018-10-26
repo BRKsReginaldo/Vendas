@@ -46,6 +46,13 @@ Route::match(['put', 'patch'], 'products/restore/{id}', 'ProductController@resto
 Route::get('products/trashed', 'ProductController@trashed')->name('products.trashed');
 Route::apiResource('products', 'ProductController');
 
+// Product Buy Routes
+Route::match(['put', 'patch'], 'product-buys/restore/{id}', 'ProductBuyController@restore')->name('products.restore');
+Route::get('product-buys/trashed', 'ProductBuyController@trashed')->name('products.trashed');
+Route::apiResource('product-buys', 'ProductBuyController');
+
+
+
 Route::group(['namespace' => 'Auth'], function () {
     Route::post('/login', 'LoginController@login')->name('login');
     Route::post('/refresh', 'RefreshController@refresh')->name('refresh');
