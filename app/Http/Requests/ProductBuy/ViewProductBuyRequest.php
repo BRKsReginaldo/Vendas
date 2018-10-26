@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\ProductBuy;
 
+use App\ProductBuy;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ViewProductBuyRequest extends FormRequest
@@ -13,7 +14,7 @@ class ViewProductBuyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->can('view', ProductBuy::class);
     }
 
     /**

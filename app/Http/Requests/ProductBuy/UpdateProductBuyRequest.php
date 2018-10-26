@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\ProductBuy;
 
+use App\ProductBuy;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductBuyRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateProductBuyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->can('update', $this->getModel('product_buy', ProductBuy::class));
     }
 
     /**
@@ -24,7 +25,11 @@ class UpdateProductBuyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'product_id' => 'required|exists:products,id',
+            'observations' => 'nullable|string',
+            'client_id' => 'required|exists:clients,id',
+            'user_id' => 'required|exists:users,id',
+            'amount' => 'required|integer'
         ];
     }
 }

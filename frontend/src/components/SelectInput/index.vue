@@ -36,6 +36,10 @@
       placeholder: {
         type: String,
         default: () => 'Escolha uma opção'
+      },
+      customOption: {
+        type: Boolean,
+        default: () => false
       }
     },
     data: () => ({
@@ -110,6 +114,9 @@
                      :deselect-label="$t('placeholders.unable_to_remove')"
                      :label="labelKey">
             <template slot="singleLabel" slot-scope="{option}">{{ option[$props.labelKey] }}</template>
+            <template v-if="customOption" slot="option" slot-scope="{option}">
+                <slot name="option" :option="option"/>
+            </template>
         </multiselect>
     </div>
 </template>

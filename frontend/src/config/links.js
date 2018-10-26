@@ -13,9 +13,23 @@ export default async () => {
       })
     },
     {
+      icon: 'fas fa-shopping-cart',
+      title: () => $t('pages.buyProducts'),
+      link: {
+        name: 'buyProducts'
+      }
+    },
+    {
       icon: 'fas fa-cog',
       title: 'Configurações',
-      can: () => $can('viewCustomer') || $can('viewClient') || $can('manageUser'),
+      can: () =>
+        $can('viewCustomer') ||
+        $can('viewClient') ||
+        $can('manageUser') ||
+        $can('viewClient') ||
+        $can('viewCustomer') ||
+        $can('viewPaymentType') ||
+        $can('viewProduct'),
       links: [
         {
           icon: 'fas fa-user',
@@ -77,6 +91,20 @@ export default async () => {
             value: 'novo'
           })
         },
+      ]
+    },
+    {
+      icon: 'fas fa-search-dollar',
+      title: 'Logs',
+      can: () =>
+        $can('viewLog'),
+      links: [
+        {
+          title: $t('pages.stock'),
+          link: {
+            name: 'stock'
+          }
+        }
       ]
     }
   ]

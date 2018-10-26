@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\ProductBuy;
 
+use App\ProductBuy;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RestoreProductBuyRequest extends FormRequest
@@ -13,7 +14,8 @@ class RestoreProductBuyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $productBuy = ProductBuy::withTrashed()->findOrFail($this->route('id'));
+        return $this->user()->can('restore', $productBuy);
     }
 
     /**

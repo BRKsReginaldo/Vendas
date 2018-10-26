@@ -23,6 +23,8 @@ export default {
       provider: 'Fornecedor',
       selected: 'Selecionado',
       select: 'Pressione enter para selecionar',
+      product: 'Produto',
+      amount: 'Quantidade'
     },
     placeholders: {
       email: 'Digite seu e-mail aqui',
@@ -34,8 +36,10 @@ export default {
       observations: 'Digite aqui algumas observações...',
       description: 'Digite uma descrição aqui...',
       provider: 'Escolha um fornecedor...',
+      product: 'Escolha um produto...',
       unable_to_remove: 'Não é possivel remover esta opção',
       search: 'digite para pesquisar...',
+      amount: 'Digite a quantidade aqui',
       no_result: 'Nenhum resultado encontrado, verifique se as palavras estão escritas corretamente'
     },
     notifications: {
@@ -133,7 +137,11 @@ export default {
           restore: {
             success: 'O produto foi restaurado com sucesso...',
             confirm: 'Tem certeza que deseja restaurar este produto ?'
-          }
+          },
+          buy: {
+            success: 'O produto foi comprado com sucesso, vamos redireciona-lo para a pagina de produtos...',
+            confirm: 'Tem certeza que deseja comprar este produto ?'
+          },
         },
         paymentType: {
           create: {
@@ -186,6 +194,11 @@ export default {
       createProducts: 'Cadastrar Produto',
       trashedProducts: 'Produtos Apagados',
       editProducts: 'Editar Produto',
+      buyProduct: 'Comprar Produto',
+      buyProducts: 'Comprar Produtos',
+      productsPurcharged: 'Produtos Comprados',
+      stock: 'Estoque',
+      logs: 'Logs'
     }
   }
 }

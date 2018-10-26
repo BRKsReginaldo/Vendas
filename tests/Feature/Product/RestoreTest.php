@@ -53,6 +53,7 @@ class RestoreTest extends ProductTest
             ->assertStatus(200)
             ->assertSeeText('');
 
+
         $this->assertDatabaseHas('products', [
             'id' => $product->id,
             'deleted_at' => null

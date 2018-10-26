@@ -4,6 +4,8 @@ import ClientPolicy from "../policies/ClientPolicy"
 import ProviderPolicy from "../policies/ProviderPolicy"
 import PaymentTypePolicy from "../policies/PaymentTypePolicy"
 import ProductPolicy from "../policies/ProductPolicy"
+import ProductBuyPolicy from "../policies/ProductBuyPolicy"
+import LogPolicy from "../policies/LogPolicy"
 
 export default {
   User: UserPolicy,
@@ -11,5 +13,7 @@ export default {
   Client: ClientPolicy,
   Provider: ProviderPolicy,
   PaymentType: PaymentTypePolicy,
-  Product: ProductPolicy
+  Product: ProductPolicy,
+  ProductBuy: ProductBuyPolicy,
+  Log: LogPolicy
 }

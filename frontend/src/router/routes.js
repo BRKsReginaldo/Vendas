@@ -138,6 +138,22 @@ const Breadcrumbs = {
     link: {
       name: 'trashedProducts'
     }
+  },
+  buyProducts: {
+    name: $t('pages.buyProduct'),
+    link: {
+      name: 'buyProducts'
+    }
+  },
+  logs: {
+    name: $t('pages.logs'),
+    link: null
+  },
+  stock: {
+    name: $t('pages.stock'),
+    link: {
+      name: 'stock'
+    }
   }
 }
 
@@ -462,6 +478,31 @@ export default [
           ]
         }
       },
+      {
+        path: 'produtos/comprar',
+        name: 'buyProducts',
+        component: () => import(/* webpackChunkName: "buyProducts" */ '../views/Products/Buy'),
+        meta: {
+          can: () => $can('createProduct'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.buyProducts
+          ]
+        }
+      },
+      {
+        path: 'logs/estoque',
+        name: 'stock',
+        component: () => import(/* webpackChunkName: "stockLogs" */ '../views/Logs/Stock'),
+        meta: {
+          can: () => $can('viewLog'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.logs,
+            Breadcrumbs.stock
+          ]
+        }
+      }
     ]
   }
 ]

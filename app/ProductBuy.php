@@ -17,6 +17,7 @@ class ProductBuy extends Model
         'observations',
         'client_id',
         'user_id',
+        'amount',
         'product_transaction_id'
     ];
 

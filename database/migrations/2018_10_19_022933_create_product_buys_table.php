@@ -17,10 +17,12 @@ class CreateProductBuysTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('client_id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('product_transaction_id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('product_transaction_id')->nullable();
+            $table->integer('amount');
             $table->text('observations')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

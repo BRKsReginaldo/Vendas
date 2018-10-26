@@ -25,6 +25,12 @@ class Payment extends Model
         'payable_id',
     ];
 
+    public function getPaidAttribute()
+    {
+        return $this->paid_plots === $this->total_plots &&
+            !is_null($this->payed_at);
+    }
+
     public function payable()
     {
         return $this->morphTo();
