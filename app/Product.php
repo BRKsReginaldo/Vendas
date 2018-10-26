@@ -50,8 +50,8 @@ class Product extends Model
     {
         return $this->transactions()
             ->create([
-               'old_stock' => $this->attributes['stock'],
-               'client_id' => $this->attributes['client_id'],
+               'old_stock' => $this->stock ?? 0,
+               'client_id' => $this->client_id,
                'user_id' => auth()->check() ? auth()->id() : $this->client->creator()->first(['user_id'])->user_id,
                'new_stock' => $newStock
             ]);
