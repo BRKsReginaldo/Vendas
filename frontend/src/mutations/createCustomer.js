@@ -1,9 +1,10 @@
 import CustomerService from "../services/CustomerService"
 import {commonMutation} from '../helpers/mutations'
 
-export default ({data, user_id, client_id, setErrors, onSuccess}) => {
+export default ({data, user_id, client_id, phone, setErrors, onSuccess}) => {
   data.append('client_id', client_id)
   data.append('user_id', user_id)
+  data.append('phone', phone)
 
   return commonMutation({
     successText: $t('notifications.message.customer.create.success'),

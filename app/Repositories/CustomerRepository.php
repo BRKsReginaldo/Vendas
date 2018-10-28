@@ -11,6 +11,6 @@ class CustomerRepository extends BaseRepository
 
     public function getSortFields()
     {
-        return ['name'];
+        return ['name', 'phone'];
     }
 }

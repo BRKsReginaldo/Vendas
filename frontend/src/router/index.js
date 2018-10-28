@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from "./routes"
+import store from '../store'
 
 Vue.use(Router)
 
@@ -11,6 +12,10 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  if (window.matchMedia(`(max-width: 991px)`).matches && store.getters['ui/sidebarOpen']) {
+    store.dispatch('ui/setSidebarOpen', false)
+  }
+
   if (to.matched.some(route => route.meta.auth)) {
     if (localStorage.getItem('auth_credentials') === null) {
       next({

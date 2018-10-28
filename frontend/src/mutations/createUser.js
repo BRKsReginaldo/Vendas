@@ -3,7 +3,8 @@ import UserService from "../services/UserService"
 import ClientService from "../services/ClientService"
 
 
-export default ({data, setErrors, onSuccess}) => {
+export default ({data, phone, setErrors, onSuccess}) => {
+  data.append('phone', phone)
 
   return commonMutation({
     successText: $t('notifications.message.user.create.success'),

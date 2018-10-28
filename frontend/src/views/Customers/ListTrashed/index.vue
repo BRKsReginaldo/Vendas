@@ -2,6 +2,7 @@
   import CustomerService from "../../../services/CustomerService"
   import List from '@/components/UI/List'
   import {maxLength} from "../../../helpers/strings"
+  import {toPhone} from "../../../helpers/strings"
 
   export default {
     name: 'Customers',
@@ -21,7 +22,8 @@
         {
           name: 'phone',
           sortField: 'phone',
-          title: $t('labels.phone')
+          title: $t('labels.phone'),
+          formatter: toPhone
         },
         {
           name: 'observations',

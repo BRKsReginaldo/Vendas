@@ -16,15 +16,28 @@ export default {
       creator: 'Criador (a)',
       observations: 'Observações',
       description: 'Descrição',
+      original_price: 'Preço Original',
+      payment_type: 'Forma de pagamento',
       price: 'Preço',
       buy_price: 'Preço de Compra',
       sell_price: 'Preço de Venda',
       stock: 'Estoque',
       provider: 'Fornecedor',
       selected: 'Selecionado',
-      select: 'Pressione enter para selecionar'
+      select: 'Pressione enter para selecionar',
+      product: 'Produto',
+      amount: 'Quantidade',
+      total_plots: 'Parcelas',
+      createPayment: 'Informações de Pagamento',
+      discount_type: 'Tipo de desconto',
+      discount: 'Desconto',
+      total_price: 'Preço Total',
+      paid: 'Pago',
+      total: 'Total',
+      buyed_at: 'Comprado em'
     },
     placeholders: {
+      paid_at: 'Digite quando foi pago aqui',
       email: 'Digite seu e-mail aqui',
       password: 'Digite a senha aqui',
       password_confirmation: 'Confirme a senha aqui',
@@ -34,7 +47,12 @@ export default {
       observations: 'Digite aqui algumas observações...',
       description: 'Digite uma descrição aqui...',
       provider: 'Escolha um fornecedor...',
+      product: 'Escolha um produto...',
       unable_to_remove: 'Não é possivel remover esta opção',
+      search: 'digite para pesquisar...',
+      payment_type: 'Escolha uma forma de pagamento...',
+      amount: 'Digite a quantidade aqui',
+      total_plots: 'Escolha o número de parcelas...',
       no_result: 'Nenhum resultado encontrado, verifique se as palavras estão escritas corretamente'
     },
     notifications: {
@@ -132,7 +150,11 @@ export default {
           restore: {
             success: 'O produto foi restaurado com sucesso...',
             confirm: 'Tem certeza que deseja restaurar este produto ?'
-          }
+          },
+          buy: {
+            success: 'Sua compra foi confirmada, vamos redireciona-lo para a pagina de produtos...',
+            confirm: 'Tem certeza que deseja comprar este produto ?'
+          },
         },
         paymentType: {
           create: {
@@ -185,6 +207,12 @@ export default {
       createProducts: 'Cadastrar Produto',
       trashedProducts: 'Produtos Apagados',
       editProducts: 'Editar Produto',
+      buyProduct: 'Comprar Produto',
+      buyProducts: 'Comprar Produtos',
+      createProductsPayment: 'Cadastrar Pagamento',
+      productsPurcharged: 'Compras',
+      stock: 'Estoque',
+      logs: 'Logs'
     }
   }
 }

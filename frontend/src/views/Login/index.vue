@@ -13,7 +13,7 @@
       ErrorList,
       PasswordField
     },
-    data: () => ({showPassword: false, errors: new ErrorBag()}),
+    data: () => ({showPassword: false, errors: new ErrorBag(), loading: false}),
     methods: {
       ...mapActions({
         login: 'auth/login'
@@ -22,9 +22,10 @@
         ev.preventDefault()
 
         const FD = new FormData(ev.target)
+        this.$data.loading = true
 
         try {
-          const result = await this.login({
+          await this.login({
             email: FD.get('email'),
             password: FD.get('password')
           })
@@ -36,6 +37,8 @@
           if (e.hasOwnProperty('errors')) {
             this.$data.errors = new ErrorBag(e.errors)
           }
+        } finally {
+          this.$data.loading = false
         }
 
         return false
@@ -67,7 +70,7 @@
                             :placeholder="$t('placeholders.password')"
                             :errors="$data.errors"/>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary">{{ $t('login.signin') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ $t('login.signin') }} <span class="fas fa-spinner fa-spin" v-show="loading"/></button>
                     </div>
                 </form>
             </div>

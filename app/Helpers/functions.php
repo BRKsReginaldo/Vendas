@@ -65,6 +65,7 @@ if (!function_exists('sortedQuery')) {
         [$orderBy, $orderDirection] = explode('|', $sort);
         $search = $request->get('search', null);
         $sortFields = method_exists($class, 'getSortFields') ? $class->getSortFields() : [];
+        $with = $request->get('with', '');
 
         $query = $class
             ->newQuery()
@@ -78,6 +79,13 @@ if (!function_exists('sortedQuery')) {
                 }
             });
         }
+
+        if ($with) {
+            $with = explode('|', $with);
+
+            $query->with($with);
+        }
+
 
         return $query;
     }

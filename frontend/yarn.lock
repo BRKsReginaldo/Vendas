@@ -7629,6 +7629,11 @@ vue-textarea-autosize@^1.0.4:
   resolved "https://registry.yarnpkg.com/vue-textarea-autosize/-/vue-textarea-autosize-1.0.4.tgz#671e4f9b69d278be9b94ea304a3032bcabb54135"
   integrity sha512-24ivBeHvivkJdtUMSi7Pv8OBqzTnIRr/eTlDlbg0W3umpERY8Fq67FlAK3CrhCNHAlXOxgUOQtVKlslYN1/MTg==
 
+vue-the-mask@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/vue-the-mask/-/vue-the-mask-0.11.1.tgz#91ee01008354ae57bccc79bb61b65f32d971d9d5"
+  integrity sha512-UquSfnSWejD0zAfcD+3jJ1chUAkOAyoxya9Lxh9acCRtrlmGcAIvd0cQYraWqKenbuZJUdum+S174atv2AuEHQ==
+
 vue@^2.2.2, vue@^2.5.17:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"

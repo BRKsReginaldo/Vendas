@@ -21,6 +21,10 @@
       hasActions: {
         type: Boolean
       },
+      with: {
+        type: Array,
+        default: []
+      },
       slots: {
         type: Array,
         required: false,
@@ -40,11 +44,21 @@
           }
         ]
       },
+      appendFields() {
+        return {
+          with: this.$props.with.join('|')
+        }
+      },
       page() {
         return this.$route.query.page
       },
       search() {
         return this.$route.query.search || ''
+      }
+    },
+    watch: {
+      search(search) {
+        this.makeSearch(search)
       }
     },
     methods: {
@@ -88,16 +102,20 @@
           this.onChangePage(this.$route.query.page)
         }
       },
-      async onChangeSearch(ev) {
-        console.log(ev.target.value, encodeURIComponent(ev.target.value), decodeURIComponent(ev.target.value))
+      async makeSearch(search) {
         this.$router.push({
           query: {
             ...this.$route.query,
-            search: ev.target.value.trim()
+            search: search.trim()
           }
         })
 
         await this.$refs.vuetable.reload()
+      },
+      async onChangeSearch(ev) {
+        const search = ev.target.value
+
+        await this.makeSearch(search)
 
         if (this.$route.query.page && this.$route.query.page.toString() !== '1') this.onChangePage(1)
       }
@@ -112,6 +130,7 @@
                 :api-url="$props.url"
                 :fields="formatedFields"
                 data-path="data"
+                :append-params="appendFields"
                 :query-params="buildQuery"
                 :transform="transformData"
                 :http-options="requestAuth"

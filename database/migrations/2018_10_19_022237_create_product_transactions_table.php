@@ -17,7 +17,9 @@ class CreateProductTransactionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('client_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->float('old_stock');
+            $table->float('new_stock');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('product_id')
