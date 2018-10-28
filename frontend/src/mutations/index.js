@@ -19,6 +19,7 @@ import createProduct from './createProduct'
 import editProduct from './editProduct'
 import deleteProduct from './deleteProduct'
 import restoreProduct from './restoreProduct'
+import buyProduct from './buyProduct'
 
 export default {
   createCustomer,
@@ -42,4 +43,5 @@ export default {
   editProduct,
   deleteProduct,
   restoreProduct,
+  buyProduct
 }

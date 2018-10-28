@@ -21,6 +21,10 @@
       hasActions: {
         type: Boolean
       },
+      with: {
+        type: Array,
+        default: []
+      },
       slots: {
         type: Array,
         required: false,
@@ -39,6 +43,11 @@
             title: $t('labels.actions')
           }
         ]
+      },
+      appendFields() {
+        return {
+          with: this.$props.with.join('|')
+        }
       },
       page() {
         return this.$route.query.page
@@ -121,6 +130,7 @@
                 :api-url="$props.url"
                 :fields="formatedFields"
                 data-path="data"
+                :append-params="appendFields"
                 :query-params="buildQuery"
                 :transform="transformData"
                 :http-options="requestAuth"

@@ -52,7 +52,7 @@ class Product extends Model
             ->create([
                'old_stock' => $this->stock ?? 0,
                'client_id' => $this->client_id,
-               'user_id' => auth()->check() ? auth()->id() : $this->client->creator()->first(['user_id'])->user_id,
+               'user_id' => auth()->check() ? auth()->id() : $this->client->id,
                'new_stock' => $newStock
             ]);
     }

@@ -159,7 +159,7 @@ abstract class BaseRepository
             ->withTrashed()
             ->find($id);
 
-        $model->restore();
+        if (!$model->restore()) return $model->restore();
 
         return $model->fresh();
     }

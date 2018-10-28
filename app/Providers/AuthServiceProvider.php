@@ -4,14 +4,18 @@ namespace App\Providers;
 
 use App\Client;
 use App\Customer;
+use App\Payment;
 use App\PaymentType;
 use App\Policies\ClientPolicy;
 use App\Policies\CustomerPolicy;
+use App\Policies\PaymentPolicy;
 use App\Policies\PaymentTypePolicy;
+use App\Policies\ProductBuyPolicy;
 use App\Policies\ProductPolicy;
 use App\Policies\ProviderPolicy;
 use App\Policies\UserPolicy;
 use App\Product;
+use App\ProductBuy;
 use App\Provider;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
@@ -33,6 +37,8 @@ class AuthServiceProvider extends ServiceProvider
         Provider::class => ProviderPolicy::class,
         PaymentType::class => PaymentTypePolicy::class,
         Product::class => ProductPolicy::class,
+        ProductBuy::class => ProductBuyPolicy::class,
+        Payment::class => PaymentPolicy::class,
     ];
 
     /**

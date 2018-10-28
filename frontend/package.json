@@ -16,6 +16,7 @@
     "rambda": "^1.2.6",
     "raven-js": "^3.27.0",
     "sweetalert": "^2.1.0",
+    "uuid": "^3.3.2",
     "v-money": "^0.8.1",
     "vue": "^2.5.17",
     "vue-cropperjs": "^2.2.2",
