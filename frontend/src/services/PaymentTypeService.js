@@ -1,6 +1,10 @@
 import client from "../helpers/client"
 
 export default {
+  fetch() {
+    if (!$can('viewPaymentType')) return unauthorizedError().then(() => Promise.reject(false))
+    return client.get('/api/payment-types')
+  },
   create(data) {
     if (!$can('createPaymentType')) return unauthorizedError().then(() => Promise.reject(false))
     return client.post('/api/payment-types', data)

@@ -14,9 +14,9 @@ export default async () => {
     },
     {
       icon: 'fas fa-shopping-cart',
-      title: () => $t('pages.buyProducts'),
+      title: () => $t('pages.productsPurcharged'),
       link: {
-        name: 'buyProducts'
+        name: 'productsPurcharged'
       }
     },
     {

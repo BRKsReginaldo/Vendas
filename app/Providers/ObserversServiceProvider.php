@@ -6,9 +6,11 @@ use App\Client;
 use App\Image;
 use App\Observers\ClientObserver;
 use App\Observers\ImageObserver;
+use App\Observers\PaymentObserver;
 use App\Observers\ProductBuyObserver;
 use App\Observers\ProductTransactionObserver;
 use App\Observers\UserObserver;
+use App\Payment;
 use App\Product;
 use App\ProductBuy;
 use App\ProductTransaction;
@@ -27,6 +29,7 @@ class ObserversServiceProvider extends ServiceProvider
         Client::class => ClientObserver::class,
         ProductTransaction::class => ProductTransactionObserver::class,
         ProductBuy::class => ProductBuyObserver::class,
+        Payment::class => PaymentObserver::class,
     ];
 
     /**

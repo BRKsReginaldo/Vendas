@@ -26,7 +26,9 @@ class PaymentResource extends JsonResource
             'pending_plots' => $this->pending_plots,
             'paid_plots' => $this->paid_plots,
             'payed_at' => $this->payed_at,
-            'paid' => $this->paid
+            'paid' => $this->paid,
+            'payable_type' => $this->payable_type,
+            'payable_id' => $this->payable_id
         ];
     }
 }

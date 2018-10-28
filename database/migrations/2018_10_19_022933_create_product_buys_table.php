@@ -23,6 +23,9 @@ class CreateProductBuysTable extends Migration
             $table->text('observations')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 

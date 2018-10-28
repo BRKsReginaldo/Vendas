@@ -1,7 +1,7 @@
 import {commonMutation} from '../helpers/mutations'
 import ProductBuyService from "../services/ProductBuyService"
 
-export default ({data, user_id, client_id, product, amount, setErrors, onSuccess}) => {
+export default ({data, user_id, client_id, product, amount, setErrors, onSuccess, beforeSuccess}) => {
   data.append('client_id', client_id)
   data.append('user_id', user_id)
   data.append('product_id', product ? product.id : null)
@@ -11,6 +11,7 @@ export default ({data, user_id, client_id, product, amount, setErrors, onSuccess
     successText: $t('notifications.message.product.buy.success'),
     confirmText: $t('notifications.message.product.buy.confirm'),
     mutate: () => ProductBuyService.buy(data, product),
+    beforeSuccess,
     onSuccess,
     setValidationErrors: setErrors
   })

@@ -16,12 +16,13 @@ class ProductBuyResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'product' => new ProductResource($this->product),
+            'product' => new ProductResource($this->whenLoaded('product')),
             'product_id' => $this->product_id,
             'observations' => $this->observations,
             'client_id' => $this->client_id,
             'amount' => $this->amount,
-            'payment' => new PaymentResource($this->payment)
+            'payment' => new PaymentResource($this->whenLoaded('payment')),
+            'created_at' => $this->created_at->format('d/m/Y')
         ];
     }
 }

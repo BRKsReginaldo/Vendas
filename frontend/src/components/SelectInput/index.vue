@@ -26,6 +26,10 @@
         type: String,
         default: () => 'id'
       },
+      showLabels: {
+        type: Boolean,
+        default: () => true
+      },
       value: {
         required: true
       },
@@ -108,7 +112,7 @@
                      :placeholder="placeholder"
                      :allow-empty="false"
                      :no-result="$t('placeholders.no_result')"
-                     :show-labels="true"
+                     :show-labels="showLabels"
                      :select-label="$t('labels.select')"
                      :selected-label="$t('labels.selected')"
                      :deselect-label="$t('placeholders.unable_to_remove')"

@@ -145,6 +145,12 @@ const Breadcrumbs = {
       name: 'buyProducts'
     }
   },
+  productsPurcharged: {
+    name: $t('pages.productsPurcharged'),
+    link: {
+      name: 'productsPurcharged'
+    }
+  },
   logs: {
     name: $t('pages.logs'),
     link: null
@@ -479,13 +485,26 @@ export default [
         }
       },
       {
-        path: 'produtos/comprar',
+        path: 'compras',
+        name: 'productsPurcharged',
+        component: () => import(/* webpackChunkName: "productsPurcharged" */ '../views/Products/ListBuys'),
+        meta: {
+          can: () => $can('buyProductBuy'),
+          breadcrumbs: [
+            Breadcrumbs.home,
+            Breadcrumbs.productsPurcharged
+          ]
+        }
+      },
+      {
+        path: 'compras/produtos',
         name: 'buyProducts',
         component: () => import(/* webpackChunkName: "buyProducts" */ '../views/Products/Buy'),
         meta: {
           can: () => $can('createProduct'),
           breadcrumbs: [
             Breadcrumbs.home,
+            Breadcrumbs.productsPurcharged,
             Breadcrumbs.buyProducts
           ]
         }

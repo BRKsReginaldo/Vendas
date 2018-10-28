@@ -1,5 +1,6 @@
 <script>
-  import SelectInput from "../../../components/SelectInput/index"
+  import SelectInput from "@/components/SelectInput/index"
+  import CreatePayment from '@/components/CreatePayment'
   import ErrorBag from "../../../helpers/ErrorBag"
   import hasForm from '@/mixins/hasForm'
   import withUser from '@/mixins/withUser'
@@ -7,17 +8,31 @@
   export default {
     name: 'BuyProduct',
     mixins: [hasForm, withUser],
-    components: {SelectInput},
+    components: {SelectInput, CreatePayment},
     meta: {
       title: $t('pages.buyProduct')
     },
     data: () => ({
       product: null,
       errors: new ErrorBag(),
-      amount: null
+      amount: null,
+      productBuyId: null
     }),
+    computed: {
+      original_price() {
+        return this.product ? (this.product.sell_price * this.amount) : 0
+      }
+    },
     methods: {
       buy(ev) {
+        let onSuccess = () => this.$router.push({
+          name: 'products',
+        })
+
+        if (this.$data.productBuyId) {
+          this.$refs.payment.create(this.$data.productBuyId)
+            .then(onSuccess)
+        }
 
         const data = new FormData(ev.target)
 
@@ -28,9 +43,11 @@
           client_id: this.user.client_id,
           user_id: this.user.id,
           setErrors: this.setErrors,
-          onSuccess: () => this.$router.push({
-            name: 'products'
-          })
+          beforeSuccess: async (res) => {
+            this.$data.productBuyId = res.data.data.id
+            return this.$refs.payment.create(res.data.data.id)
+          },
+          onSuccess
         })
 
       }
@@ -75,9 +92,14 @@
                             <error-list :errors="$data.errors.get('amount')"/>
                         </div>
                     </div>
+                    <create-payment
+                            ref="payment"
+                            payable-type="App\ProductBuy"
+                            :original-price="original_price" shown/>
                     <div class="text-right">
                         <router-link to="/"
-                                     class="btn btn-danger mr-2">Cancelar</router-link>
+                                     class="btn btn-danger mr-2">Cancelar
+                        </router-link>
                         <button class="btn btn-primary">Comprar</button>
                     </div>
                 </form>

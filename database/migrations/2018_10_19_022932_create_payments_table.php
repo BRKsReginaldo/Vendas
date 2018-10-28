@@ -25,7 +25,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('total_plots')->default(1);
             $table->integer('pending_plots')->default(1);
             $table->integer('paid_plots')->default(1);
-            $table->date('payed_at');
+            $table->date('payed_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('client_id')

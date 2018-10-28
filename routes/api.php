@@ -51,6 +51,14 @@ Route::apiResource('product-buys', 'ProductBuyController', [
     'only' => ['index', 'store']
 ]);
 
+Route::apiResource('payments', 'PaymentController', [
+   'only' => ['show', 'store', 'update']
+]);
+
+Route::apiResource('plots', 'PlotController', [
+   'only' => 'index'
+]);
+
 
 Route::group(['namespace' => 'Auth'], function () {
     Route::post('/login', 'LoginController@login')->name('login');

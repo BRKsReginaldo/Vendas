@@ -9,8 +9,12 @@ class ProductBuyObserver
 {
     public function created(ProductBuy $productBuy)
     {
-        $productBuy
+        $transaction = $productBuy
             ->product
             ->makeTransaction($productBuy->product->stock + $productBuy->amount);
+
+        $productBuy->update([
+            'product_transaction_id' => $transaction->id
+        ]);
     }
 }
